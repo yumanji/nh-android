@@ -1,0 +1,229 @@
+
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="3dp"
+          android:background="@drawable/order_back"
+          android:orientation="horizontal"
+          android:padding="4dp" >
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:orientation="vertical" >
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="5dp" >
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView05"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/date"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/dateText"
+                          android:layout_width="100dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="0"
+                          android:text="jul - 2012"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView12"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/machineType"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/machineTypeText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:text="Tractores"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView08"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/brand"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/brandText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:text=" martey ferguson"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <LinearLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_marginLeft="10dp"
+                          android:layout_weight="0" >
+
+                          <TextView
+                              android:id="@+id/TextView11"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="0"
+                              android:text="@string/comercialModel"
+                              android:textAppearance="@style/dataTitleText"
+                              android:textSize="20sp" />
+
+                          <TextView
+                              android:id="@+id/modelText"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="6dp"
+                              android:layout_weight="1"
+                              android:text="ñlkashfadsñlkdfjlañ aefjñlkasdfljlkñjdskjlñfdf asfeljkñ"
+                              android:textAppearance="@style/dataText"
+                              android:textSize="20sp" />
+                      </LinearLayout>
+
+                      <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          android:layout_weight="0" >
+                      </LinearLayout>
+                  </LinearLayout>
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="5dp" >
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView14"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/place"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/placeText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView02"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/salesMan"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/salesnameText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView04"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/dealerName"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/dealerText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+              </LinearLayout>
+          </LinearLayout>
+
+          <Button
+              android:id="@+id/nextButton"
+              android:layout_width="100dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_weight="1"
+              android:background="@drawable/ic_next" />
+
+        </LinearLayout>

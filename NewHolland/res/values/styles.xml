@@ -1,0 +1,136 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.Sherlock.Light">
+      <!--   <item name="android:background">@drawable/nh_color_back</item>
+        <item name="background">@drawable/nh_color_back</item> 
+        <item name="actionBarStyle">@style/Widget.AppTheme.ActionBar</item>
+    	<item name="android:actionBarStyle">@style/Widget.AppTheme.ActionBar</item>   -->  
+       
+    </style>
+ <!--   <style name="Widget.AppTheme.ActionBar" parent="Widget.Sherlock.ActionBar">
+	    <item name="android:background">@drawable/nh_color_ab</item>
+	    <item name="background">@drawable/nh_color_ab</item>
+	</style> -->
+   <!--   Variation on the Holo Light theme that styles the Action Bar 
+    <style name="Theme.AndroidDevelopers" parent="Theme.Sherlock.Light">
+        <item name="android:actionBarItemBackground">@drawable/ad_selectable_background</item>
+        <item name="actionBarItemBackground">@drawable/ad_selectable_background</item>
+        <item name="android:popupMenuStyle">@style/MyPopupMenu</item>
+        <item name="popupMenuStyle">@style/MyPopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/MyDropDownListView</item>
+        <item name="dropDownListViewStyle">@style/MyDropDownListView</item>
+        <item name="android:actionBarTabStyle">@style/MyActionBarTabStyle</item>
+        <item name="actionBarTabStyle">@style/MyActionBarTabStyle</item>
+        <item name="android:actionDropDownStyle">@style/MyDropDownNav</item>
+        <item name="actionDropDownStyle">@style/MyDropDownNav</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/ad_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/ad_btn_radio_holo_light</item>
+       <item name="android:actionOverflowButtonStyle">@style/MyOverflowButton</item>
+    </style>-->
+   <style name="flipperCategoryTitle">
+	        <item name="android:textStyle">bold</item>
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	         <item name="android:shadowColor">@color/black</item>
+	        <item name="android:shadowRadius">1.5</item>
+	        <item name="android:shadowDx">0.5</item>
+	        <item name="android:shadowDy">0.5</item>
+	        <item name="android:textColor">@color/category_title</item>
+	    </style>
+	<style name="textCategoryTitle">
+	        <item name="android:textStyle">bold</item>
+	        <item name="android:textSize">@dimen/category_title</item>
+	        <item name="android:textColor">@color/category_title</item>
+	        <item name="android:shadowColor">@color/black</item>
+	        <item name="android:shadowRadius">1.5</item>
+	        <item name="android:shadowDx">0.5</item>
+	        <item name="android:shadowDy">0.5</item>
+	    </style>
+	 <style name="textCategoryTitleBlack">
+	        <item name="android:textStyle">bold</item>
+	        <item name="android:textSize">@dimen/category_title</item>
+	        <item name="android:textColor">@color/corporative_color</item>
+	        <item name="android:shadowColor">@color/white</item>
+	        <item name="android:shadowRadius">1.5</item>
+	        <item name="android:shadowDx">0.5</item>
+	        <item name="android:shadowDy">0.5</item>
+	    </style>
+	<style name="infoCategoryTitle">
+	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	        <item name="android:textColor">@color/white</item>
+	    </style>
+	<style name="subTextCategoryTitle">
+	        <item name="android:textStyle">bold</item>
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	        <item name="android:textColor">@color/category_title</item>
+	    </style>
+	<style name="descTextItem">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	        <item name="android:textColor">@color/black</item>
+	        <item name="android:shadowColor">#FFFFFF</item>
+	        <item name="android:shadowRadius">1.5</item>
+	        <item name="android:shadowDx">0.5</item>
+	        <item name="android:shadowDy">0.5</item>
+	    </style>
+	 
+	<style name="priceTextItem">	        
+	        <item name="android:textSize">@dimen/text_size_large</item>
+	        <item name="android:textColor">@color/black</item>
+	        <item name="android:shadowColor">#FFFFFF</item>
+	        <item name="android:shadowRadius">1.5</item>
+	        <item name="android:shadowDx">0.5</item>
+	        <item name="android:shadowDy">0.5</item>
+	    </style>
+	 <style name="formText">	        
+	        <item name="android:textSize">@dimen/text_size_large</item>
+	        <item name="android:textColor">@color/corporative_sec_color</item>
+	     	<item name="android:textStyle">bold</item>
+	    </style>
+	    
+	  <style name="tableTitleText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	        <item name="android:textColor">@color/corporative_color</item>
+	     	<item name="android:textStyle">bold</item>
+	    </style>
+	    <style name="tableTitleColumnText">	        
+	        <item name="android:textSize">@dimen/text_size_normal</item>
+	        <item name="android:textStyle">bold</item>
+	       <item name="android:textColor">@color/corporative_color</item>
+	     	
+	    </style>
+	     <style name="tableTitleRowText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_sec_color</item>
+	     	
+	    </style>
+	    <style name="tableRowText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_sec_color</item>
+	     	
+	    </style>
+	    
+	    
+	   <style name="dataTitleText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	        <item name="android:textColor">@color/corporative_sec_color</item>
+	     	<item name="android:textStyle">bold</item>
+	    </style>
+	    <style name="dataText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_color</item>
+	     	
+	    </style>
+	  <style name="formTitleText">	        
+	        <item name="android:textSize">@dimen/title_size_large</item>
+	        <item name="android:textColor">@color/corporative_sec_color</item>
+	     	<item name="android:textStyle">bold</item>
+	    </style>
+	  <style name="formIdText">	        
+	       <item name="android:textSize">@dimen/text_size_large</item>
+	        <item name="android:textColor">@color/white</item>
+	        <item name="android:shadowColor">@color/black</item>
+	        <item name="android:shadowRadius">1.5</item>
+	        <item name="android:shadowDx">0.5</item>
+	        <item name="android:shadowDy">0.5</item>
+	    </style>
+</resources>

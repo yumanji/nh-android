@@ -1,0 +1,121 @@
+<!--
+  Copyright 2012 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2000418C"
+    android:orientation="vertical"
+    tools:context="org.afree.chart.demo.ChartHierarchyActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:text="Aplicacion para gestion de inscripciones para New Holland"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/corporative_color"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/logo_nh" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal" >
+
+        <com.movetothebit.newholland.android.widgets.CategoryWidget
+            android:id="@+id/standby"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </com.movetothebit.newholland.android.widgets.CategoryWidget>
+
+        <com.movetothebit.newholland.android.widgets.CategoryWidget
+            android:id="@+id/global"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.movetothebit.newholland.android.widgets.CategoryWidget
+            android:id="@+id/statistics"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!--
+           <LinearLayout
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:orientation="vertical" >
+
+	                <com.movetothebit.newholland.android.widgets.CategoryWidget
+	                    android:id="@+id/objetivos"
+	          android:layout_width="wrap_content"
+	          android:layout_height="match_parent"
+	          android:layout_weight="1" />
+
+	                <com.movetothebit.newholland.android.widgets.CategoryWidget
+	                    android:id="@+id/resumen"
+	          
+	          android:layout_width="wrap_content"
+	          android:layout_height="match_parent"
+	                    android:layout_weight="1" />
+
+	            </LinearLayout>
+	            
+	       <LinearLayout
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:orientation="vertical" >
+
+	                <com.movetothebit.newholland.android.widgets.CategoryWidget
+	                    android:id="@+id/donde"
+	          android:layout_width="wrap_content"
+	          android:layout_height="match_parent"
+	          android:layout_weight="1" />
+
+	                <com.movetothebit.newholland.android.widgets.CategoryWidget
+	                    android:id="@+id/contacta"
+	          
+	          android:layout_width="wrap_content"
+	          android:layout_height="match_parent"
+	                    android:layout_weight="1" />
+
+	            </LinearLayout>
+    -->
+
+</LinearLayout>

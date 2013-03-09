@@ -1,0 +1,1149 @@
+<!--
+  Copyright 2012 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="0" >
+
+                <Spinner
+                    android:id="@+id/dealerSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/dealer"
+                    android:prompt="@string/dealer_prompt" />
+
+                <Spinner
+                    android:id="@+id/dealerManSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/dealerMan"
+                    android:prompt="@string/dealerMan_prompt" />
+
+                <Spinner
+                    android:id="@+id/placeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/province"
+                    android:prompt="@string/province_prompt" />
+
+                <Spinner
+                    android:id="@+id/modelSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/models"
+                    android:prompt="@string/model_prompt" />
+
+                <Spinner
+                    android:id="@+id/segmentSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/segment"
+                    android:prompt="@string/segment_prompt" />
+
+                <Spinner
+                    android:id="@+id/monthSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/months"
+                    android:prompt="@string/month_prompt" />
+
+                <Spinner
+                    android:id="@+id/brandSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/brand"
+                    android:prompt="@string/brand_prompt" />
+
+                <Button
+                    android:id="@+id/chartButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Filtrar"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" >
+
+                <LinearLayout
+                    android:id="@+id/chartLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical" >
+
+                    <com.movetothebit.newholland.android.widgets.BarChartView
+                        android:id="@+id/chartView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <com.movetothebit.newholland.android.widgets.PresenceChartView
+                        android:id="@+id/presenceChartView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/scrollView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <RelativeLayout
+                            android:id="@+id/infoLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+
+                            <TableLayout
+                                android:id="@+id/totalTable"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/brandTable"
+                                android:layout_alignParentTop="true"
+                                android:layout_margin="3dp"
+                                android:background="@drawable/table_back"
+                                android:padding="5dp" >
+
+                                <TableRow
+                                    android:id="@+id/TableRow04"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0"
+                                    android:padding="5dp"
+                                    android:shrinkColumns="*"
+                                    android:stretchColumns="*" >
+
+                                    <TextView
+                                        android:id="@+id/TextView11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/total_title_table"
+                                        android:textAppearance="@style/tableTitleText"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/tableRow1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_weight="0"
+                                    android:padding="5dp"
+                                    android:shrinkColumns="*"
+                                    android:stretchColumns="*" >
+
+                                    <TextView
+                                        android:id="@+id/TextView01"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/textView11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/total_title_col1"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/tableRow2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/total_title_row1"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                     
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView03"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="150"
+                                        android:textAppearance="@style/tableRowText" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow02"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                      
+                                        android:layout_weight="1"
+                                        android:text="@string/total_title_row2"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                      
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView07"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText"
+                                        android:textSize="18dp"
+                                        android:textStyle="normal" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow03"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                      
+                                        android:layout_weight="1"
+                                        android:text="@string/total_title_row3"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView09"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="100"
+                                        android:textAppearance="@style/tableRowText"
+                                        android:textSize="18dp" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow01"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/total_title_row4"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView05"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText"
+                                        android:textSize="18dp" />
+
+                                </TableRow>
+                            </TableLayout>
+
+                            <TableLayout
+                                android:id="@+id/objetivesTable"
+                                android:layout_width="400dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="3dp"
+                                android:layout_toRightOf="@+id/totalTable"
+                                android:background="@drawable/table_back"
+                                android:padding="5dp" >
+
+                                <TableRow
+                                    android:id="@+id/TableRow07"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0"
+                                    android:padding="5dp"
+                                    android:shrinkColumns="*"
+                                    android:stretchColumns="*" >
+
+                                    <TextView
+                                        
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/objetives_title_table"
+                                        android:textAppearance="@style/tableTitleText"
+                                       />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_weight="0"
+                                    android:padding="5dp"
+                                    android:shrinkColumns="*"
+                                    android:stretchColumns="*" >
+
+                                    <TextView
+                                       
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        />
+
+                                    <TextView
+                                      
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/objetives_title_col1"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/objetives_title_col2"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow09"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        
+                                        android:layout_weight="1"
+                                        android:text="@string/objetives_title_row1"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView21"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="63"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow05"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/objetives_title_row2"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView13"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="32"
+                                        android:textAppearance="@style/tableRowText"
+                                       />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow08"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        
+                                        android:layout_weight="1"
+                                        android:text="@string/objetives_title_row3"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView10"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="47"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="53"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow11"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/objetives_title_row4"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView23"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView24"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="27"
+                                        android:textAppearance="@style/tableRowText"
+                                       />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow06"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        
+                                        android:layout_weight="1"
+                                        android:text="@string/objetives_title_row5"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView15"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="37"
+                                        android:textAppearance="@style/tableRowText"
+                                       />
+
+                                </TableRow>
+                            </TableLayout>
+
+                            <TableLayout
+                                android:id="@+id/brandTable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/objetivesTable"
+                                android:layout_margin="3dp"
+                                android:background="@drawable/table_back"
+                                android:padding="5dp"
+                                android:visibility="visible" >
+
+                                <TableRow
+                                    android:id="@+id/TableRow14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0"
+                                    android:padding="5dp"
+                                    android:shrinkColumns="*"
+                                    android:stretchColumns="*" >
+
+                                    <TextView
+                                       
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/brand_title_table"
+                                        android:textAppearance="@style/tableTitleText"
+                                       />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow16"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row1"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView36"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="150"
+                                        android:textAppearance="@style/tableRowText" />
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row5"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        android:textSize="18dp" />
+
+                                    <TextView
+                                        android:id="@+id/TextView30"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow12"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row2"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView28"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText" />
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row6"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView30"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow15"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row3"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView26"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="100"
+                                        android:textAppearance="@style/tableRowText" />
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row7"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView30"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row4"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView30"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText" />
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row8"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView30"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText" />
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row9"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView30"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText" />
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:text="@string/brand_title_row10"
+                                        android:textAppearance="@style/tableTitleColumnText" />
+
+                                    <TextView
+                                        android:id="@+id/TextView30"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText" />
+                                </TableRow>
+                            </TableLayout>
+
+                            <TableLayout
+                                android:id="@+id/missingTable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/brandTable"
+                                android:layout_margin="3dp"
+                                android:background="@drawable/table_back"
+                                android:padding="5dp" >
+
+                                <TableRow
+                                    android:id="@+id/TableRow23"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0"
+                                    android:padding="5dp"
+                                    android:shrinkColumns="*"
+                                    android:stretchColumns="*" >
+
+                                    <TextView
+                                        android:id="@+id/TextView34"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/missing_title_table"
+                                        android:textAppearance="@style/tableTitleText"
+                                        />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow18"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_weight="0"
+                                    android:padding="5dp"
+                                    android:shrinkColumns="*"
+                                    android:stretchColumns="*" >
+
+                                    <TextView
+                                        
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        />
+
+                                    <TextView
+                                        
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/missing_title_col1"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center_horizontal"
+                                        android:text="@string/missing_title_col2"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow21"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row1"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView48"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="63"
+                                        android:textAppearance="@style/tableRowText"
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow20"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row2"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView45"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="32"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow22"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row3"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView46"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="47"
+                                        android:textAppearance="@style/tableRowText"
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="53"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow17"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row4"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView39"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView42"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="27"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow19"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row5"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView41"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="37"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                </TableRow>
+                                 <TableRow
+                                    android:id="@+id/TableRow21"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                        
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row6"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView48"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="63"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow20"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row7"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView45"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="20"
+                                        android:textAppearance="@style/tableRowText"
+                                       />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="32"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow22"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row8"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView46"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="47"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="53"
+                                        android:textAppearance="@style/tableRowText"
+                                        android:textSize="18dp"
+                                        android:textStyle="bold" />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow17"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                      
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row9"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView39"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                    <TextView
+                                        android:id="@+id/TextView42"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="27"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                </TableRow>
+
+                                <TableRow
+                                    android:id="@+id/TableRow19"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="5dp" >
+
+                                    <TextView
+                                       
+                                        android:layout_weight="1"
+                                        android:text="@string/missing_title_row10"
+                                        android:textAppearance="@style/tableTitleColumnText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView41"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="30"
+                                        android:textAppearance="@style/tableRowText"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/TextView49"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="37"
+                                        android:textAppearance="@style/tableRowText"
+                                         />
+
+                                </TableRow>
+                            </TableLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+        </LinearLayout>

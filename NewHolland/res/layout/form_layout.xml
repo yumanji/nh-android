@@ -1,0 +1,463 @@
+<!--
+  Copyright 2012 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="4dp" >
+
+            <TextView
+                android:id="@+id/idText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Large Text"
+                android:textAppearance="@style/dataTitleText" />
+
+ <LinearLayout
+     android:id="@+id/detailLayout"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/idText"
+     android:layout_marginBottom="20dp"
+     android:layout_marginTop="10dp"
+     android:layout_weight="0"
+     android:background="@drawable/order_back"
+     android:orientation="vertical" >
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="5dp" >
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView05"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/date"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/dateText"
+                          android:layout_width="100dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="0"
+                          android:text="jul - 2012"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView12"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/machineType"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/machineTypeText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:text="Tractores"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView08"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/brand"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/brandText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:text=" martey ferguson"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <LinearLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_marginLeft="10dp"
+                          android:layout_weight="0" >
+
+                          <TextView
+                              android:id="@+id/TextView11"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="0"
+                              android:text="@string/comercialModel"
+                              android:textAppearance="@style/dataTitleText"
+                              android:textSize="20sp" />
+
+                          <TextView
+                              android:id="@+id/modelText"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="6dp"
+                              android:layout_weight="1"
+                              android:text="ñlkashfadsñlkdfjlañ aefjñlkasdfljlkñjdskjlñfdf asfeljkñ"
+                              android:textAppearance="@style/dataText"
+                              android:textSize="20sp" />
+                      </LinearLayout>
+
+                      <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          android:layout_weight="0" >
+                      </LinearLayout>
+                  </LinearLayout>
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="5dp" >
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView14"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/place"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/placeText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView02"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/salesMan"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/salesnameText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:padding="5dp" >
+
+                      <TextView
+                          android:id="@+id/TextView04"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="0"
+                          android:text="@string/dealerName"
+                          android:textAppearance="@style/dataTitleText"
+                          android:textSize="20sp" />
+
+                      <TextView
+                          android:id="@+id/dealerText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="6dp"
+                          android:layout_weight="1"
+                          android:textAppearance="@style/dataText"
+                          android:textSize="20sp" />
+                  </LinearLayout>
+              </LinearLayout>
+          </LinearLayout>
+
+ <LinearLayout
+     android:id="@+id/knownLayout"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/detailLayout"
+     android:layout_weight="0" >
+
+     <Switch
+         android:id="@+id/knownOperationSwitch"
+         style="@style/formText"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:checked="false"
+         android:padding="10dp"
+         android:text="@string/quest1"
+         android:textOff="No"
+         android:textOn="Si" />
+
+     <Switch
+         android:id="@+id/makeOfferSwitch"
+         style="@style/formText"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:checked="false"
+         android:padding="10dp"
+         android:text="@string/quest2"
+         android:textOff="No"
+         android:textOn="Si"
+         android:visibility="invisible" />
+
+ </LinearLayout>
+
+ <LinearLayout
+     android:id="@+id/firstLayout"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/knownLayout"
+     android:layout_weight="0"
+     android:orientation="vertical"
+     android:visibility="gone" >
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="0"
+         android:orientation="horizontal"
+         android:visibility="visible" >
+
+         <TextView
+             android:id="@+id/TextView07"
+             style="@style/formText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:padding="10dp"
+             android:text="@string/quest3" />
+
+         <Spinner
+             android:id="@+id/modelSpinner"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1.5"
+             android:gravity="center_vertical" />
+
+         <Switch
+             android:id="@+id/winOfferSwitch"
+             style="@style/formText"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:padding="10dp"
+             android:text="@string/quest4"
+             android:textOff="No"
+             android:textOn="Si" />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:id="@+id/secondLayout"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:visibility="visible" >
+
+         <TextView
+             android:id="@+id/TextView06"
+             style="@style/formText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:padding="10dp"
+             android:text="@string/quest5" />
+
+         <Spinner
+             android:id="@+id/missingSpinner"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_weight="1" />
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_vertical"
+         android:layout_weight="0" >
+
+         <TextView
+             android:id="@+id/TextView01"
+             style="@style/formText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_weight="0"
+             android:padding="10dp"
+             android:text="@string/quest6" />
+
+         <EditText
+             android:id="@+id/priceEditText"
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_weight="0"
+             android:ems="10"
+             android:gravity="right"
+             android:inputType="numberDecimal"
+             android:selectAllOnFocus="true" />
+
+         <TextView
+             android:id="@+id/textView2"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:layout_gravity="center_vertical"
+             android:layout_weight="0"
+             android:gravity="center_vertical"
+             android:text="@string/euros"
+             android:textAppearance="@style/formTitleText" />
+
+         <TextView
+             android:id="@+id/TextView02"
+             style="@style/formText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="10dp"
+             android:layout_weight="0"
+             android:padding="10dp"
+             android:text="@string/quest7" />
+
+         <EditText
+             android:id="@+id/nameClientEditText"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="5dp"
+             android:layout_weight="1"
+             android:ems="10"
+             android:selectAllOnFocus="true" />
+
+     </LinearLayout>
+
+ </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/firstLayout"
+                android:orientation="horizontal"
+                android:padding="4dp" >
+
+                <TextView
+                    android:id="@+id/TextView03"
+                    style="@style/formText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/observations" />
+
+                <EditText
+                    android:id="@+id/observationsEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/navigationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_back" />
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Guardar"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/forwardButton"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_forward" />
+
+            </LinearLayout>
+	
+	        </RelativeLayout>
+
+
+

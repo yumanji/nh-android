@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<eventos>
+	<evento>		
+		<categoryId>0000000004</categoryId>		
+		<Id>0000000001</Id>
+		<Name>BB9040</Name>
+		<Descripcion>Dimensiones de la paca Anchura / Altura (cm)	80 / 47
+Pick-up Anchura, efectiva (DIN 11220) (mm)	1982</Descripcion>
+		<observaciones>Sistema de alimentación	Horquillas de alimentación
+nº de cuerdas	4 , nudo simple</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/BB9040/Model_box/BB9040_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+</eventos>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<eventos>
+	<evento>		
+		<categoryId>0000000001</categoryId>		
+		<Id>0000000001</Id>
+		<Name>T8.300</Name>
+		<Descripcion>Potencia máxima con gestión potencia motor ISO TR14396-ECE R120 [kW / cv]	219 / 298</Descripcion>
+		<observaciones>Transmisión	Ultra Command™ con Full PowerShift</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/T8/T8.300_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>
+	<evento>		
+		<categoryId>0000000001</categoryId>		
+		<Id>0000000002</Id>
+		<Name>T8.330</Name>
+		<Descripcion>Potencia máxima con gestión potencia motor ISO TR14396-ECE R120 [kW / cv]	241 / 327</Descripcion>
+		<observaciones>Transmisión	Ultra Command™ con Full PowerShift</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/T8/T8.330_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>
+	<evento>		
+		<categoryId>0000000001</categoryId>		
+		<Id>0000000003</Id>
+		<Name>T8.360</Name>
+		<Descripcion>Potencia máxima con gestión potencia motor ISO TR14396-ECE R120 [kW / cv]	263 / 357</Descripcion>
+		<observaciones>Transmisión	Ultra Command™ con Full PowerShift</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/T8/T8.360_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+	<evento>		
+		<categoryId>0000000001</categoryId>		
+		<Id>0000000005</Id>
+		<Name>T8.390</Name>
+		<Descripcion>Potencia máxima con gestión potencia motor ISO TR14396-ECE R120 [kW / cv]	241 / 327</Descripcion>
+		<observaciones>Transmisión	Ultra Command™ con Full PowerShift</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/T8/T8.390_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>		
+</eventos>

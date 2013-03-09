@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<eventos>
+	<evento>		
+		<categoryId>0000000003</categoryId>		
+		<Id>0000000001</Id>
+		<Name>CR8070</Name>
+		<Descripcion>Potencia máxima del motor a 2000 rpm - ISO TR14396 - ECE R120 (kW/CV)	330/449</Descripcion>
+		<observaciones>Cabezal de cereal (m)	6.10 - 10.67</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/CR9000/Model_box/CR9090_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+	<evento>		
+		<categoryId>0000000003</categoryId>		
+		<Id>0000000002</Id>
+		<Name>CR8080</Name>
+		<Descripcion>Potencia máxima del motor a 2000 rpm - ISO TR14396 - ECE R120 (kW/CV)	330/449</Descripcion>
+		<observaciones>Cabezal de cereal (m)	6.10 - 10.67</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/CR/CR8080_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+	<evento>		
+		<categoryId>0000000003</categoryId>		
+		<Id>0000000003</Id>
+		<Name>CR9070</Name>
+		<Descripcion>Potencia máxima del motor a 2000 rpm - ISO TR14396 - ECE R120 (kW/CV)	330/449</Descripcion>
+		<observaciones>Cabezal de cereal (m)	6.10 - 10.67</observaciones>
+		<Imageurl>http://agriculture.newholland.com/spain/es/Products/Combine/CR/Pages/CR9070_modelversion.aspx</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+	<evento>		
+		<categoryId>0000000003</categoryId>		
+		<Id>0000000004</Id>
+		<Name>CR9080</Name>
+		<Descripcion>Potencia máxima del motor a 2000 rpm - ISO TR14396 - ECE R120 (kW/CV)	330/449</Descripcion>
+		<observaciones>Cabezal de cereal (m)	6.10 - 10.67</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/CR/CR9080_model_overview.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+</eventos>

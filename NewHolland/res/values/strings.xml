@@ -1,0 +1,236 @@
+<resources>
+
+    <string name="app_name">newholland</string>
+    <string name="maps_key_dev">0lXjrk2_2mHVFn_NrxbiUCvmiB0_ihBqp0RLIlQ</string>
+    <string name="googlemaps_key">0lXjrk2_2mHVFn_NrxbiUCvmiB0_ihBqp0RLIlQ</string>
+    <string name="gps_disable">El GPS esta desactivado o no se puede obtener su posicion actual, ¿Te gustaría habilitarlo?</string>
+    <string name="gps_off">No se puede obtener la posicion en estos momentos</string>
+    <string name="enableGps">Activar GPS</string>
+    <string name="doNothing">No hacer nada</string>
+    <string name="network_disable">La conexión a Internet está desactivada, ¿quieres activarla?</string>
+    <string name="enableNetwork">Activar conexión</string>
+    <string name="exit_app">Salir de la aplicación</string>
+    <string name="location_need_msg">La aplicación no ha podido obtener tu posición y no puede continuar.</string>
+    <string name="location_need_title">Error obteniendo tu posición</string>
+    <string name="wait_location">Esperar</string>
+    <string name="obtain_location">Obteniendo posición...</string>
+    <string name="chart1">Anotación</string>
+    <string name="chart2">Barras</string>
+    <string name="chart3">Candle</string>
+    <string name="chart4">Desviación</string>
+    <string name="chart5">JDBC XY</string>
+    <string name="chart6">Marker</string>
+    <string name="chart7">Overlay XY</string>
+    <string name="chart8">Quesito</string>
+    <string name="chart9">Scatter Plot</string>
+    <string name="chart10">Sliding category 1</string>
+    <string name="chart11">Sliding category 2</string>
+    <string name="chart12">Time series</string>
+    <string name="filter_text">Filtra por modelo, vendedor o concesionario</string>
+    <string name="user">Usuario:</string>
+    <string name="pass">Password:</string>
+    <string name="access">Acceder</string>
+    <string name="machineType">Tipo:</string>
+    <string name="brand">Marca:</string>
+    <string name="comercialModel">Modelo:</string>
+    <string name="hp">HP:</string>
+    <string name="month">Mes:</string>
+    <string name="year">Año:</string>
+    <string name="province">Provincia:</string>
+    <string name="poblation">Municipio:</string>
+    <string name="salesMan">Vendedor:</string>
+    <string name="place">Lugar:</string>
+    <string name="date">Fecha:</string>
+    <string name="dealerName">Concesionario:</string>
+    <string name="legal_text">Esta aplicación es propiedad de MOVETOTHEBIT S.L., queda prohibida su divulgación, copia o distribución, completa o por partes a terceros, sin la previa autorización por escrito del propietario</string>
+    <string name="app_preferences">newholland_settings</string>
+
+    <!-- Literales del formulario -->
+    <string name="detailTitle">Datos de la inscripción</string>
+    <string name="euros"> €.</string>
+    <string name="quest1">¿Conocias la operacion?</string>
+    <string name="quest2">¿Has hecho oferta?</string>
+    <string name="quest3">¿Qué modelo has ofertado?</string>
+    <string name="quest4">¿Has ganado la operación?</string>
+    <string name="quest5">¿Por que la has perdido?</string>
+    <string name="quest6">¿Qué precio?</string>
+    <string name="quest7">¿Cual es el nombre del cliente?</string>
+    <string name="observations">Observaciones:</string>
+    <!-- Literales del data activity -->
+    <string name="brand_prompt">Selecciona la marca</string>
+    <string name="dealer_prompt">Selecciona el concesionario</string>
+    <string name="month_prompt">Selecciona el mes</string>
+    <string name="model_prompt">Selecciona el modelo</string>
+    <string name="province_prompt">Selecciona la provincia</string>
+    <string name="dealerMan_prompt">Selecciona el vendedor</string>
+    <string name="segment_prompt">Selecciona el segmento de PW</string>
+    <string name="total_title_table">Incripciones totales</string>
+    <string name="total_title_col1">Unidades</string>
+    <string name="total_title_row1">Mercado total</string>
+    <string name="total_title_row2">Total Op. conocidas</string>
+    <string name="total_title_row3">Total Ofertas hechas</string>
+    <string name="total_title_row4">Total Ventas cerradas</string>
+    
+    <string name="brand_title_table">Marcas</string>
+    <string name="brand_title_row1">JOHN DEERE</string>
+    <string name="brand_title_row2">NEW HOLLAND</string>
+    <string name="brand_title_row3">FENDT</string>
+    <string name="brand_title_row4">MASSEY FERGUSON</string>
+    <string name="brand_title_row5">CASE</string>
+    <string name="brand_title_row6">KUBOTA</string>
+    <string name="brand_title_row7">DEUTZ</string>
+    <string name="brand_title_row8">LANDINI</string>
+    <string name="brand_title_row9">SAME</string>
+    <string name="brand_title_row10">LAMBORGINI</string>
+    
+    <string name="objetives_title_table">Objetivos de mercado</string>
+    <string name="objetives_title_col1">Indice %</string>
+    <string name="objetives_title_col2">Objetivo NH</string>
+    <string name="objetives_title_row1">Conocimiento de mercado</string>
+    <string name="objetives_title_row2">Presencia</string>
+    <string name="objetives_title_row3">Efectividad</string>
+    <string name="objetives_title_row4">Presencia Total</string>
+    <string name="objetives_title_row5">Cuota de mercado</string>
+    
+    <string name="missing_title_table">Motivo de operaciones perdidas</string>
+    <string name="missing_title_col1">Numero</string>
+    <string name="missing_title_col2">Indice %</string>
+    
+    <string name="missing_title_row1">Desconocimiento de la operacion</string> <style name="tableTitleColumnText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_color</item>
+	     	
+	    </style> <style name="tableTitleColumnText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_color</item>
+	     	
+	    </style> <style name="tableTitleColumnText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_color</item>
+	     	
+	    </style> <style name="tableTitleColumnText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_color</item>
+	     	
+	    </style> <style name="tableTitleColumnText">	        
+	        <item name="android:textSize">@dimen/text_size_medium</item>
+	       <item name="android:textColor">@color/corporative_color</item>
+	     	
+	    </style>   
+    <string name="missing_title_row2">Producto</string>
+    <string name="missing_title_row3">Precio</string>
+    <string name="missing_title_row4">Operaciones ganadas</string>
+    <string name="missing_title_row5">Recogida de usado</string>
+    <string name="missing_title_row6">Plaza de entrega</string>
+    <string name="missing_title_row7">Finaciación</string>
+    <string name="missing_title_row8">Fidelidad a otra marca</string>
+    <string name="missing_title_row9">Fidelidad a otro concesionario</string>
+     <string name="missing_title_row10">Sin datos</string>
+    <!-- Literales de arrays -->
+
+
+    <string-array name="missing_operation">
+        <item>Motivo de perdida</item>
+        <item>Desconocimiento de la operacion</item>
+        <item>Producto</item>
+        <item>Precio</item>
+        <item>Operaciones ganadas</item>
+        <item>Sin datos</item>
+        <item>Recogida de usado</item>
+        <item>Plaza de entrega</item>
+        <item>Finaciación</item>
+        <item>Fidelidad a otra marca</item>
+        <item>Fidelidad a otro concesionario</item>
+    </string-array>
+    <string-array name="months">
+        <item>Fecha</item>
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </string-array>
+    <string-array name="models">
+        <item>Modelo</item>
+        <item>TD5050</item>
+        <item>T8.330</item>
+        <item>T8.350</item>
+        <item>T8.390</item>
+        <item>T6090</item>
+        <item>T6070</item>
+        <item>T6050</item>
+        <item>T7090</item>
+        <item>T7070</item>
+        <item>T7050</item>
+    </string-array>
+    <string-array name="brand">
+         <item>Marca</item>
+        <item>LAMBORGHINI</item>
+        <item>MASSEY FERGUSON</item>
+        <item>NEW HOLLAND</item>
+        <item>SAME</item>
+        <item>PASQUALI</item>
+        <item>VALPADANA</item>
+        <item>AGRIA</item>
+        <item>CLAAS</item>
+        <item>FENDT</item>
+        <item>OTROS</item>
+    </string-array>
+    <string-array name="dealer">
+        <item>Concesionario</item>
+        <item>CENTRO MEC.CALAMOCHA, S.L.</item>
+        <item>HNOS.CASTILLO MARINDA, S.L.</item>
+        <item>DE HARO MAÑAS, S.L.</item>
+        <item>COM. I AGR.CASACUBERTA,S.L.</item>
+        <item>AGRIMANCHA, S.A. (EX. AGRONI)</item>
+        <item>TALLERES ARGASA, S.L</item>
+        <item>TALLERES AGRIC, S.L.</item>
+        <item>TALLERES VILLALVILLA</item>
+        <item>AGRIMANCHA, S.A</item>
+        <item>COM.AGRICOLA GUERRA S.L.</item>
+    </string-array>
+<string-array name="dealerMan">
+    <item>Vendedor</item>
+        <item>Jordi Planell (Fargas)</item>
+        <item>Julio Zazo (Agrivisa)</item>
+        <item>José Blanco (ZL O)</item>
+        <item>Fernando Muñoz (Naudín)</item>
+        <item>José Manuel Neira (Churrillo)</item>
+        <item>Estanis Fabra (Gelida)</item>
+        <item>Juan Antonio Adrian (CM93 (Co))</item>
+        <item>José Martín (Calamocha)</item>
+        <item>Salvador Sánchez (Mulero)</item>
+        <item>Salvador Sánchez (Mulero)</item>
+    </string-array>
+    <string-array name="province">
+        <item>Provincia</item>
+        <item>Extremadura</item>
+        <item>Madrid</item>
+        <item>Cataluña</item>
+        <item>Andalucia</item>
+        <item>Castilla la mancha</item>
+        <item>Castilla leon</item>
+        <item>Comunidad Valenciana</item>
+        <item>Aragon</item>
+        <item>Asturias</item>
+        <item>Galicia</item>
+    </string-array>
+    <string-array name="segment">
+        <item>Potencia</item>
+        <item>50/80 CV</item>
+        <item>80/100 CV</item>
+        <item>100/120 CV</item>
+        <item>120/150 CV</item>
+        <item>150/300 CV</item>
+        <item>300/350 CV</item>
+        <item>350/500 CV</item>
+       
+    </string-array>
+</resources>

@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+     <item android:id="@+id/back"
+          android:icon="@drawable/ic_back"
+          android:title="Anterior inscripción"
+          android:showAsAction="always|withText"/>
+   
+	<item android:id="@+id/save"
+          android:icon="@drawable/ic_save"
+          android:title="Guardar registro"
+          android:showAsAction="always|withText"/>
+     
+     <item android:id="@+id/forward"
+          android:icon="@drawable/ic_forward"
+          android:title="Siguiente inscripción"
+          android:showAsAction="always|withText"/>
+
+
+    </menu>

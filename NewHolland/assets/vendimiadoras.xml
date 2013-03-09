@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<eventos>
+	<evento>		
+		<categoryId>0000000002</categoryId>		
+		<Id>0000000001</Id>
+		<Name>9040L</Name>
+		<Descripcion>Potencia ECE R120/ISO 14396 (kW/cv)	104/141
+Número de sacudidores SDC (estánd.)	14</Descripcion>
+		<observaciones>Número de cestas recolectoras	2 x 63
+Tolvas de acero inoxidable (litros)	3.200</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/BRAUD9000L/tab_overview_9040L.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+	<evento>		
+		<categoryId>0000000002</categoryId>		
+		<Id>0000000002</Id>
+		<Name>9060L</Name>
+		<Descripcion>Potencia ECE R120/ISO 14396 (kW/cv)	104/141
+Número de sacudidores SDC (estánd.)	14</Descripcion>
+		<observaciones>Número de cestas recolectoras	2 x 63
+Tolvas de acero inoxidable (litros)	3.200</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/BRAUD9000L/tab_overview_9060L.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+	<evento>		
+		<categoryId>0000000002</categoryId>		
+		<Id>0000000003</Id>
+		<Name>9080L</Name>
+		<Descripcion>Potencia ECE R120/ISO 14396 (kW/cv)	104/141
+Número de sacudidores SDC (estánd.)	14</Descripcion>
+		<observaciones>Número de cestas recolectoras	2 x 63
+Tolvas de acero inoxidable (litros)	3.200</observaciones>
+		<Imageurl>http://agriculture.newholland.com/PublishingImages/cnhimg/products/BRAUD9000L/tab_overview_9080L.jpg</Imageurl>
+		<Latitude>40.440045</Latitude>
+		<Longitude>-3.61884</Longitude>
+		<Address>C/ Herrera 25</Address>		
+		<Country>Spain</Country>
+		<PostalCode>28012</PostalCode>
+		<Type>1</Type>
+		<Telefono></Telefono>
+		<Email></Email>	
+		<price>5.90</price>	
+		<rate>5</rate>		
+	</evento>	
+</eventos>

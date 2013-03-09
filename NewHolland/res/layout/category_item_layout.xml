@@ -1,0 +1,48 @@
+
+      <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:padding="2dp" >
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/category_back"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/nh_1" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                     android:background="@color/transparent" >
+
+                    <ImageView
+                        android:id="@+id/catImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_launcher"
+                        android:visibility="gone" 
+                         android:background="@color/transparent"/>
+
+                    <TextView
+                        android:id="@+id/catTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="right"
+                        android:padding="3dp"
+                        android:shadowColor="@color/black"
+                        android:shadowDx="0.5"
+                        android:shadowDy="0.5"
+                        android:shadowRadius="1.5"
+                        android:text="TextView"
+                        android:background="@color/transparent"
+                        android:textAppearance="@style/textCategoryTitle"
+                        android:visibility="visible" />
+
+                </RelativeLayout>
+        </RelativeLayout>
