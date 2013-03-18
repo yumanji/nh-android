@@ -1,5 +1,6 @@
 package com.movetothebit.newholland.android.ui;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -32,15 +34,15 @@ public class FormActivity extends BaseActivity {
 	private Switch knownOperationSwitch;
 	private Switch makeOfferSwitch;
 	private Switch winOfferSwitch;
-	private Button saveButton;
-	private Button backButton;
-	private Button forwardButton;
+	
 
-	private Spinner modelSpinner;
+
+	private AutoCompleteTextView modelSpinner;
 	private Spinner missingSpinner;
+	private Spinner winnerSpinner;
 
 	private int index;
-
+	private List<InscriptionData> list;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,52 +52,27 @@ public class FormActivity extends BaseActivity {
 		setContentView(R.layout.form_layout);
 
 		index = getIntent().getExtras().getInt("index");
-
-		modelSpinner = (Spinner) findViewById(R.id.modelSpinner);
-		ArrayAdapter<CharSequence> modelAdapter = ArrayAdapter.createFromResource(this,R.array.models,android.R.layout.simple_spinner_item);
-		modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
-
+		list = getListInscriptionsEmpty();
+		modelSpinner = (AutoCompleteTextView) findViewById(R.id.modelSpinner);		
+		ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,modelsArray);		
+		//modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
 		modelSpinner.setAdapter(modelAdapter);
+		
 		missingSpinner = (Spinner) findViewById(R.id.missingSpinner);
-		ArrayAdapter<CharSequence> missingAdapter = ArrayAdapter.createFromResource(this,R.array.missing_operation,android.R.layout.simple_spinner_item);
+		ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,answersArray);
 		missingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
 		missingSpinner.setAdapter(missingAdapter);
 		
+		winnerSpinner = (Spinner) findViewById(R.id.winSpinner);
+		ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,answersWinArray);
+		winAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+		winnerSpinner.setAdapter(winAdapter);
 
 		knownOperationSwitch = (Switch) findViewById(R.id.knownOperationSwitch);
 		makeOfferSwitch = (Switch) findViewById(R.id.makeOfferSwitch);
 		winOfferSwitch = (Switch) findViewById(R.id.winOfferSwitch);
 
-		forwardButton = (Button) findViewById(R.id.forwardButton);
-		forwardButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if(index<AppHelper.getMyLoadData().size()-1){
-					loadInscriptionData(++index);	
-				}else{
-					index = 0;
-					loadInscriptionData(index);
-				}
-				
-
-			}
-		});
-		backButton = (Button) findViewById(R.id.backButton);
-		backButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if(index >0){
-					loadInscriptionData(--index);
-				}else{
-					index = AppHelper.getMyLoadData().size()-1;
-					loadInscriptionData(index);
-				}
-				
-
-			}
-		});
+		
 
 		knownOperationSwitch
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -107,12 +84,16 @@ public class FormActivity extends BaseActivity {
 						if (isChecked) {
 							
 							makeOfferSwitch.setVisibility(View.VISIBLE);
+							findViewById(R.id.clientLayout).setVisibility(View.VISIBLE);
 							if(makeOfferSwitch.isChecked()){
 								findViewById(R.id.firstLayout).setVisibility(View.VISIBLE);
+							
 							}
 						} else {
 							findViewById(R.id.firstLayout).setVisibility(View.GONE);
+							
 							makeOfferSwitch.setVisibility(View.INVISIBLE);
+							findViewById(R.id.clientLayout).setVisibility(View.GONE);
 							
 						}
 
@@ -146,23 +127,18 @@ public class FormActivity extends BaseActivity {
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
 						if (isChecked) {
-
+							findViewById(R.id.thirdLayout).setVisibility(View.VISIBLE);
 							findViewById(R.id.secondLayout).setVisibility(View.GONE);
+							findViewById(R.id.priceLayout).setVisibility(View.GONE);
 						} else {
+							findViewById(R.id.thirdLayout).setVisibility(View.GONE);
 							findViewById(R.id.secondLayout).setVisibility(View.VISIBLE);
+							findViewById(R.id.priceLayout).setVisibility(View.VISIBLE);
 						}
 
 					}
 				});
-		saveButton = (Button) findViewById(R.id.saveButton);
-		saveButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				new SaveDataTask().execute();
-
-			}
-		});
+		
 
 		loadInscriptionData(index);
 	}
@@ -182,7 +158,8 @@ public class FormActivity extends BaseActivity {
 	    switch (item.getItemId()) {
 	        
 	        case R.id.forward:
-	        	if(index<AppHelper.getMyLoadData().size()-1){
+	        	
+	        	if(index<(getListInscriptionsEmpty().size()-1)){
 					loadInscriptionData(++index);	
 				}else{
 					index = 0;
@@ -196,8 +173,8 @@ public class FormActivity extends BaseActivity {
 	        	if(index >0){
 					loadInscriptionData(--index);
 				}else{
-					index = AppHelper.getMyLoadData().size()-1;
-					loadInscriptionData(index);
+					index = getListInscriptionsEmpty().size()-1;
+					loadInscriptionData( index);
 				}
 		        return true;
 		        
@@ -206,27 +183,33 @@ public class FormActivity extends BaseActivity {
 	    }
 	}
 	
-	
-	public String getModel(int index) {
-		String[] array = getResources().getStringArray(R.array.models);
-		return array[index].toString();
-	}
 
-	public String getMissingOperation(int index) {
-		String[] array = getResources().getStringArray(
-				R.array.missing_operation);
-		return array[index].toString();
-	}
 
-	class SaveDataTask extends AsyncTask<Void, Void, Void> {
+	class SaveDataTask extends AsyncTask<Void, Void, String> {
 		ProgressDialog pd;
 
+		EditText nameClientText = null;
+		EditText surnameClientText =  null;
+		EditText emailClientText =  null;
+		EditText phoneClientText = null;
+		EditText priceText =  null;
+		EditText observationsText =  null;
+		
 		@Override
 		protected void onPreExecute() {
+			
 			pd = new ProgressDialog(FormActivity.this);
 			pd.setMessage("Guardando datos");
 			pd.show();
 
+			nameClientText = (EditText) findViewById(R.id.nameClientEditText);
+			surnameClientText = (EditText) findViewById(R.id.surnameClientEditText);
+			emailClientText = (EditText) findViewById(R.id.emailEditText);
+			phoneClientText = (EditText) findViewById(R.id.phoneEditText);
+			priceText = (EditText) findViewById(R.id.priceEditText);
+			observationsText = (EditText) findViewById(R.id.observationsEditText);
+			item.setObservations(observationsText.getText().toString());
+			
 			if (knownOperationSwitch.isChecked()) {
 
 				item.setKnownOperation(YES);
@@ -235,113 +218,139 @@ public class FormActivity extends BaseActivity {
 					item.setMakeOffer(YES);
 					if (winOfferSwitch.isChecked()) {
 						item.setWinOffer(YES);
+						item.setWhyWin(winnerSpinner.getSelectedItemPosition());
+					}else{
+						item.setWhyLose(missingSpinner.getSelectedItemPosition());
+						item.setPrice(Float.valueOf(priceText.getText().toString()));
 					}
-					item.setFillData(YES);
-					item.setModelOffer(getModel(modelSpinner
-							.getSelectedItemPosition()));
-					item.setWhyLose(getModel(missingSpinner
-							.getSelectedItemPosition()));
-
-					EditText nameClientText = (EditText) findViewById(R.id.nameClientEditText);
-					EditText priceText = (EditText) findViewById(R.id.priceEditText);
-					item.setPrice(Float.valueOf(priceText.getText().toString()));
+					
+					item.setModelOffer(modelSpinner.getText().toString());
 					item.setNameClient(nameClientText.getText().toString());
+					item.setSurnameClient(surnameClientText.getText().toString());
+					item.setEmailClient(emailClientText.getText().toString());
+					item.setPhoneClient(phoneClientText.getText().toString());
+					
+					if(!nameClientText.getText().toString().equals("") && !surnameClientText.getText().toString().equals("")){
+						item.setFillData(YES);
+					}
 
 				}
 
 			} else {
-				item.setKnownOperation(NO);
-				EditText observationsText = (EditText) findViewById(R.id.observationsEditText);
-				item.setObservations(observationsText.getText().toString());
+				item.setKnownOperation(NO);			
+			
 			}
 
 			super.onPreExecute();
 		}
 
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected String doInBackground(Void... params) {
 			
-			List<InscriptionData> list = AppHelper.getMyLoadData();
-			
-			list.remove(index);
-			list.add(index,item);
-			
-			AppHelper.setMyLoadData(list);
+			try {
+				mDBHelper.createOrUpdateInscription(item);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return e.getMessage();
+			}
 			
 		
 			return null;
 		}
 
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(String result) {
+			
 			if (pd.isShowing()) {
 				pd.dismiss();
 			}
-			Toast.makeText(FormActivity.this, "Inscripción guardada",
-					Toast.LENGTH_LONG).show();
-			finish();
+			
+			if(result != null){
+				showAlertDialog(result);
+			}else{
+				Toast.makeText(FormActivity.this, "Inscripción guardada",
+						Toast.LENGTH_LONG).show();
+				finish();
+			}
+			
 			super.onPostExecute(result);
 		}
 
 	}
 
 	public void loadInscriptionData(int index) {
-		List<InscriptionData> list = AppHelper.getMyLoadData();
-		item = list.get(index);
-		TextView id = (TextView) findViewById(R.id.idText);
-		TextView date = (TextView) findViewById(R.id.dateText);
-		TextView place = (TextView) findViewById(R.id.placeText);
-		TextView machineType = (TextView) findViewById(R.id.machineTypeText);
-		TextView brand = (TextView) findViewById(R.id.brandText);
-		TextView commercialMode = (TextView) findViewById(R.id.modelText);
-		TextView salesmanName = (TextView) findViewById(R.id.salesnameText);
-		TextView dealerName = (TextView) findViewById(R.id.dealerText);
 		
-		id.setText("Inscripción:  "+item.getInscription().toString());
-		machineType.setText(item.getMachineType());
-		brand.setText(item.getBrand());
-		place.setText(item.getProvince() + " (" + item.getPopulation() + ")");
-		commercialMode.setText(item.getCommercialModel() + " (" + item.getHp()
-				+ " HP)");
-		dealerName.setText(item.dealerName);
-		date.setText(item.getMonth() + " - " + item.getYear());
-		salesmanName.setText(item.getSalesmanName());
+	
+			item = list.get(index);
+			TextView id = (TextView) findViewById(R.id.idText);
+			TextView date = (TextView) findViewById(R.id.dateText);
+			TextView place = (TextView) findViewById(R.id.placeText);
+			TextView machineType = (TextView) findViewById(R.id.machineTypeText);
+			TextView brand = (TextView) findViewById(R.id.brandText);
+			TextView commercialMode = (TextView) findViewById(R.id.modelText);
+			TextView salesmanName = (TextView) findViewById(R.id.salesnameText);
+			TextView dealerName = (TextView) findViewById(R.id.dealerText);
+			
+			id.setText("Inscripción:  "+item.getInscription().toString());
+			machineType.setText(item.getMachineType());
+			brand.setText(item.getBrand());
+			place.setText(item.getPopulation() + " (" + item.getProvince() + ")");
+			commercialMode.setText(item.getCommercialModel() + " (" + item.getHp()
+					+ " HP)");
+			dealerName.setText(item.dealerName);
+			date.setText(item.getMonth() + " - " + item.getYear());
+			salesmanName.setText(item.getSalesmanName());
 
-		//tengo que hacer que cargue lso datos si los hay
-		
-		if(item.getKnownOperation()==1){
-			knownOperationSwitch.setChecked(true);
-		}else{
-			knownOperationSwitch.setChecked(false);
-		}
-		if(item.getMakeOffer()==1){
-			makeOfferSwitch.setChecked(true);
-		}else{
-			makeOfferSwitch.setChecked(false);
-		}
-		if(item.getWinOffer()==1){
-			winOfferSwitch.setChecked(true);
-		}else{
-			winOfferSwitch.setChecked(false);
-		}
-		
-		EditText observationsText = (EditText) findViewById(R.id.observationsEditText);
-		observationsText.setText(item.getObservations());
-		
-		EditText nameClientText = (EditText) findViewById(R.id.nameClientEditText);
-		nameClientText.setText(item.getNameClient());
-		
-		EditText priceText = (EditText) findViewById(R.id.priceEditText);
-		priceText.setText(item.getPrice().toString());
-		
-		//datos del spinner
-		
-		if(item.getModelOffer()!=null){
-			modelSpinner.setSelection(AppHelper.getIndexOfModels(getApplicationContext(), item.getModelOffer()));
-		}
-		if(item.getWhyLose()!=null){
-			missingSpinner.setSelection(AppHelper.getIndexOfMissingOperation(getApplicationContext(), item.getWhyLose()));
-		}
+			//tengo que hacer que cargue lso datos si los hay
+			
+			if(item.getKnownOperation()==1){
+				knownOperationSwitch.setChecked(true);
+				if(item.getMakeOffer()==1){
+					makeOfferSwitch.setChecked(true);
+				}else{
+					makeOfferSwitch.setChecked(false);
+				}
+			}else{
+				knownOperationSwitch.setChecked(false);
+				makeOfferSwitch.setChecked(false);
+			}
+			
+			if(item.getWinOffer()==1){
+				winOfferSwitch.setChecked(true);
+			}else{
+				winOfferSwitch.setChecked(false);
+			}
+			
+			EditText observationsText = (EditText) findViewById(R.id.observationsEditText);
+			observationsText.setText(item.getObservations());
+			
+			EditText nameClientText = (EditText) findViewById(R.id.nameClientEditText);
+			nameClientText.setText(item.getNameClient());
+			
+			EditText surnameClientText = (EditText) findViewById(R.id.surnameClientEditText);
+			surnameClientText.setText(item.getSurnameClient());
+			
+			EditText emailClientText = (EditText) findViewById(R.id.emailEditText);
+			emailClientText.setText(item.getEmailClient());
+			
+			EditText phoneClientText = (EditText) findViewById(R.id.phoneEditText);
+			phoneClientText.setText(item.getPhoneClient());
+			
+			EditText priceText = (EditText) findViewById(R.id.priceEditText);
+			priceText.setText(item.getPrice().toString());
+			
+			if(item.getModelOffer()!=null){
+				modelSpinner.setText(item.getModelOffer());
+			}
+			if(item.getWhyLose()>0){
+				 
+				missingSpinner.setSelection(getListAnswers().indexOf(item.getWhyLose()));
+			}
+			if(item.getWhyWin()>0){
+				winnerSpinner.setSelection(getListAnswersWin().indexOf(item.getWhyWin()));
+			}
+	
 		
 		
 	}

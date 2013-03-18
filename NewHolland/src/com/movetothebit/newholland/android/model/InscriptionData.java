@@ -1,35 +1,72 @@
 package com.movetothebit.newholland.android.model;
 
-public class InscriptionData {
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+import com.movetothebit.newholland.android.utils.lConstants;
+
+@DatabaseTable
+public class InscriptionData implements lConstants{
 	
-	//datos que vienen del servidor
 	
+	
+//	
+//	@DatabaseField(generatedId = true, columnName = ID)
+//	public int id;	
+	
+	@DatabaseField(id=true,columnName = INSCRIPTION)
 	public String inscription;	
+	@DatabaseField(columnName = MACHINE_TYPE)
 	public String machineType;
+	@DatabaseField(columnName = BRAND)
 	public String brand;
+	@DatabaseField(columnName = COMMERCIAL_MODEL)
 	public String commercialModel;
+	@DatabaseField(columnName = MONTH)
 	public String month;
+	@DatabaseField(columnName = YEAR)
 	public String year;	
+	@DatabaseField(columnName = HP)
 	public String hp;	
+	@DatabaseField(columnName = SEGMENT_MODEL)
 	public String segmentModel;
+	@DatabaseField(columnName = PROVINCE)
 	public String province;
+	@DatabaseField(columnName = POPULATION)
 	public String population;	
+	@DatabaseField(columnName = DEALER_NAME)
 	public String dealerName;
+	@DatabaseField(columnName = ID_SALESMAN)
 	public int idSalesman;
+	@DatabaseField(columnName = SALESMAN_NAME)
 	public String salesmanName;
 	
+
 	//dato que nos dira si hemos hecho la encuenta
+	@DatabaseField(columnName = FILL_DATA)
 	public int fillData = 0;
-	
-	//datos de la encuesta
+	@DatabaseField(columnName = KNOWN_OPERATION)
 	public int knownOperation = 0;
+	@DatabaseField(columnName = MAKE_OFFER)
 	public int makeOffer = 0;
+	@DatabaseField(columnName = WIN_OFFER)
 	public int winOffer = 0;
-	public String modelOffer = null;
-	public String whyLose = null;
+	@DatabaseField(columnName = MODEL_OFFER)
+	public String modelOffer = "";
+	@DatabaseField(columnName = WHY_LOSE)
+	public int whyLose = 0;
+	@DatabaseField(columnName = WHY_WIN)
+	public int whyWin = 0;
+	@DatabaseField(columnName = PRICE)
 	public Float price = 0.0f;
-	public String nameClient = "Ningun cliente establecido";
-	
+	@DatabaseField(columnName = NAME_CLIENT)
+	public String nameClient = "";
+	@DatabaseField(columnName = SURNAME_CLIENT)
+	public String surnameClient = "o";
+	@DatabaseField(columnName = EMAIL_CLIENT)
+	public String emailClient = "";
+	@DatabaseField(columnName = PHONE_CLIENT)
+	public String phoneClient = "";
+	@DatabaseField(columnName = OBSERVATIONS)
 	public String observations = "No hay observaciones";
 	
 	
@@ -64,12 +101,7 @@ public class InscriptionData {
 	public void setModelOffer(String modelOffer) {
 		this.modelOffer = modelOffer;
 	}
-	public String getWhyLose() {
-		return whyLose;
-	}
-	public void setWhyLose(String whyLose) {
-		this.whyLose = whyLose;
-	}
+
 	public Float getPrice() {
 		return price;
 	}
@@ -165,6 +197,37 @@ public class InscriptionData {
 	}
 	public void setSalesmanName(String salesmanName) {
 		this.salesmanName = salesmanName;
+	}
+
+	public int getWhyLose() {
+		return whyLose;
+	}
+	public void setWhyLose(int whyLose) {
+		this.whyLose = whyLose;
+	}
+	public int getWhyWin() {
+		return whyWin;
+	}
+	public void setWhyWin(int whyWin) {
+		this.whyWin = whyWin;
+	}
+	public String getSurnameClient() {
+		return surnameClient;
+	}
+	public void setSurnameClient(String surnameClient) {
+		this.surnameClient = surnameClient;
+	}
+	public String getEmailClient() {
+		return emailClient;
+	}
+	public void setEmailClient(String emailClient) {
+		this.emailClient = emailClient;
+	}
+	public String getPhoneClient() {
+		return phoneClient;
+	}
+	public void setPhoneClient(String phoneClient) {
+		this.phoneClient = phoneClient;
 	}
 
 	

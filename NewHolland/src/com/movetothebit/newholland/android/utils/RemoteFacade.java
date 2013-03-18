@@ -6,21 +6,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,17 +28,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import android.content.Context;
-import android.content.res.Resources.NotFoundException;
 import android.os.Environment;
 import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-import com.movetothebit.newholland.android.R;
-import com.movetothebit.newholland.android.helpers.ItemsHandler;
-import com.movetothebit.newholland.android.model.InscriptionData;
-import com.movetothebit.newholland.android.model.Item;
-import com.movetothebit.newholland.android.model.NHData;
 
 public class RemoteFacade {
 
@@ -68,7 +53,7 @@ public class RemoteFacade {
 	 *             excepción de sistema
 	 */
 	
-	private static String stringFromServer(String remoteUrl)
+	public static String stringFromServer(String remoteUrl)
 			throws SystemException {
 		String res = "";
 		HttpURLConnection connection = null;
@@ -339,108 +324,10 @@ public class RemoteFacade {
 		return res;
 	}
 
-	public static List<Item> parseItems(Context ctx, String fileName) {
-		
-		ItemsHandler handler = new ItemsHandler();
-		try {
-			SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-			InputStream response=ctx.getAssets().open(fileName);
-				
-			parser.parse(response, handler);
-			
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return handler.result;
-	}
 	
-	public static NHData[] getArrayNhData(Context ctx){
-		return readJsonStream(ctx, ctx.getResources().openRawResource(R.raw.nh));       
-	}
-	public static List<NHData> getListNhData(Context ctx){
-		List<NHData> result = new ArrayList<NHData>();
-		try {
-			result =   readJsonStream( ctx.getResources().openRawResource(R.raw.nh));
-		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-   
-}
-	public static List<InscriptionData> getListInscriptionData(Context ctx){
-		List<InscriptionData> result = new ArrayList<InscriptionData>();
-		try {
-			result =   readInscriptionJsonStream( ctx.getResources().openRawResource(R.raw.inscriptions));
-		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return result;
-   
-}
-	public static NHData[] readJsonStream(Context ctx, InputStream is){
-		
-		Reader reader;
-		Gson gson;		
-		NHData[] response = null;
-		
-		try {
-			
-			gson = new Gson();
-        
-			is = ctx.getResources().openRawResource(R.raw.nh);
-			reader = new InputStreamReader(is, "UTF-8");
-			
-			response = gson.fromJson(reader, NHData[].class);
-			
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-       return response;
-       
-	}
-	  public static List<NHData> readJsonStream(InputStream in) throws IOException {
-		  	
-		  	Gson gson = new Gson();
-	        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-	        List<NHData> messages = new ArrayList<NHData>();
-	        reader.beginArray();	        
-	        while (reader.hasNext()) {
-	            NHData message = gson.fromJson(reader, NHData.class);
-	            messages.add(message);
-	        }
-	        reader.endArray();
-	        reader.close();
-	        return messages;
-	    }
-	  public static List<InscriptionData> readInscriptionJsonStream(InputStream in) throws IOException {
-		  	
-		  	Gson gson = new Gson();
-	        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
-	        List<InscriptionData> messages = new ArrayList<InscriptionData>();
-	        reader.beginArray();	        
-	        while (reader.hasNext()) {
-	            InscriptionData message = gson.fromJson(reader, InscriptionData.class);
-	            messages.add(message);
-	        }
-	        reader.endArray();
-	        reader.close();
-	        return messages;
-	    }
+	  
+	
 
-	
+
 }
 	

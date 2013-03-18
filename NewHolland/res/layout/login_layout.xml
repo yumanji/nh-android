@@ -25,7 +25,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Introduce usuario" />
+                android:hint="Introduce usuario"
+                android:singleLine="true"
+                android:imeOptions="actionNext" >
+                <requestFocus />
+                </EditText>
         </LinearLayout>
 
         <LinearLayout
@@ -44,9 +48,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Introduce password" >
-
-                <requestFocus />
+                android:hint="Introduce password"
+                android:imeOptions="actionGo"
+                android:inputType="textPassword"
+                android:singleLine="true" >
+                
             </EditText>
         </LinearLayout>
 

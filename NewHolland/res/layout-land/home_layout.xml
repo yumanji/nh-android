@@ -67,13 +67,76 @@
             android:id="@+id/global"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1" >
+        </com.movetothebit.newholland.android.widgets.CategoryWidget>
 
         <com.movetothebit.newholland.android.widgets.CategoryWidget
             android:id="@+id/statistics"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1" >
+        </com.movetothebit.newholland.android.widgets.CategoryWidget>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_weight="0"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="0"
+                android:gravity="right|center_vertical"
+                android:singleLine="true"
+                android:text="@string/movetothebit_lit" />
+
+            <TextView
+                android:id="@+id/mailText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0"
+                android:gravity="left|center_vertical"
+                android:text="@string/movetothebit_mail" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="@string/last_sync"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/corporative_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lastSyncText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="TextView"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/corporative_color" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <!--

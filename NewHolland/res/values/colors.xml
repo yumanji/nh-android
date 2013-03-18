@@ -24,6 +24,7 @@
    <color name="corporative_color">#9500336D</color>
    <color name="corporative_sec_color">#00336D</color>
    <color name="back_color">#2000418C</color>
+     <color name="back_edit_color">#6000418C</color>
    <color name="back_stroke_color">#4000418C</color>
    <drawable name="nh_color_back">#294688</drawable>
 	<drawable name="nh_color_ab">#0032A6</drawable>

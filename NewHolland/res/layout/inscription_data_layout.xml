@@ -1,5 +1,6 @@
 
       <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/baseLayout"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginBottom="3dp"
@@ -91,22 +92,24 @@
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
                           android:layout_weight="1"
+                          android:singleLine="true"
                           android:text=" martey ferguson"
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
+
                   </LinearLayout>
 
                   <LinearLayout
-                      android:layout_width="wrap_content"
+                      android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:layout_weight="1"
                       android:padding="5dp" >
 
                       <LinearLayout
                           android:layout_width="match_parent"
-                          android:layout_height="match_parent"
+                          android:layout_height="wrap_content"
                           android:layout_marginLeft="10dp"
-                          android:layout_weight="0" >
+                          android:layout_weight="1" >
 
                           <TextView
                               android:id="@+id/TextView11"
@@ -123,16 +126,39 @@
                               android:layout_height="wrap_content"
                               android:layout_marginLeft="6dp"
                               android:layout_weight="1"
+                              android:singleLine="true"
                               android:text="ñlkashfadsñlkdfjlañ aefjñlkasdfljlkñjdskjlñfdf asfeljkñ"
                               android:textAppearance="@style/dataText"
                               android:textSize="20sp" />
+
                       </LinearLayout>
 
                       <LinearLayout
                           android:layout_width="wrap_content"
-                          android:layout_height="match_parent"
-                          android:layout_weight="0" >
-                      </LinearLayout>
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1" >
+
+                     <TextView
+                         android:id="@+id/TextView11"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_weight="0"
+                         android:text="@string/comercialModelComp"
+                         android:textAppearance="@style/dataTitleText"
+                         android:textSize="20sp" />
+
+                          <TextView
+                              android:id="@+id/modelText"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="6dp"
+                              android:layout_weight="1"
+                              android:singleLine="true"
+                              android:text="ñlkashfadsñlkdfjlañ aefjñlkasdfljlkñjdskjlñfdf asfeljkñ"
+                              android:textAppearance="@style/dataText"
+                              android:textSize="20sp" />
+
+					</LinearLayout>
                   </LinearLayout>
               </LinearLayout>
 
@@ -143,21 +169,21 @@
 
                   <LinearLayout
                       android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
+                      android:layout_height="match_parent"
                       android:layout_weight="1"
                       android:padding="5dp" >
 
                       <TextView
-                          android:id="@+id/TextView14"
+                          android:id="@+id/TextView04"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_weight="0"
-                          android:text="@string/place"
+                          android:text="@string/dealerName"
                           android:textAppearance="@style/dataTitleText"
                           android:textSize="20sp" />
 
                       <TextView
-                          android:id="@+id/placeText"
+                          android:id="@+id/dealerText"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
@@ -193,21 +219,21 @@
 
                   <LinearLayout
                       android:layout_width="wrap_content"
-                      android:layout_height="match_parent"
+                      android:layout_height="wrap_content"
                       android:layout_weight="1"
                       android:padding="5dp" >
 
                       <TextView
-                          android:id="@+id/TextView04"
+                          android:id="@+id/TextView14"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:layout_weight="0"
-                          android:text="@string/dealerName"
+                          android:text="@string/place"
                           android:textAppearance="@style/dataTitleText"
                           android:textSize="20sp" />
 
                       <TextView
-                          android:id="@+id/dealerText"
+                          android:id="@+id/placeText"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
@@ -215,6 +241,7 @@
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
                   </LinearLayout>
+
               </LinearLayout>
           </LinearLayout>
 

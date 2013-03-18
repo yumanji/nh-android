@@ -16,7 +16,9 @@
 
 package com.movetothebit.newholland.android.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 import android.annotation.TargetApi;
@@ -58,10 +60,6 @@ public class UIUtils {
      */
     public static final TimeZone CONFERENCE_TIME_ZONE = TimeZone.getTimeZone("America/Los_Angeles");
 
-    public static final long CONFERENCE_START_MILLIS = ParserUtils.parseTime(
-            "2012-06-27T09:30:00.000-07:00");
-    public static final long CONFERENCE_END_MILLIS = ParserUtils.parseTime(
-            "2012-06-29T18:00:00.000-07:00");
 
     public static final String CONFERENCE_HASHTAG = "#io12";
 
@@ -96,7 +94,10 @@ public class UIUtils {
         // beyond that allows you to recycle a StringBuilder.
         return DateUtils.formatDateRange(context, blockStart, blockEnd, TIME_FLAGS);
     }
-
+    public static String getDateNowFormat(){
+    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    	return sdf.format(new Date());
+    }
     public static boolean isSameDay(long time1, long time2) {
         TimeZone.setDefault(CONFERENCE_TIME_ZONE);
 

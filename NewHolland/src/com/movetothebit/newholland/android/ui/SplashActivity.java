@@ -2,14 +2,15 @@ package com.movetothebit.newholland.android.ui;
 
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.utils.lConstants;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends Activity implements lConstants{
     /** Called when the activity is first created. */
 
 
@@ -19,7 +20,7 @@ public class SplashActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
     	
         super.onCreate(savedInstanceState);  
-        getSupportActionBar().hide();
+        
         setContentView(R.layout.splash_layout); 
        
     }
@@ -33,7 +34,8 @@ public class SplashActivity extends BaseActivity {
 
 			@Override
 			public void run() {
-				if(settings.getBoolean("islogged", false)){
+				
+				if(getSharedPreferences(getString(R.string.app_preferences), 0).getBoolean(isLogged, false)){
 					Intent mainIntent = new Intent(SplashActivity.this,HomeActivity.class);
 					SplashActivity.this.startActivity(mainIntent);
 					SplashActivity.this.finish();

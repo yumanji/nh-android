@@ -23,7 +23,7 @@ import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.ui.DetailActivity;
 import com.movetothebit.newholland.android.ui.FormActivity;
 
-public class DataAdapter extends BaseAdapter{
+public class FormDataAdapter extends BaseAdapter{
 	
 	private LayoutInflater mInflater;
 	private List<InscriptionData> mList;
@@ -31,7 +31,7 @@ public class DataAdapter extends BaseAdapter{
 	private Context mContext;
 	private boolean[] isView;
 	
-	public DataAdapter(Activity activity,List<InscriptionData> list) {
+	public FormDataAdapter(Activity activity,List<InscriptionData> list) {
 	
 		this.mContext = activity.getApplicationContext();
 		this.mInflater = LayoutInflater.from(mContext);
@@ -100,9 +100,11 @@ public class DataAdapter extends BaseAdapter{
 		
 		final InscriptionData item = mList.get(position);	
 		
-//			if(item.getKnownOperation()==1&&item.getNameClient().equals("")&&item.getSurnameClient().equals("")){
-//				holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);
-//			}
+			if(item.getKnownOperation()==1&&item.getNameClient().equals("")&&item.getSurnameClient().equals("")){
+				holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);
+			}else{
+				holder.baseLayout.setBackgroundResource(R.drawable.order_back);
+			}
 		
 		holder.machineType.setText(item.getMachineType());		
 		holder.brand.setText(item.getBrand());

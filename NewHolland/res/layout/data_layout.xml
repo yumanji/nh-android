@@ -411,7 +411,7 @@
                                         />
 
                                     <TextView
-                                        android:id="@+id/TextView13"
+                                        android:id="@+id/phoneEditText"
                                         android:layout_weight="1"
                                         android:gravity="right"
                                         android:text="20"

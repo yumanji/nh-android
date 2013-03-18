@@ -1,5 +1,6 @@
 package com.movetothebit.newholland.android.ui;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,17 +19,17 @@ import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.adapters.DataAdapter;
 import com.movetothebit.newholland.android.helpers.AppHelper;
+import com.movetothebit.newholland.android.helpers.DataHelper;
 import com.movetothebit.newholland.android.model.InscriptionData;
-import com.movetothebit.newholland.android.utils.RemoteFacade;
+import com.movetothebit.newholland.android.utils.ServerException;
 
 
-public class ListDataActivity extends BaseActivity{
+public class ListInscriptionsFilledActivity extends BaseActivity{
 
 	private ListView list;
 	private DataAdapter adapter;
 	private List<InscriptionData> listData = new ArrayList<InscriptionData>();
 	
-	private EditText filterText;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
@@ -37,7 +38,6 @@ public class ListDataActivity extends BaseActivity{
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.list_data_layout);
-		filterText = (EditText) findViewById(R.id.filterText);
 		list =(ListView)findViewById(R.id.list);
 		
 		
@@ -46,33 +46,45 @@ public class ListDataActivity extends BaseActivity{
 	}
 	
 	
-	class LoadDataTask extends AsyncTask<Void, Void, Void>{
+	class LoadDataTask extends AsyncTask<Void, Void, String>{
 		ProgressDialog pd;
 		
 		@Override
 		protected void onPreExecute() {
-			pd = new ProgressDialog(ListDataActivity.this);
+			pd = new ProgressDialog(ListInscriptionsFilledActivity.this);
 			pd.setMessage("Cargando datos de tu zona");
 			pd.show();
 			super.onPreExecute();
 		}
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected String doInBackground(Void... params) {
 			
-			if(AppHelper.getMyLoadData().size()==0){
-				AppHelper.setMyLoadData(RemoteFacade.getListInscriptionData(getApplicationContext()));
-			}			
-			listData = AppHelper.getMyLoadData();
+			try {
+				listData = mDBHelper.getInscriptionsFilled();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				return e.getMessage();
+			} catch (ServerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return e.getMessage();
+			}
 			return null;
 		}
 
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(String result) {
 			if(pd.isShowing()){
 				pd.dismiss();
 			}
-			adapter = new DataAdapter(ListDataActivity.this, listData);
-			list.setAdapter(adapter);
+			if(result == null){
+				adapter = new DataAdapter(ListInscriptionsFilledActivity.this, listData);
+				list.setAdapter(adapter);
+			}else{
+				Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+			}
+			
 			super.onPostExecute(result);
 		}
 
@@ -90,19 +102,5 @@ public class ListDataActivity extends BaseActivity{
 	
 	
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        
-	        case R.id.search:
-		        if(filterText.getVisibility() == View.GONE){
-		        	filterText.setVisibility(View.VISIBLE);
-		        }else{
-		        	filterText.setVisibility(View.GONE);
-		        }
-		        return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
+	
 }

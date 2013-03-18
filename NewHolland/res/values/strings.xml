@@ -14,6 +14,18 @@
     <string name="location_need_title">Error obteniendo tu posición</string>
     <string name="wait_location">Esperar</string>
     <string name="obtain_location">Obteniendo posición...</string>
+    <string name="no_data_filter">No se han producido resultados en la busqueda</string>
+     <string name="movetothebit_lit"> Move to the BIT S.L. 2012</string>
+     <string name="movetothebit_mail">info@movetothebit.com</string>
+     <string name="filter_button">Filtrar</string>
+     <string name="last_sync">Ultima sincronización:</string>
+      <string name="no_sync">Los datos no estan sincronizados</string>
+    <string name="alert_dialog_title">¡Atencion!</string>
+    <string name="alert_dialog_ok">Ok</string>
+    <string name="alert_dialog_cancel">Cancelar</string>
+    <string name="refresh_exception">Se ha producido un error refrescando la base de datos, intentelo mas tarde</string>
+    <string name="refresh_title_dialog">Va a proceder a actualizar los datos de su aplicación. Le aconsejamos hacerlo conectado a una red WIFI. El proceso puede durar unos minutos. ¿Esta seguro?</string>
+    <string name="first_sync_title_dialog">Como es la primera vez que entra a la aplicación, se va a proceder a sincronizar los datos con el servidor. Le aconsejamos hacerlo conectado a una red WIFI. El proceso puede durar unos minutos. ¿Esta seguro?</string>
     <string name="chart1">Anotación</string>
     <string name="chart2">Barras</string>
     <string name="chart3">Candle</string>
@@ -30,9 +42,10 @@
     <string name="user">Usuario:</string>
     <string name="pass">Password:</string>
     <string name="access">Acceder</string>
-    <string name="machineType">Tipo:</string>
+    <string name="machineType">Producto:</string>
     <string name="brand">Marca:</string>
     <string name="comercialModel">Modelo:</string>
+    <string name="comercialModelComp">Modelo comparable:</string>
     <string name="hp">HP:</string>
     <string name="month">Mes:</string>
     <string name="year">Año:</string>
@@ -54,7 +67,12 @@
     <string name="quest4">¿Has ganado la operación?</string>
     <string name="quest5">¿Por que la has perdido?</string>
     <string name="quest6">¿Qué precio?</string>
-    <string name="quest7">¿Cual es el nombre del cliente?</string>
+    <string name="quest7">Cliente:</string>
+     <string name="quest8">¿Por que la has ganado?</string>
+     <string name="name">Nombre:</string>
+      <string name="surname">Apellidos:</string>
+      <string name="phone">Telefono:</string>
+      <string name="email">Email:</string>
     <string name="observations">Observaciones:</string>
     <!-- Literales del data activity -->
     <string name="brand_prompt">Selecciona la marca</string>
