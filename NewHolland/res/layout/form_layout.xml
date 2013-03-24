@@ -209,8 +209,10 @@
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
                           android:layout_weight="1"
+                          android:singleLine="true"
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
+
                   </LinearLayout>
 
                   <LinearLayout
@@ -234,8 +236,10 @@
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
                           android:layout_weight="1"
+                          android:singleLine="true"
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
+
                   </LinearLayout>
 
                   <LinearLayout
@@ -259,8 +263,10 @@
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
                           android:layout_weight="1"
+                          android:singleLine="true"
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
+
                   </LinearLayout>
 
               </LinearLayout>
@@ -349,7 +355,8 @@
                  android:layout_weight="1"
                  android:ems="10"
                  android:imeOptions="actionNext"
-                 android:selectAllOnFocus="true" />
+                 android:selectAllOnFocus="true"
+                 android:singleLine="true" />
 
              <TextView
                  android:id="@+id/TextView10"
@@ -369,7 +376,8 @@
                  android:layout_weight="1"
                  android:ems="10"
                  android:imeOptions="actionNext"
-                 android:selectAllOnFocus="true" />
+                 android:selectAllOnFocus="true"
+                 android:singleLine="true" />
 
          </LinearLayout>
 
@@ -396,7 +404,8 @@
                  android:layout_weight="1"
                  android:ems="10"
                  android:imeOptions="actionNext"
-                 android:selectAllOnFocus="true" />
+                 android:selectAllOnFocus="true"
+                 android:singleLine="true" />
 
              <TextView
                 
@@ -416,7 +425,8 @@
                  android:layout_weight="1"
                  android:ems="10"
                  android:imeOptions="actionNext"
-                 android:selectAllOnFocus="true" />
+                 android:selectAllOnFocus="true"
+                 android:singleLine="true" />
 
          </LinearLayout>
      </LinearLayout>
@@ -452,7 +462,8 @@
              android:layout_height="wrap_content"
              android:layout_weight="1.5"
              android:completionThreshold="1"
-             android:gravity="center_vertical" />
+             android:gravity="center_vertical"
+             android:singleLine="true" />
 
          <Switch
              android:id="@+id/winOfferSwitch"
@@ -513,7 +524,8 @@
              android:ems="10"
              android:gravity="right"
              android:inputType="numberDecimal"
-             android:selectAllOnFocus="true" />
+             android:selectAllOnFocus="true"
+             android:singleLine="true" />
 
          <TextView
              android:id="@+id/textView2"

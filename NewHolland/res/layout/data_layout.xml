@@ -20,72 +20,71 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_weight="0" >
 
-                <Spinner
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
+                    android:id="@+id/areaSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"                    
+                    android:prompt="@string/area_prompt" />
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
                     android:id="@+id/dealerSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/dealer"
+                    android:layout_weight="1"                    
                     android:prompt="@string/dealer_prompt" />
 
-                <Spinner
-                    android:id="@+id/dealerManSpinner"
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
+                    android:id="@+id/salesmanSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/dealerMan"
-                    android:prompt="@string/dealerMan_prompt" />
+                    android:layout_weight="1"                   
+                    android:prompt="@string/salesman_prompt" />
 
-                <Spinner
-                    android:id="@+id/placeSpinner"
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
+                    android:id="@+id/populationSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/province"
-                    android:prompt="@string/province_prompt" />
+                    android:layout_weight="1"                 
+                    android:prompt="@string/population_prompt" />
 
-                <Spinner
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
                     android:id="@+id/modelSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/models"
+                    android:layout_weight="1"                 
                     android:prompt="@string/model_prompt" />
-
-                <Spinner
-                    android:id="@+id/segmentSpinner"
+                
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
+                    android:id="@+id/modelCompSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/segment"
-                    android:prompt="@string/segment_prompt" />
+                    android:layout_weight="1"                 
+                    android:prompt="@string/modelComp_prompt" />
 
-                <Spinner
-                    android:id="@+id/monthSpinner"
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
+                    android:id="@+id/periodSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:entries="@array/months"
-                    android:prompt="@string/month_prompt" />
+                    android:layout_weight="1"                    
+                    android:prompt="@string/period_prompt" />
 
-                <Spinner
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
                     android:id="@+id/brandSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:entries="@array/brand"
+                   
                     android:prompt="@string/brand_prompt" />
 
                 <Button
                     android:id="@+id/chartButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Filtrar"
-                    android:visibility="gone" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Filtrar" />
 
             </LinearLayout>
 

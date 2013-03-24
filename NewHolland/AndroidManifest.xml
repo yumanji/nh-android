@@ -1,145 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!DOCTYPE manifest [
     <!ENTITY CATEGORY_NAME "org.afree.chart.demo">
 ]>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.movetothebit.newholland.android"
-    android:versionCode="3"
-    android:versionName="1.2">
+    android:versionCode="6"
+    android:versionName="1.5" 
+    android:installLocation="preferExternal">
 
-    <uses-sdk android:minSdkVersion="14"  />
- 
- 	<uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />   
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />    
+    <uses-sdk android:minSdkVersion="14" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <application android:label="@string/app_name"
-        android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme">
-        
-  
-    
- <uses-library android:name="com.google.android.maps"  android:required="true"/>
-        
+
+    <application
+        android:icon="@drawable/ic_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="true" />
+
         <activity
             android:name=".ui.SplashActivity"
-            android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="landscape"
-             
-            >
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-           <activity android:name=".ui.HomeActivity" class="com.movetothebit.newholland.android.ui.HomeActivity"  android:screenOrientation="landscape" android:configChanges="orientation"/>
-            <activity android:name=".ui.LoginActivity" class="com.movetothebit.newholland.android.ui.LoginActivity" android:screenOrientation="landscape" android:windowSoftInputMode="stateAlwaysHidden"  android:configChanges="orientation"/>
-           <activity android:name=".ui.CatalogActivity" class="com.movetothebit.newholland.android.ui.CategorysActivity" android:screenOrientation="landscape" android:configChanges="orientation" />          
-           <activity android:name=".ui.FormActivity" class="com.movetothebit.newholland.android.ui.FormActivity"  android:windowSoftInputMode="stateAlwaysHidden" android:screenOrientation="landscape" android:configChanges="orientation"/>
-            <activity android:name=".ui.DetailActivity" class="com.movetothebit.newholland.android.ui.DetailActivity"  android:windowSoftInputMode="stateAlwaysHidden" android:screenOrientation="landscape" android:configChanges="orientation"/>
-           <activity android:name=".ui.ListInscriptionsEmptyActivity" class="com.movetothebit.newholland.android.ui.ListInscriptionsEmptyActivity" android:screenOrientation="landscape" android:configChanges="orientation"/>
-           <activity android:name=".ui.ListInscriptionsFilledActivity" class="com.movetothebit.newholland.android.ui.ListInscriptionsFilledActivity" android:screenOrientation="landscape" android:configChanges="orientation"/>
-           <activity android:name=".ui.ChartsActivity" class="com.movetothebit.newholland.android.ui.ChartsActivity"  android:screenOrientation="landscape" android:configChanges="orientation"/>
-            <activity android:name=".ui.DataActivity" class="com.movetothebit.newholland.android.ui.DataActivity"  android:screenOrientation="landscape" android:configChanges="orientation"/>
-        <activity android:name="org.afree.chart.demo.ChartHierarchyActivity"
-            android:label="@string/app_name">
-           
-        </activity>
+        <activity
+            android:name=".ui.HomeActivity"
+            class="com.movetothebit.newholland.android.ui.HomeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.LoginActivity"
+            class="com.movetothebit.newholland.android.ui.LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.CatalogActivity"
+            class="com.movetothebit.newholland.android.ui.CategorysActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.FormActivity"
+            class="com.movetothebit.newholland.android.ui.FormActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.DetailActivity"
+            class="com.movetothebit.newholland.android.ui.DetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.ListInscriptionsEmptyActivity"
+            class="com.movetothebit.newholland.android.ui.ListInscriptionsEmptyActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.ListInscriptionsFilledActivity"
+            class="com.movetothebit.newholland.android.ui.ListInscriptionsFilledActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.ChartsActivity"
+            class="com.movetothebit.newholland.android.ui.ChartsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ui.DataActivity"
+            class="com.movetothebit.newholland.android.ui.DataActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" />
+    </application>
 
-        <activity android:name="org.afree.chart.demo.activity.AnnotationDemo01Activity"
-            android:label="Annotation Demo 01"
-            android:configChanges="orientation|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.BarChartDemo01Activity"
-            android:label="Bar Chart Demo 01">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.SlidingCategoryPlotDemo01Activity"
-            android:label="Sliding Chart Demo 01">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.SlidingCategoryPlotDemo02Activity"
-            android:label="Sliding Chart Demo 02">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.CandleStickChartDemo03Activity"
-            android:label="Candle Stick Chart Demo 03"
-            android:configChanges="orientation|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.DeviationRendererDemo02Activity"
-            android:label="Deviation Renderer Demo 02"
-            android:configChanges="orientation|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.MarkerDemo01Activity"
-            android:label="Marker Demo 01"
-            android:configChanges="orientation|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.OverlaidXYPlotDemo02Activity"
-            android:label="Overlaid XY Plot Demo 02"
-            android:configChanges="orientation|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.PieChartDemo01Activity"
-            android:label="Pie Chart Demo 01">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.ScatterPlotDemo03Activity"
-            android:label="Scatter Plot Demo 03"
-            android:configChanges="orientation|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        <activity android:name="org.afree.chart.demo.activity.TimeSeriesChartDemo01Activity"
-            android:label="Time Series Demo 01">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-         <activity android:name="org.afree.chart.demo.activity.JDBCXYChartDemoActivity"
-             
-            android:label="JDBC XY CHART">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="&CATEGORY_NAME;" />
-            </intent-filter>
-        </activity>
-        
-        </application>
 </manifest>

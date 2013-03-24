@@ -11,7 +11,7 @@
                     android:adjustViewBounds="true"
                     android:background="@drawable/category_back"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/nh_1" />
+                     />
 
                 <RelativeLayout
                     android:layout_width="match_parent"

@@ -169,7 +169,7 @@
                          android:textSize="20sp" />
 
                           <TextView
-                              android:id="@+id/modelText"
+                              android:id="@+id/modelCompText"
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:layout_marginLeft="6dp"
@@ -209,8 +209,10 @@
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
                           android:layout_weight="1"
+                          android:singleLine="true"
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
+
                   </LinearLayout>
 
                   <LinearLayout
@@ -234,8 +236,10 @@
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
                           android:layout_weight="1"
+                          android:singleLine="true"
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
+
                   </LinearLayout>
 
                   <LinearLayout
@@ -259,8 +263,10 @@
                           android:layout_height="wrap_content"
                           android:layout_marginLeft="6dp"
                           android:layout_weight="1"
+                          android:singleLine="true"
                           android:textAppearance="@style/dataText"
                           android:textSize="20sp" />
+
                   </LinearLayout>
 
               </LinearLayout>

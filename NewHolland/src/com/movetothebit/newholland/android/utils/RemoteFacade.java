@@ -11,6 +11,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,8 +21,20 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -35,9 +49,90 @@ public class RemoteFacade {
 
 	
 	private static final String TAG_ = "RemoteFacade";	
+	private static final int TIMEOUT_MILLISEC = 10000;	
+	
+	public static String postStringToUrl(String url, String jsonString) {
+	    // Create a new HttpClient and Post Header
+	    HttpClient httpclient = new DefaultHttpClient();
+	    HttpPost httppost = new HttpPost(url);
+	    String _response = null;
+	    
+	    try {
+	        // Add your data
+	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+	        nameValuePairs.add(new BasicNameValuePair("data", jsonString));
+//	        nameValuePairs.add(new BasicNameValuePair("stringdata", "Hi"));
+	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,"UTF-8"));
+	        Log.i("json Object", jsonString);
+	        // Execute HTTP Post Request
+	        HttpResponse response = httpclient.execute(httppost);
 
+	        HttpEntity entity = response.getEntity();
+		    InputStream is = entity.getContent();
+		    _response = convertStreamToString(is);
+		   
+		    
+	    } catch (ClientProtocolException e) {
+	        // TODO Auto-generated catch block
+	    } catch (IOException e) {
+	        // TODO Auto-generated catch block
+	    }
+		return _response;
+	} 
 	
+	public static String sendJsonToUrl(String url, String jsonString) throws JSONException, ClientProtocolException, IOException {	   
+
+	    HttpParams httpParams = new BasicHttpParams();
+	    HttpConnectionParams.setConnectionTimeout(httpParams, TIMEOUT_MILLISEC);
+	    HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
+	    HttpClient client = new DefaultHttpClient(httpParams);
+	    
+	    HttpPost request = new HttpPost(url); // add your url here...
+	    request.setHeader("Accept", "text/html");
+	    request.setHeader( "Content-Type", "text/html" );     
+
+	    JSONObject json = new JSONObject(jsonString);  
+
+	    Log.i("json Object", json.toString());
+
+	    StringEntity se = new StringEntity(json.toString());
+
+	    se.setContentEncoding("UTF-8");
+	    
+	    se.setContentType("text/html");
+
+	    request.setEntity(se);      
+
+	    HttpResponse response = client.execute(request); 
+
+	    HttpEntity entity = response.getEntity();
+	    InputStream is = entity.getContent();
+	    String _response = convertStreamToString(is);
+	    return _response;
+
+	}
 	
+	private static String convertStreamToString(InputStream is) {
+
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(is), 8192);
+	    StringBuilder sb = new StringBuilder();
+
+	    String line = null;
+	    try {
+	        while ((line = reader.readLine()) != null) {
+	            sb.append((line + "\n"));
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            is.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return sb.toString();
+	}
 	
 	/**
 	 * Envia una petición a una dirección de internet y devuelve la salida en un

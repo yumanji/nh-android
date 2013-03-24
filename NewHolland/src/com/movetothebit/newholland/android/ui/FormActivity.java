@@ -157,26 +157,26 @@ public class FormActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        
-	        case R.id.forward:
-	        	
-	        	if(index<(getListInscriptionsEmpty().size()-1)){
-					loadInscriptionData(++index);	
-				}else{
-					index = 0;
-					loadInscriptionData(index);
-				}
-		        return true;
+//	        case R.id.forward:
+//	        	
+//	        	if(index<(getListInscriptionsEmpty().size()-1)){
+//					loadInscriptionData(++index);	
+//				}else{
+//					index = 0;
+//					loadInscriptionData(index);
+//				}
+//		        return true;
 	        case R.id.save:
 	        	new SaveDataTask().execute();
 		        return true;
-	        case R.id.back:
-	        	if(index >0){
-					loadInscriptionData(--index);
-				}else{
-					index = getListInscriptionsEmpty().size()-1;
-					loadInscriptionData( index);
-				}
-		        return true;
+//	        case R.id.back:
+//	        	if(index >0){
+//					loadInscriptionData(--index);
+//				}else{
+//					index = getListInscriptionsEmpty().size()-1;
+//					loadInscriptionData( index);
+//				}
+//		        return true;
 		        
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -209,11 +209,12 @@ public class FormActivity extends BaseActivity {
 			priceText = (EditText) findViewById(R.id.priceEditText);
 			observationsText = (EditText) findViewById(R.id.observationsEditText);
 			item.setObservations(observationsText.getText().toString());
+			item.setFillData(YES);
 			
 			if (knownOperationSwitch.isChecked()) {
 
-				item.setKnownOperation(YES);
-
+				item.setKnownOperation(YES);				
+				
 				if (makeOfferSwitch.isChecked()) {
 					item.setMakeOffer(YES);
 					if (winOfferSwitch.isChecked()) {
@@ -226,13 +227,10 @@ public class FormActivity extends BaseActivity {
 					
 					item.setModelOffer(modelSpinner.getText().toString());
 					item.setNameClient(nameClientText.getText().toString());
-					item.setSurnameClient(surnameClientText.getText().toString());
-					item.setEmailClient(emailClientText.getText().toString());
-					item.setPhoneClient(phoneClientText.getText().toString());
+					item.setLastnameClient(surnameClientText.getText().toString());
+					item.setMailClient(emailClientText.getText().toString());
+					item.setPhoneClient(phoneClientText.getText().toString());					
 					
-					if(!nameClientText.getText().toString().equals("") && !surnameClientText.getText().toString().equals("")){
-						item.setFillData(YES);
-					}
 
 				}
 
@@ -329,10 +327,10 @@ public class FormActivity extends BaseActivity {
 			nameClientText.setText(item.getNameClient());
 			
 			EditText surnameClientText = (EditText) findViewById(R.id.surnameClientEditText);
-			surnameClientText.setText(item.getSurnameClient());
+			surnameClientText.setText(item.getLastnameClient());
 			
 			EditText emailClientText = (EditText) findViewById(R.id.emailEditText);
-			emailClientText.setText(item.getEmailClient());
+			emailClientText.setText(item.getMailClient());
 			
 			EditText phoneClientText = (EditText) findViewById(R.id.phoneEditText);
 			phoneClientText.setText(item.getPhoneClient());

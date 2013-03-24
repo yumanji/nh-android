@@ -9,10 +9,10 @@ import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.ui.HomeActivity;
 
-public class RefreshDialogFragment extends SherlockDialogFragment {
+public class DownloadDialogFragment extends SherlockDialogFragment {
 
-    public static RefreshDialogFragment newInstance(int title) {
-        RefreshDialogFragment frag = new RefreshDialogFragment();
+    public static DownloadDialogFragment newInstance(int title) {
+        DownloadDialogFragment frag = new DownloadDialogFragment();
         Bundle args = new Bundle();
         args.putInt("title", title);
         frag.setArguments(args);
@@ -30,7 +30,7 @@ public class RefreshDialogFragment extends SherlockDialogFragment {
                 .setPositiveButton(R.string.alert_dialog_ok,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            ((HomeActivity)getActivity()).doRefreshClick();
+                            ((HomeActivity)getActivity()).doDownloadClick();
                         }
                     }
                 )

@@ -22,6 +22,7 @@ public class SplashActivity extends Activity implements lConstants{
         super.onCreate(savedInstanceState);  
         
         setContentView(R.layout.splash_layout); 
+
        
     }
 

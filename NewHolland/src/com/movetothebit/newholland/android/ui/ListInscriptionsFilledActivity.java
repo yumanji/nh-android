@@ -8,7 +8,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,10 +19,10 @@ import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.adapters.DataAdapter;
-import com.movetothebit.newholland.android.helpers.AppHelper;
-import com.movetothebit.newholland.android.helpers.DataHelper;
+import com.movetothebit.newholland.android.adapters.FormDataAdapter;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.utils.ServerException;
+import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
 
 
 public class ListInscriptionsFilledActivity extends BaseActivity{
@@ -29,23 +30,42 @@ public class ListInscriptionsFilledActivity extends BaseActivity{
 	private ListView list;
 	private DataAdapter adapter;
 	private List<InscriptionData> listData = new ArrayList<InscriptionData>();
-	
+	private MultiSelectSpinner dealerSpinner;
+	private MultiSelectSpinner salesmanSpinner;
+	private Button filterButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);
-		getSupportActionBar().show();
+		
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.list_data_layout);
 		list =(ListView)findViewById(R.id.list);
 		
+		dealerSpinner = (MultiSelectSpinner) findViewById(R.id.dealerSpinner);
+		salesmanSpinner = (MultiSelectSpinner) findViewById(R.id.salesmanSpinner);
+		filterButton = (Button) findViewById(R.id.filterButton);
+		filterButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				new LoadDataTask().execute();
+				
+			}
+		});
+		resetFilters();
 		
 		
-		new LoadDataTask().execute();
 	}
 	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		new LoadDataTask().execute();
 	
+	
+	}
 	class LoadDataTask extends AsyncTask<Void, Void, String>{
 		ProgressDialog pd;
 		
@@ -60,7 +80,13 @@ public class ListInscriptionsFilledActivity extends BaseActivity{
 		protected String doInBackground(Void... params) {
 			
 			try {
-				listData = mDBHelper.getInscriptionsFilled();
+				if(salesmanSpinner.getSelectedStrings().size()>0||dealerSpinner.getSelectedStrings().size()>0){
+					listData = mDBHelper.getInscriptionsFilter(salesmanSpinner.getSelectedStringsArray(),dealerSpinner.getSelectedStringsArray());
+				}else{
+					listData = mDBHelper.getInscriptionsFilled();	
+				}
+				
+				
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
@@ -79,8 +105,19 @@ public class ListInscriptionsFilledActivity extends BaseActivity{
 				pd.dismiss();
 			}
 			if(result == null){
-				adapter = new DataAdapter(ListInscriptionsFilledActivity.this, listData);
-				list.setAdapter(adapter);
+				if(listData.size()>0){
+					
+					adapter = new DataAdapter(ListInscriptionsFilledActivity.this, listData);						
+					list.setAdapter(adapter);
+					list.setVisibility(View.VISIBLE);
+					findViewById(R.id.noDataLayout).setVisibility(View.GONE);
+					
+				}else{
+					
+					list.setVisibility(View.GONE);
+					findViewById(R.id.noDataLayout).setVisibility(View.VISIBLE);
+				}
+				
 			}else{
 				Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
 			}
@@ -91,7 +128,24 @@ public class ListInscriptionsFilledActivity extends BaseActivity{
 		
 		
 	}
-
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	      
+	        case R.id.reset:
+	        	resetFilters();
+		        return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	public void resetFilters(){
+		dealerSpinner.setData(mDBHelper.getDealerValues(getApplicationContext()), "Concesionario");		
+		salesmanSpinner.setData(mDBHelper.getSalesmanValues(getApplicationContext()), "Vendedor");
+		
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

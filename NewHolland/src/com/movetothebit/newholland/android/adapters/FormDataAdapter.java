@@ -71,7 +71,7 @@ public class FormDataAdapter extends BaseAdapter{
 			ViewGroup parent) {
 
 		final ListContent holder;			
-		boolean animation = false;
+//		boolean animation = false;
 		if (convertView == null) {
 		
 				convertView = mInflater.inflate(R.layout.inscription_data_layout, null);
@@ -83,8 +83,8 @@ public class FormDataAdapter extends BaseAdapter{
 				holder.place = (TextView) convertView.findViewById(R.id.placeText);
 				holder.machineType = (TextView) convertView.findViewById(R.id.machineTypeText);
 				holder.brand = (TextView) convertView.findViewById(R.id.brandText);
-				holder.commercialMode = (TextView) convertView.findViewById(R.id.modelText);
-				
+				holder.model = (TextView) convertView.findViewById(R.id.modelText);
+				holder.modelComp = (TextView) convertView.findViewById(R.id.modelCompText);
 				holder.salesmanName = (TextView) convertView.findViewById(R.id.salesnameText);	
 				
 				holder.dealerName = (TextView) convertView.findViewById(R.id.dealerText);			
@@ -100,16 +100,13 @@ public class FormDataAdapter extends BaseAdapter{
 		
 		final InscriptionData item = mList.get(position);	
 		
-			if(item.getKnownOperation()==1&&item.getNameClient().equals("")&&item.getSurnameClient().equals("")){
-				holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);
-			}else{
-				holder.baseLayout.setBackgroundResource(R.drawable.order_back);
-			}
+			
 		
 		holder.machineType.setText(item.getMachineType());		
 		holder.brand.setText(item.getBrand());
 		holder.place.setText(item.getPopulation()+" ("+item.getProvince()+")");
-		holder.commercialMode.setText(item.getCommercialModel()+" ("+ item.getHp()+" HP)");
+		holder.model.setText(item.getCommercialModel());
+		holder.modelComp.setText(item.getModeloComparable());
 		holder.dealerName.setText(item.dealerName);
 		holder.date.setText(item.getMonth()+" - " +item.getYear());
 		holder.salesmanName.setText(item.getSalesmanName());
@@ -134,12 +131,12 @@ public class FormDataAdapter extends BaseAdapter{
 				
 			}
 		});
-		
-		if(isView[position]!=true){
-			Animation show =AnimationUtils.loadAnimation(mContext, R.anim.push_left_in);
-			convertView.setAnimation(show);
-			isView[position]=true;
-		}
+//		
+//		if(isView[position]!=true){
+//			Animation show =AnimationUtils.loadAnimation(mContext, R.anim.push_left_in);
+//			convertView.setAnimation(show);
+//			isView[position]=true;
+//		}
 		
 					
 		return convertView;
@@ -150,7 +147,8 @@ public class FormDataAdapter extends BaseAdapter{
 		Button nextButton;
 		TextView machineType;
 		TextView brand;
-		TextView commercialMode;
+		TextView modelComp;
+		TextView model;
 		TextView dealerName;
 		TextView hp;
 		

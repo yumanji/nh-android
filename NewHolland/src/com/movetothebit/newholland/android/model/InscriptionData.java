@@ -29,17 +29,25 @@ public class InscriptionData implements lConstants{
 	public String hp;	
 	@DatabaseField(columnName = SEGMENT_MODEL)
 	public String segmentModel;
+	@DatabaseField(columnName = SEGMENT_HP)
+	public String SegmentoHP;
+	@DatabaseField(columnName = MODEL3)
+	public String modelo3;
+	@DatabaseField(columnName = AREA)
+	public String area;
+	@DatabaseField(columnName = MODEL_EQUAL)
+	public String modeloComparable;
 	@DatabaseField(columnName = PROVINCE)
 	public String province;
 	@DatabaseField(columnName = POPULATION)
 	public String population;	
 	@DatabaseField(columnName = DEALER_NAME)
-	public String dealerName;
-	@DatabaseField(columnName = ID_SALESMAN)
-	public int idSalesman;
+	public String dealerName;	
 	@DatabaseField(columnName = SALESMAN_NAME)
 	public String salesmanName;
 	
+	@DatabaseField(columnName = ID_SALESMAN)
+	public int idSalesman = 0;
 
 	//dato que nos dira si hemos hecho la encuenta
 	@DatabaseField(columnName = FILL_DATA)
@@ -61,9 +69,9 @@ public class InscriptionData implements lConstants{
 	@DatabaseField(columnName = NAME_CLIENT)
 	public String nameClient = "";
 	@DatabaseField(columnName = SURNAME_CLIENT)
-	public String surnameClient = "o";
+	public String lastnameClient = "";
 	@DatabaseField(columnName = EMAIL_CLIENT)
-	public String emailClient = "";
+	public String mailClient = "";
 	@DatabaseField(columnName = PHONE_CLIENT)
 	public String phoneClient = "";
 	@DatabaseField(columnName = OBSERVATIONS)
@@ -211,23 +219,48 @@ public class InscriptionData implements lConstants{
 	public void setWhyWin(int whyWin) {
 		this.whyWin = whyWin;
 	}
-	public String getSurnameClient() {
-		return surnameClient;
-	}
-	public void setSurnameClient(String surnameClient) {
-		this.surnameClient = surnameClient;
-	}
-	public String getEmailClient() {
-		return emailClient;
-	}
-	public void setEmailClient(String emailClient) {
-		this.emailClient = emailClient;
-	}
+
 	public String getPhoneClient() {
 		return phoneClient;
 	}
 	public void setPhoneClient(String phoneClient) {
 		this.phoneClient = phoneClient;
+	}
+	public String getSegmentoHP() {
+		return SegmentoHP;
+	}
+	public void setSegmentoHP(String segmentoHP) {
+		SegmentoHP = segmentoHP;
+	}
+	public String getModelo3() {
+		return modelo3;
+	}
+	public void setModelo3(String modelo3) {
+		this.modelo3 = modelo3;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
+	public String getModeloComparable() {
+		return modeloComparable;
+	}
+	public void setModeloComparable(String modeloComparable) {
+		this.modeloComparable = modeloComparable;
+	}
+	public String getLastnameClient() {
+		return lastnameClient;
+	}
+	public void setLastnameClient(String lastnameClient) {
+		this.lastnameClient = lastnameClient;
+	}
+	public String getMailClient() {
+		return mailClient;
+	}
+	public void setMailClient(String mailClient) {
+		this.mailClient = mailClient;
 	}
 
 	

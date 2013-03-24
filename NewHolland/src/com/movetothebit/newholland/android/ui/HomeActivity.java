@@ -16,7 +16,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
-import com.movetothebit.newholland.android.ui.dialogs.RefreshDialogFragment;
+import com.movetothebit.newholland.android.ui.dialogs.DownloadDialogFragment;
+import com.movetothebit.newholland.android.ui.dialogs.SyncDialogFragment;
 import com.movetothebit.newholland.android.utils.ServerException;
 import com.movetothebit.newholland.android.widgets.CategoryWidget;
 
@@ -37,7 +38,7 @@ public class HomeActivity extends BaseActivity {
 	        setContentView(R.layout.home_layout);	   
 	       
 	        if(!settings.getBoolean(isSync, false)){
-				showRefreshDialog(R.string.first_sync_title_dialog);
+				showDownloadDialog(R.string.first_sync_title_dialog);
 			}
 	        
 	        standby = (CategoryWidget)findViewById(R.id.standby);
@@ -111,21 +112,29 @@ public class HomeActivity extends BaseActivity {
 	    switch (item.getItemId()) {
 	      
 	        case R.id.sync:
-	        	showRefreshDialog(R.string.refresh_title_dialog);
+	        	showSyncDialog(R.string.refresh_title_dialog);
 		        return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-	public void showRefreshDialog(int message) {
-        DialogFragment newFragment = RefreshDialogFragment.newInstance( message);
-        newFragment.show(getSupportFragmentManager(), "refreshdialog");
+	public void showSyncDialog(int message) {
+        DialogFragment newFragment = SyncDialogFragment.newInstance( message);
+        newFragment.show(getSupportFragmentManager(), "syncdialog");
     
  }
-	public void doRefreshClick() {
+	public void doSyncClick() {
 	      new SyncDataTask().execute();	       
 	}
-class SyncDataTask extends AsyncTask<Void, Void, String>{
+	public void showDownloadDialog(int message) {
+        DialogFragment newFragment = DownloadDialogFragment.newInstance( message);
+        newFragment.show(getSupportFragmentManager(), "downloadhdialog");
+    
+ }
+	public void doDownloadClick() {
+	      new DownloadDataTask().execute();	       
+	}
+	class SyncDataTask extends AsyncTask<Void, Void, String>{
 		
 		ProgressDialog pd;
 		
@@ -146,6 +155,55 @@ class SyncDataTask extends AsyncTask<Void, Void, String>{
 			
 			 try {
 				mDBHelper.syncAllData(getApplicationContext());
+			} catch (ServerException e) {
+				e.printStackTrace();
+				return e.getMessage();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return e.getMessage();
+			}
+			
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if(pd.isShowing()){
+				pd.dismiss();
+			}
+			if(result!=null){
+				showAlertDialog(result);
+			}else{
+				refreshSyncDate();
+			}
+			
+			super.onPostExecute(result);
+		}
+
+		
+		
+	}
+class DownloadDataTask extends AsyncTask<Void, Void, String>{
+		
+		ProgressDialog pd;
+		
+
+		@Override
+		protected void onPreExecute() {
+			pd = new ProgressDialog(HomeActivity.this);
+			pd.setCancelable(false);
+			pd.setMessage("Descargando tus datos");
+			pd.show();
+			
+		
+			
+			super.onPreExecute();
+		}
+		@Override
+		protected String doInBackground(Void... params) {
+			
+			 try {
+				mDBHelper.downloadAllData(getApplicationContext());
 			} catch (ServerException e) {
 				e.printStackTrace();
 				return e.getMessage();

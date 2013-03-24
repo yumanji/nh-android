@@ -14,9 +14,13 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.widgets.BarChartView;
+import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
 import com.movetothebit.newholland.android.widgets.PresenceChartView;
 
 public class DataActivity extends BaseActivity{
@@ -26,19 +30,20 @@ public class DataActivity extends BaseActivity{
 	public Button chartButton;
 	public RelativeLayout infoLayout;
 	
-	public Spinner dealerSpinner;
-	public Spinner dealerManSpinner;
-	public Spinner placeSpinner;
-	public Spinner modelSpinner;
-	public Spinner brandSpinner;
-	public Spinner segmentSpinner;
-	public Spinner monthSpinner;
+	public MultiSelectSpinner dealerSpinner;
+	public MultiSelectSpinner salesmanSpinner;
+	public MultiSelectSpinner populationSpinner;
+	public MultiSelectSpinner modelSpinner;
+	public MultiSelectSpinner modelCompSpinner;
+	public MultiSelectSpinner brandSpinner;
+	public MultiSelectSpinner areaSpinner;
+	public MultiSelectSpinner periodSpinner;
 	
 	
 	@Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        getSupportActionBar().show();	
+	       
 	        getSupportActionBar().setDisplayShowHomeEnabled(true);
 	        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	        setContentView(R.layout.data_layout);	
@@ -47,24 +52,19 @@ public class DataActivity extends BaseActivity{
 	        chartButton = (Button) findViewById(R.id.chartButton);
 	        chartView  = (BarChartView)findViewById(R.id.chartView);
 	        
-	        dealerSpinner = (Spinner)findViewById(R.id.dealerSpinner);
-	        dealerSpinner.setOnItemSelectedListener(spinnerListener);
-	        dealerManSpinner = (Spinner)findViewById(R.id.dealerManSpinner);
-	        dealerManSpinner.setOnItemSelectedListener(spinnerListener);
-	        modelSpinner = (Spinner)findViewById(R.id.modelSpinner);
-	        modelSpinner.setOnItemSelectedListener(spinnerListener);
-	        monthSpinner = (Spinner)findViewById(R.id.monthSpinner);
-	        monthSpinner.setOnItemSelectedListener(spinnerListener);
-	        brandSpinner = (Spinner)findViewById(R.id.brandSpinner);
-	        brandSpinner.setOnItemSelectedListener(spinnerListener);
-	        placeSpinner = (Spinner)findViewById(R.id.placeSpinner);
-	        placeSpinner.setOnItemSelectedListener(spinnerListener);
-	        segmentSpinner = (Spinner)findViewById(R.id.segmentSpinner);
-	        segmentSpinner.setOnItemSelectedListener(spinnerListener);
+	        dealerSpinner = (MultiSelectSpinner)findViewById(R.id.dealerSpinner);	     
+	        salesmanSpinner = (MultiSelectSpinner)findViewById(R.id.salesmanSpinner);	       
+	        modelSpinner = (MultiSelectSpinner)findViewById(R.id.modelSpinner);	       
+	        modelCompSpinner = (MultiSelectSpinner)findViewById(R.id.modelCompSpinner);
+	        periodSpinner = (MultiSelectSpinner)findViewById(R.id.periodSpinner);	       
+	        brandSpinner = (MultiSelectSpinner)findViewById(R.id.brandSpinner);	      
+	        populationSpinner = (MultiSelectSpinner)findViewById(R.id.populationSpinner);	       
+	        areaSpinner = (MultiSelectSpinner)findViewById(R.id.areaSpinner);	        
+	        presenceChartView  = (PresenceChartView)findViewById(R.id.presenceChartView);     
+	   
 	        
-	        presenceChartView  = (PresenceChartView)findViewById(R.id.presenceChartView);
-	        chartView.paintChart(getDataset());
-	        presenceChartView.paintChart(getPresenceDataSet());
+	        loadFilterValues(); 
+	        
 	        chartButton.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -76,20 +76,51 @@ public class DataActivity extends BaseActivity{
 	       
 	    }
 	
-	OnItemSelectedListener spinnerListener= new OnItemSelectedListener(){
+	@Override
+	protected void onStart() {		
+		
+        chartView.paintChart(getDataset());
+        presenceChartView.paintChart(getPresenceDataSet());
+		super.onStart();
+	}
 
-		@Override
-	    public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
-	            refreshCharts();
-	    }
-	    @Override
-	      public void onNothingSelected(AdapterView<?> arg0) {
-	    //operation with that item that onItemSelected() did not triggered. I mean, let's say you have 3 items on the spinner: A,B,C. Initially what we see its the A item and on this item this method will apply.
-	    }
-	};
+	public void loadFilterValues(){
+		
+		dealerSpinner.setData(mDBHelper.getDealerValues(getApplicationContext()), "Concesionario");			
+		salesmanSpinner.setData(mDBHelper.getSalesmanValues(getApplicationContext()), "Vendedor");			
+		modelSpinner.setData( mDBHelper.getModelsValues(getApplicationContext()), "Modelo NH");			
+		modelCompSpinner.setData(mDBHelper.getModelsCompValues(getApplicationContext()), "Modelo Comparable");			
+		periodSpinner.setData(mDBHelper.getPeriodValues(getApplicationContext()), "Periodo");				
+		brandSpinner.setData(mDBHelper.getBrandValues(getApplicationContext()), "Marca");				
+		populationSpinner.setData(mDBHelper.getPopulationValues(getApplicationContext()), "Población");		
+		areaSpinner.setData(mDBHelper.getAreaValues(getApplicationContext()), "Zona");			
+
+	}
+	
 	public void refreshCharts(){
 		chartView.paintChart(getDataset());
 		presenceChartView.paintChart(getPresenceDataSet());
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	      
+	        case R.id.reset:
+	        	loadFilterValues();
+		        return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		 MenuInflater inflater = getSupportMenuInflater();
+		    inflater.inflate(R.menu.list_data_menu, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 	
 	

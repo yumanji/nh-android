@@ -12,6 +12,7 @@ public interface lConstants {
 	
 	
 	//settings
+	public static final String userData= "user";
 	public static final String isLogged= "isLogged";
 	public static final String userReadOnly= "userReadOnly";
 	public static final String isSync= "isSync";
@@ -69,8 +70,12 @@ public interface lConstants {
 	public static final String WHY_WIN = "whyWin";
 public static final String PRICE = "price";
 	public static final String NAME_CLIENT = "nameClient";
-	public static final String SURNAME_CLIENT = "surnameClient";
-	public static final String EMAIL_CLIENT = "emailClient";
+	public static final String SURNAME_CLIENT = "lastnameClient";
+	public static final String MODEL_EQUAL = "modeloComparable";
+	public static final String MODEL3 = "modelo3";
+	public static final String SEGMENT_HP = "SegmentoHP";
+	public static final String AREA = "area";
+	public static final String EMAIL_CLIENT = "mailClient";
 	public static final String PHONE_CLIENT = "phoneClient";
 	public static final String OBSERVATIONS = "observaciones";
 	

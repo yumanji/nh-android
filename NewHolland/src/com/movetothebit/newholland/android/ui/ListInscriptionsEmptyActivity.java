@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.adapters.FormDataAdapter;
@@ -28,19 +29,21 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 	private ListView list;
 	private FormDataAdapter adapter;
 	private List<InscriptionData> listData = new ArrayList<InscriptionData>();
-	private MultiSelectSpinner modelSpinner;
+	private MultiSelectSpinner dealerSpinner;
+	private MultiSelectSpinner salesmanSpinner;
 	private Button filterButton;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);
-		getSupportActionBar().show();
+
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.list_data_layout);
 		
-		modelSpinner = (MultiSelectSpinner) findViewById(R.id.modelSpinner);
+		dealerSpinner = (MultiSelectSpinner) findViewById(R.id.dealerSpinner);
+		salesmanSpinner = (MultiSelectSpinner) findViewById(R.id.salesmanSpinner);
 		filterButton = (Button) findViewById(R.id.filterButton);
 		filterButton.setOnClickListener(new OnClickListener() {
 			
@@ -50,13 +53,12 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 				
 			}
 		});
-		modelSpinner.setItems(getModelArray());
-		modelSpinner.setPrompt("Modelos");
-		modelSpinner.setSelection(0);
+		
 		
 		
 		list =(ListView)findViewById(R.id.list);
 		
+		resetFilters();
 		
 		
 		
@@ -65,9 +67,28 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 	@Override
 	protected void onStart() {
 		super.onStart();
+		
 		new LoadDataTask().execute();
 	
 	
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	      
+	        case R.id.reset:
+	        	resetFilters();
+		        return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	public void resetFilters(){
+		dealerSpinner.setData(mDBHelper.getDealerValues(getApplicationContext()), "Concesionario");		
+		salesmanSpinner.setData(mDBHelper.getSalesmanValues(getApplicationContext()), "Vendedor");
+		
 	}
 	class LoadDataTask extends AsyncTask<Void, Void, String>{
 		ProgressDialog pd;
@@ -85,8 +106,8 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 		protected String doInBackground(Void... params) {
 			
 			try {
-				if(modelSpinner.getSelectedStrings().size()>0){
-					listData = mDBHelper.getInscriptionsFilter(modelSpinner.getSelectedStringsArray());
+				if(salesmanSpinner.getSelectedStrings().size()>0||dealerSpinner.getSelectedStrings().size()>0){
+					listData = mDBHelper.getInscriptionsFilter(salesmanSpinner.getSelectedStringsArray(), dealerSpinner.getSelectedStringsArray());
 				}else{
 					listData = mDBHelper.getInscriptionsEmpty();	
 				}

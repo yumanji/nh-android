@@ -71,7 +71,7 @@ public class DataAdapter extends BaseAdapter{
 			ViewGroup parent) {
 
 		final ListContent holder;			
-		boolean animation = false;
+//		boolean animation = false;
 		if (convertView == null) {
 		
 				convertView = mInflater.inflate(R.layout.inscription_data_layout, null);
@@ -84,7 +84,7 @@ public class DataAdapter extends BaseAdapter{
 				holder.machineType = (TextView) convertView.findViewById(R.id.machineTypeText);
 				holder.brand = (TextView) convertView.findViewById(R.id.brandText);
 				holder.commercialMode = (TextView) convertView.findViewById(R.id.modelText);
-				
+				holder.commercialModeComp = (TextView) convertView.findViewById(R.id.modelCompText);
 				holder.salesmanName = (TextView) convertView.findViewById(R.id.salesnameText);	
 				
 				holder.dealerName = (TextView) convertView.findViewById(R.id.dealerText);			
@@ -99,15 +99,18 @@ public class DataAdapter extends BaseAdapter{
 		}
 		
 		final InscriptionData item = mList.get(position);	
-		
-//			if(item.getKnownOperation()==1&&item.getNameClient().equals("")&&item.getSurnameClient().equals("")){
-//				holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);
-//			}
+
+		if(item.getFillData()==1&&item.getNameClient().equals("")&&item.getLastnameClient().equals("")){
+			holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);
+		}else{
+			holder.baseLayout.setBackgroundResource(R.drawable.order_back);
+		}
 		
 		holder.machineType.setText(item.getMachineType());		
 		holder.brand.setText(item.getBrand());
 		holder.place.setText(item.getPopulation()+" ("+item.getProvince()+")");
-		holder.commercialMode.setText(item.getCommercialModel()+" ("+ item.getHp()+" HP)");
+		holder.commercialMode.setText(item.getCommercialModel());
+		holder.commercialModeComp.setText(item.getModeloComparable());
 		holder.dealerName.setText(item.dealerName);
 		holder.date.setText(item.getMonth()+" - " +item.getYear());
 		holder.salesmanName.setText(item.getSalesmanName());
@@ -116,14 +119,7 @@ public class DataAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = null;
-				if(item.getFillData() == 1){
-					 i = new Intent(mContext, DetailActivity.class);
-				}else{
-					 i = new Intent(mContext, FormActivity.class);
-				}
-				
-				
+				Intent i = new Intent(mContext, DetailActivity.class);
 				Bundle extra = new Bundle();
 				extra.putInt("index", position);
 				i.putExtras(extra);
@@ -133,11 +129,11 @@ public class DataAdapter extends BaseAdapter{
 			}
 		});
 		
-		if(isView[position]!=true){
-			Animation show =AnimationUtils.loadAnimation(mContext, R.anim.push_left_in);
-			convertView.setAnimation(show);
-			isView[position]=true;
-		}
+//		if(isView[position]!=true){
+//			Animation show =AnimationUtils.loadAnimation(mContext, R.anim.push_left_in);
+//			convertView.setAnimation(show);
+//			isView[position]=true;
+//		}
 		
 					
 		return convertView;
@@ -149,6 +145,7 @@ public class DataAdapter extends BaseAdapter{
 		TextView machineType;
 		TextView brand;
 		TextView commercialMode;
+		TextView commercialModeComp;
 		TextView dealerName;
 		TextView hp;
 		

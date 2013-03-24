@@ -20,29 +20,35 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_weight="0" >
 
                 <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
-                    android:id="@+id/modelSpinner"
+                    android:id="@+id/salesmanSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                   
+                    android:prompt="@string/model_prompt" />
+
+                <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
+                    android:id="@+id/dealerSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:prompt="@string/model_prompt" />
 
                 <Button
                     android:id="@+id/filterButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:text="@string/filter_button"
                     android:visibility="visible" />
             </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0" >
 
                 <ListView

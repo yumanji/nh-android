@@ -13,7 +13,7 @@
               android:layout_height="250dp"
               android:adjustViewBounds="true"
               android:scaleType="centerCrop"
-              android:src="@drawable/nh_1" />
+               />
 
           <TextView
               android:id="@+id/desc"

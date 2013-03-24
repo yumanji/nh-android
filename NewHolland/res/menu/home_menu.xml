@@ -4,5 +4,7 @@
           android:icon="@drawable/ic_refresh"
           android:title="Sincronizar"
           android:showAsAction="always"/>
+     
+     
 
     </menu>

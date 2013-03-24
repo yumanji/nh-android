@@ -60,9 +60,10 @@ public class MultiSelectSpinner extends Spinner implements OnMultiChoiceClickLis
         super(context, attrs);
         
         _proxyAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item);
+       
         super.setAdapter(_proxyAdapter);
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -110,7 +111,22 @@ public class MultiSelectSpinner extends Spinner implements OnMultiChoiceClickLis
         
         Arrays.fill(_selection, false);
     }
-    
+    public void setData(String[] items, String text){
+    	
+    	setItems(items);
+    	if(items.length <= 1) setEnabled(false);
+    	_proxyAdapter.clear();
+    	_proxyAdapter.add(text);
+    	setSelection(0);
+
+    }
+  
+    public void setData(List<String> items, String text){
+    	setItems(items);
+    	_proxyAdapter.clear();
+    	_proxyAdapter.add(text);
+    	setSelection(0);
+    }
     /**
      * Sets the options for this spinner.
      * @param items

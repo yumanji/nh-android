@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
@@ -92,11 +93,22 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 
 	public void syncAllData(Context ctx) throws SQLException,ServerException{
 		
-		syncInscriptions(ctx);
-		syncAnswers(ctx);
-		syncAnswersWin(ctx);
-		syncModels(ctx);
+		if(DataHelper.sendInscriptions(ctx, getInscriptionsFilled())){
+			downloadAllData(ctx);
+		}
 		
+	}
+
+	
+	
+
+	
+	public void downloadAllData(Context ctx) throws SQLException,ServerException{	
+		
+			syncInscriptions(ctx);
+			syncAnswers(ctx);
+			syncAnswersWin(ctx);
+			syncModels(ctx);
 		
 	}
 	
@@ -155,6 +167,168 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 			throw e;
 		}
 		
+	}
+	
+	public List<InscriptionData> getComunValuesFromInscription(Context ctx, String columnName){
+		
+		List<InscriptionData> results = null;
+		
+		try {
+			results = getInscriptionsDao().queryBuilder()
+		    .distinct().selectColumns(columnName).query();			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	public String[] getBrandValues(Context ctx){
+		
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, BRAND);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getBrand();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
+	}
+	
+	public String[] getPeriodValues(Context ctx){
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, MONTH);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getMonth()+ " - 2012" ;
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
+	}
+	public String[] getPopulationValues(Context ctx){
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, POPULATION);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getPopulation();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
+	}
+	public String[] getModelsCompValues(Context ctx){
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, MODEL_EQUAL);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getModeloComparable();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
+	}
+	public String[] getModelsValues(Context ctx){
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, COMMERCIAL_MODEL);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getCommercialModel();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
+	}
+	public String[] getSalesmanValues(Context ctx){
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, SALESMAN_NAME);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getSalesmanName();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
+	}
+	public String[] getDealerValues(Context ctx){
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, DEALER_NAME);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getDealerName();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
+	}
+	public String[] getAreaValues(Context ctx){		
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, AREA);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getArea();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[1] = "No hay datos";
+		}
+		return result;
 	}
 	public void syncModels(Context ctx) throws SQLException,ServerException{
 		
@@ -314,20 +488,30 @@ public List<AnswerItem> getAnswers() throws SQLException, ServerException{
 		
 	    
 	}
-	public List<InscriptionData> getInscriptionsFilter(String[] models)throws SQLException, ServerException{
+	public List<InscriptionData> getInscriptionsFilter(String[] areas, String[] dealer)throws SQLException, ServerException{
 		List<InscriptionData> result  = null;
 		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
+		Where<InscriptionData, Integer> where= null;
 		
 		try {
 			
-			 queryBuilder = getInscriptionsDao().queryBuilder();
-			 queryBuilder.setWhere(queryBuilder.where().in(MODEL_OFFER, models));
+			queryBuilder = getInscriptionsDao().queryBuilder();
+			 // get the WHERE object to build our query
+			where = queryBuilder.where();
+			// the name field must be equal to "foo"
+			if(areas.length>0){
+				where.in(AREA, areas);
+			}
+			if(areas.length>0 && dealer.length>0){
+				// and
+				where.and();
+			}
+			// the password field must be equal to "_secret"
+			if(dealer.length>0){
+				where.in(DEALER_NAME, dealer);
+			}
 			
-			 result = getInscriptionsDao().query(queryBuilder.prepare());
-			 
-		
-			
-			
+			result = getInscriptionsDao().query(queryBuilder.prepare());
 		
 		} catch (SQLException e) {
 			throw e;
@@ -343,7 +527,7 @@ public List<AnswerItem> getAnswers() throws SQLException, ServerException{
 		
 		try {
 			
-			 queryBuilder = getInscriptionsDao().queryBuilder();
+			 queryBuilder = getInscriptionsDao().queryBuilder();			 
 			 queryBuilder.setWhere(queryBuilder.where().eq(lConstants.FILL_DATA, "1"));
 			    
 			 result = getInscriptionsDao().query(queryBuilder.prepare());
@@ -377,6 +561,7 @@ public List<AnswerItem> getAnswers() throws SQLException, ServerException{
 
 		}
 	}
+	
 	public void createOrUpdateInscription(InscriptionData item) throws SQLException{
 		getInscriptionsDao().createOrUpdate(item);
 	}

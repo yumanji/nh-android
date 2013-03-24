@@ -140,42 +140,7 @@ public class DetailActivity extends BaseActivity {
 		loadInscriptionData(index);
 	}
 
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		 MenuInflater inflater = getSupportMenuInflater();
-		    inflater.inflate(R.menu.detail_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        
-	        case R.id.forward:
-	        	if(index<getListInscriptionsFilled().size()-1){
-					loadInscriptionData(++index);	
-				}else{
-					index = 0;
-					loadInscriptionData(index);
-				}
-		        return true;
-	       
-	        case R.id.back:
-	        	if(index >0){
-					loadInscriptionData(--index);
-				}else{
-					index = getListInscriptionsEmpty().size()-1;
-					loadInscriptionData(index);
-				}
-		        return true;
-		        
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
 	
 	public void loadInscriptionData(int index) {
 		
@@ -189,6 +154,7 @@ public class DetailActivity extends BaseActivity {
 			TextView machineType = (TextView) findViewById(R.id.machineTypeText);
 			TextView brand = (TextView) findViewById(R.id.brandText);
 			TextView commercialMode = (TextView) findViewById(R.id.modelText);
+			TextView commercialModeComp = (TextView) findViewById(R.id.modelCompText);
 			TextView salesmanName = (TextView) findViewById(R.id.salesnameText);
 			TextView dealerName = (TextView) findViewById(R.id.dealerText);
 			EditText observationsText = (EditText) findViewById(R.id.observationsEditText);
@@ -204,9 +170,9 @@ public class DetailActivity extends BaseActivity {
 			nameClientText.setText(item.getNameClient());
 			nameClientText.setEnabled(false);	
 			
-			surnameClientText.setText(item.getSurnameClient());
+			surnameClientText.setText(item.getLastnameClient());
 			surnameClientText.setEnabled(false);			
-			emailClientText.setText(item.getEmailClient());
+			emailClientText.setText(item.getMailClient());
 			emailClientText.setEnabled(false);
 			
 			phoneClientText.setText(item.getPhoneClient());
@@ -220,6 +186,7 @@ public class DetailActivity extends BaseActivity {
 			brand.setText(item.getBrand());
 			place.setText(item.getPopulation() + " (" + item.getProvince() + ")");
 			commercialMode.setText(item.getCommercialModel() + " (" + item.getHp()+ " HP)");
+			commercialModeComp.setText(item.getModeloComparable() );
 			dealerName.setText(item.dealerName);
 			date.setText(item.getMonth() + " - " + item.getYear());
 			salesmanName.setText(item.getSalesmanName());

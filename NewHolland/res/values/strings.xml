@@ -76,12 +76,15 @@
     <string name="observations">Observaciones:</string>
     <!-- Literales del data activity -->
     <string name="brand_prompt">Selecciona la marca</string>
+     <string name="area_prompt">Selecciona el area</string>
     <string name="dealer_prompt">Selecciona el concesionario</string>
-    <string name="month_prompt">Selecciona el mes</string>
+    <string name="period_prompt">Selecciona el periodo</string>
     <string name="model_prompt">Selecciona el modelo</string>
+      <string name="modelComp_prompt">Selecciona el modelo Comparable</string>
     <string name="province_prompt">Selecciona la provincia</string>
-    <string name="dealerMan_prompt">Selecciona el vendedor</string>
-    <string name="segment_prompt">Selecciona el segmento de PW</string>
+     <string name="population_prompt">Selecciona la población</string>
+    <string name="salesman_prompt">Selecciona el vendedor</string>
+  
     <string name="total_title_table">Incripciones totales</string>
     <string name="total_title_col1">Unidades</string>
     <string name="total_title_row1">Mercado total</string>
