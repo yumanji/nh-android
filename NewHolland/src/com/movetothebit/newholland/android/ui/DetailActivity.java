@@ -143,8 +143,6 @@ public class DetailActivity extends BaseActivity {
 
 	
 	public void loadInscriptionData(int index) {
-		
-	
 			
 			item = list.get(index);
 			

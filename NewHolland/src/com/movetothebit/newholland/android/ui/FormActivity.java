@@ -287,6 +287,7 @@ public class FormActivity extends BaseActivity {
 			TextView machineType = (TextView) findViewById(R.id.machineTypeText);
 			TextView brand = (TextView) findViewById(R.id.brandText);
 			TextView commercialMode = (TextView) findViewById(R.id.modelText);
+			TextView commercialModeComp = (TextView) findViewById(R.id.modelCompText);
 			TextView salesmanName = (TextView) findViewById(R.id.salesnameText);
 			TextView dealerName = (TextView) findViewById(R.id.dealerText);
 			
@@ -294,8 +295,8 @@ public class FormActivity extends BaseActivity {
 			machineType.setText(item.getMachineType());
 			brand.setText(item.getBrand());
 			place.setText(item.getPopulation() + " (" + item.getProvince() + ")");
-			commercialMode.setText(item.getCommercialModel() + " (" + item.getHp()
-					+ " HP)");
+			commercialMode.setText(item.getCommercialModel());
+			commercialModeComp.setText(item.getModeloComparable());
 			dealerName.setText(item.dealerName);
 			date.setText(item.getMonth() + " - " + item.getYear());
 			salesmanName.setText(item.getSalesmanName());
