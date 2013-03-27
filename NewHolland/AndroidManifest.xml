@@ -20,9 +20,7 @@
         android:icon="@drawable/ic_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <uses-library
-            android:name="com.google.android.maps"
-            android:required="true" />
+       
 
         <activity
             android:name=".ui.SplashActivity"
@@ -45,11 +43,7 @@
             android:configChanges="orientation"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".ui.CatalogActivity"
-            class="com.movetothebit.newholland.android.ui.CategorysActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="landscape" />
+       
         <activity
             android:name=".ui.FormActivity"
             class="com.movetothebit.newholland.android.ui.FormActivity"
@@ -63,20 +57,16 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".ui.ListInscriptionsEmptyActivity"
-            class="com.movetothebit.newholland.android.ui.ListInscriptionsEmptyActivity"
+            android:name=".ui.ListInscriptionsActivity"
+            class="com.movetothebit.newholland.android.ui.ListInscriptionsActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ui.ListInscriptionsFilledActivity"
-            class="com.movetothebit.newholland.android.ui.ListInscriptionsFilledActivity"
+            android:name=".ui.HistoricActivity"
+            class="com.movetothebit.newholland.android.ui.HistoricActivity"
             android:configChanges="orientation"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".ui.ChartsActivity"
-            class="com.movetothebit.newholland.android.ui.ChartsActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="landscape" />
+      
         <activity
             android:name=".ui.DataActivity"
             class="com.movetothebit.newholland.android.ui.DataActivity"

@@ -50,6 +50,8 @@ public class InscriptionData implements lConstants{
 	public int idSalesman = 0;
 
 	//dato que nos dira si hemos hecho la encuenta
+	@DatabaseField(columnName = HISTORIC)
+	public int historico = 0;
 	@DatabaseField(columnName = FILL_DATA)
 	public int fillData = 0;
 	@DatabaseField(columnName = KNOWN_OPERATION)
@@ -79,6 +81,12 @@ public class InscriptionData implements lConstants{
 	
 	
 	
+	public int getHistorico() {
+		return historico;
+	}
+	public void setHistorico(int historico) {
+		this.historico = historico;
+	}
 	public int getFillData() {
 		return fillData;
 	}

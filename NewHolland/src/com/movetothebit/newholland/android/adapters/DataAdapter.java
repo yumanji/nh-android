@@ -98,13 +98,7 @@ public class DataAdapter extends BaseAdapter{
 			
 		}
 		
-		final InscriptionData item = mList.get(position);	
-
-		if(item.getFillData()==1&&item.getNameClient().equals("")&&item.getLastnameClient().equals("")){
-			holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);
-		}else{
-			holder.baseLayout.setBackgroundResource(R.drawable.order_back);
-		}
+		final InscriptionData item = mList.get(position);
 		
 		holder.machineType.setText(item.getMachineType());		
 		holder.brand.setText(item.getBrand());
@@ -121,7 +115,7 @@ public class DataAdapter extends BaseAdapter{
 			public void onClick(View v) {
 				Intent i = new Intent(mContext, DetailActivity.class);
 				Bundle extra = new Bundle();
-				extra.putInt("index", position);
+				extra.putString("id", item.getInscription());
 				i.putExtras(extra);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				mContext.startActivity(i);

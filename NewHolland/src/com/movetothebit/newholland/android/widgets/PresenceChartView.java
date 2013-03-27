@@ -47,7 +47,6 @@ import org.afree.chart.ChartFactory;
 import org.afree.chart.axis.CategoryAxis;
 import org.afree.chart.axis.CategoryLabelPositions;
 import org.afree.chart.axis.NumberAxis;
-import org.afree.chart.demo.DemoView;
 import org.afree.chart.plot.CategoryPlot;
 import org.afree.chart.plot.PlotOrientation;
 import org.afree.chart.renderer.category.BarRenderer;

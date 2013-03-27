@@ -18,29 +18,32 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.adapters.DataAdapter;
 import com.movetothebit.newholland.android.adapters.FormDataAdapter;
+import com.movetothebit.newholland.android.helpers.FilterHelper;
+import com.movetothebit.newholland.android.helpers.InscriptionHelper;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.utils.ServerException;
 import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
 
 
-public class ListInscriptionsEmptyActivity extends BaseActivity{
+public class HistoricActivity extends BaseActivity{
 
 	private ListView list;
-	private FormDataAdapter adapter;
+	private DataAdapter adapter;
 	private List<InscriptionData> listData = new ArrayList<InscriptionData>();
 	private MultiSelectSpinner dealerSpinner;
 	private MultiSelectSpinner salesmanSpinner;
 	private Button filterButton;
 	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
 		super.onCreate(savedInstanceState);
-
+		
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.list_data_layout);
+		list =(ListView)findViewById(R.id.list);
 		
 		dealerSpinner = (MultiSelectSpinner) findViewById(R.id.dealerSpinner);
 		salesmanSpinner = (MultiSelectSpinner) findViewById(R.id.salesmanSpinner);
@@ -53,53 +56,20 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 				
 			}
 		});
-		
-		
-		
-		list =(ListView)findViewById(R.id.list);
-		
 		resetFilters();
-		
-		
-		
-	}
-	
-	@Override
-	protected void onStart() {
-		super.onStart();
-		
 		new LoadDataTask().execute();
-	
-	
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	      
-	        case R.id.reset:
-	        	resetFilters();
-		        return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
-	
-	public void resetFilters(){
-		dealerSpinner.setData(mDBHelper.getDealerValues(getApplicationContext()), "Concesionario");		
-		salesmanSpinner.setData(mDBHelper.getSalesmanValues(getApplicationContext()), "Vendedor");
 		
 	}
+	
+	
 	class LoadDataTask extends AsyncTask<Void, Void, String>{
 		ProgressDialog pd;
 		
 		@Override
 		protected void onPreExecute() {
-			pd = new ProgressDialog(ListInscriptionsEmptyActivity.this);
+			pd = new ProgressDialog(HistoricActivity.this);
 			pd.setMessage("Cargando datos de tu zona");
 			pd.show();
-			
-			
 			super.onPreExecute();
 		}
 		@Override
@@ -107,9 +77,9 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 			
 			try {
 				if(salesmanSpinner.getSelectedStrings().size()>0||dealerSpinner.getSelectedStrings().size()>0){
-					listData = mDBHelper.getInscriptionsFilter(salesmanSpinner.getSelectedStringsArray(), dealerSpinner.getSelectedStringsArray());
+					listData = InscriptionHelper.getHistoricFilter(getHelper(),salesmanSpinner.getSelectedStringsArray(),dealerSpinner.getSelectedStringsArray());
 				}else{
-					listData = mDBHelper.getInscriptionsEmpty();	
+					listData = InscriptionHelper.getHistoric(getHelper());	
 				}
 				
 				
@@ -133,7 +103,7 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 			if(result == null){
 				if(listData.size()>0){
 					
-					adapter = new FormDataAdapter(ListInscriptionsEmptyActivity.this, listData);						
+					adapter = new DataAdapter(HistoricActivity.this, listData);						
 					list.setAdapter(adapter);
 					list.setVisibility(View.VISIBLE);
 					findViewById(R.id.noDataLayout).setVisibility(View.GONE);
@@ -154,7 +124,24 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 		
 		
 	}
-
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	      
+	        case R.id.reset:
+	        	resetFilters();
+		        return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	public void resetFilters(){
+		dealerSpinner.setData(FilterHelper.getDealerValues(getApplicationContext(), getHelper()), "Concesionario");		
+		salesmanSpinner.setData(FilterHelper.getSalesmanValues(getApplicationContext(), getHelper()), "Vendedor");
+		
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -165,5 +152,5 @@ public class ListInscriptionsEmptyActivity extends BaseActivity{
 	
 	
 
-
+	
 }

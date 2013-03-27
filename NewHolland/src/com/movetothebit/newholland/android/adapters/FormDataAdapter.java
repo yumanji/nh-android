@@ -70,8 +70,8 @@ public class FormDataAdapter extends BaseAdapter{
 	public View getView(final int position, View convertView,
 			ViewGroup parent) {
 
-		final ListContent holder;			
-//		boolean animation = false;
+		final ListContent holder;	
+
 		if (convertView == null) {
 		
 				convertView = mInflater.inflate(R.layout.inscription_data_layout, null);
@@ -100,6 +100,16 @@ public class FormDataAdapter extends BaseAdapter{
 		
 		final InscriptionData item = mList.get(position);	
 		
+		if(item.getFillData()==1){
+			if(item.getNameClient().equals("")&&item.getLastnameClient().equals("")){
+				holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);
+			}else{
+				holder.baseLayout.setBackgroundResource(R.drawable.order_back);
+			}
+			
+		}else{
+			holder.baseLayout.setBackgroundResource(R.drawable.warn_back);
+		}
 			
 		
 		holder.machineType.setText(item.getMachineType());		
@@ -115,46 +125,34 @@ public class FormDataAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = null;
-				if(item.getFillData() == 1){
-					 i = new Intent(mContext, DetailActivity.class);
-				}else{
-					 i = new Intent(mContext, FormActivity.class);
-				}
-				
-				
+				Intent i = new Intent(mContext, FormActivity.class);
 				Bundle extra = new Bundle();
-				extra.putInt("index", position);
+				extra.putString("id", item.getInscription());
 				i.putExtras(extra);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				mContext.startActivity(i);
 				
 			}
 		});
-//		
-//		if(isView[position]!=true){
-//			Animation show =AnimationUtils.loadAnimation(mContext, R.anim.push_left_in);
-//			convertView.setAnimation(show);
-//			isView[position]=true;
-//		}
+
 		
 					
 		return convertView;
 	}
 	
 	class ListContent {	
+		
 		LinearLayout baseLayout;
 		Button nextButton;
+		
 		TextView machineType;
 		TextView brand;
 		TextView modelComp;
 		TextView model;
 		TextView dealerName;
-		TextView hp;
-		
+		TextView hp;		
 		TextView date;		
-		TextView place;
-			
+		TextView place;			
 		TextView salesmanName;
 	}
 

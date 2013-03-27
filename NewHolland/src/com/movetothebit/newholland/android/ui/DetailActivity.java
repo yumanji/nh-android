@@ -1,6 +1,6 @@
 package com.movetothebit.newholland.android.ui;
 
-import java.util.List;
+import java.sql.SQLException;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,11 +13,11 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.helpers.AnswersHelper;
+import com.movetothebit.newholland.android.helpers.InscriptionHelper;
+import com.movetothebit.newholland.android.helpers.ModelHelper;
 import com.movetothebit.newholland.android.model.InscriptionData;
 
 public class DetailActivity extends BaseActivity {
@@ -31,32 +31,38 @@ public class DetailActivity extends BaseActivity {
 	private Spinner missingSpinner;
 	private Spinner winnerSpinner;
 
-	private int index;
-	private List<InscriptionData> list;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		setContentView(R.layout.filled_layout);
-
-		index = getIntent().getExtras().getInt("index");
-		list = getListInscriptionsFilled();
+		setContentView(R.layout.filled_layout);	
+		
+		try {
+			
+			item = InscriptionHelper.getInscription(getHelper(), getIntent().getExtras().getString("id"));
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		modelSpinner = (AutoCompleteTextView) findViewById(R.id.modelSpinner);		
-		ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getModelArray());	
+		ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ModelHelper.getModelArray(getHelper()));	
 		modelSpinner.setEnabled(false);
 		modelSpinner.setAdapter(modelAdapter);
 		
 		missingSpinner = (Spinner) findViewById(R.id.missingSpinner);
-		ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getAnswersArray());
+		ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, AnswersHelper.getAnswersArray(getHelper()));
 		missingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
 		missingSpinner.setEnabled(false);
 		missingSpinner.setAdapter(missingAdapter);
 		
 		winnerSpinner = (Spinner) findViewById(R.id.winSpinner);
-		ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getAnswersWinArray());
+		ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, AnswersHelper.getAnswersWinArray(getHelper()));
 		winAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
 		winnerSpinner.setEnabled(false);
 		winnerSpinner.setAdapter(winAdapter);
@@ -136,15 +142,17 @@ public class DetailActivity extends BaseActivity {
 					}
 				});
 	
-
-		loadInscriptionData(index);
+		if(item!=null){
+			loadInscriptionData();
+		}
+		
 	}
 
 
 	
-	public void loadInscriptionData(int index) {
+	public void loadInscriptionData() {
 			
-			item = list.get(index);
+			
 			
 			TextView id = (TextView) findViewById(R.id.idText);
 			TextView date = (TextView) findViewById(R.id.dateText);

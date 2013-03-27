@@ -24,8 +24,12 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.helpers.AnswersHelper;
 import com.movetothebit.newholland.android.helpers.AppHelper;
+import com.movetothebit.newholland.android.helpers.InscriptionHelper;
+import com.movetothebit.newholland.android.helpers.ModelHelper;
 import com.movetothebit.newholland.android.model.InscriptionData;
+import com.movetothebit.newholland.android.utils.ServerException;
 
 public class FormActivity extends BaseActivity {
 
@@ -41,8 +45,8 @@ public class FormActivity extends BaseActivity {
 	private Spinner missingSpinner;
 	private Spinner winnerSpinner;
 
-	private int index;
-	private List<InscriptionData> list;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,20 +55,25 @@ public class FormActivity extends BaseActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.form_layout);
 
-		index = getIntent().getExtras().getInt("index");
-		list = getListInscriptionsEmpty();
+		
+		try {
+			item = InscriptionHelper.getInscription(getHelper(), getIntent().getExtras().getString("id"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		modelSpinner = (AutoCompleteTextView) findViewById(R.id.modelSpinner);		
-		ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,modelsArray);		
+		ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ModelHelper.getModelArray(getHelper()));		
 		//modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
 		modelSpinner.setAdapter(modelAdapter);
 		
 		missingSpinner = (Spinner) findViewById(R.id.missingSpinner);
-		ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,answersArray);
+		ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersArray(getHelper()));
 		missingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
 		missingSpinner.setAdapter(missingAdapter);
 		
 		winnerSpinner = (Spinner) findViewById(R.id.winSpinner);
-		ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,answersWinArray);
+		ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersWinArray(getHelper()));
 		winAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
 		winnerSpinner.setAdapter(winAdapter);
 
@@ -139,8 +148,10 @@ public class FormActivity extends BaseActivity {
 					}
 				});
 		
-
-		loadInscriptionData(index);
+		if(item!=null){
+			loadInscriptionData();
+		}
+		
 	}
 
 	
@@ -246,7 +257,7 @@ public class FormActivity extends BaseActivity {
 		protected String doInBackground(Void... params) {
 			
 			try {
-				mDBHelper.createOrUpdateInscription(item);
+				InscriptionHelper.createOrUpdateInscription(getHelper(),item);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -277,10 +288,10 @@ public class FormActivity extends BaseActivity {
 
 	}
 
-	public void loadInscriptionData(int index) {
+	public void loadInscriptionData() {
 		
-	
-			item = list.get(index);
+		try {
+			
 			TextView id = (TextView) findViewById(R.id.idText);
 			TextView date = (TextView) findViewById(R.id.dateText);
 			TextView place = (TextView) findViewById(R.id.placeText);
@@ -344,13 +355,21 @@ public class FormActivity extends BaseActivity {
 			}
 			if(item.getWhyLose()>0){
 				 
-				missingSpinner.setSelection(getListAnswers().indexOf(item.getWhyLose()));
+				missingSpinner.setSelection(AnswersHelper.getAnswers(getHelper()).indexOf(item.getWhyLose()));
 			}
 			if(item.getWhyWin()>0){
-				winnerSpinner.setSelection(getListAnswersWin().indexOf(item.getWhyWin()));
+				
+				winnerSpinner.setSelection(AnswersHelper.getAnswersWin(getHelper()).indexOf(item.getWhyWin()));
+				
 			}
 	
-		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

@@ -14,9 +14,14 @@ import android.widget.TextView;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.j256.ormlite.table.TableUtils;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.helpers.AppHelper;
+import com.movetothebit.newholland.android.helpers.DataHelper;
+import com.movetothebit.newholland.android.helpers.InscriptionHelper;
 import com.movetothebit.newholland.android.ui.dialogs.DownloadDialogFragment;
+import com.movetothebit.newholland.android.ui.dialogs.LogoutDialogFragment;
 import com.movetothebit.newholland.android.ui.dialogs.SyncDialogFragment;
 import com.movetothebit.newholland.android.utils.ServerException;
 import com.movetothebit.newholland.android.widgets.CategoryWidget;
@@ -53,9 +58,6 @@ public class HomeActivity extends BaseActivity {
 					Intent intent=new Intent(Intent.ACTION_SEND);
 					String[] recipients={getString(R.string.movetothebit_mail)};
 					intent.putExtra(Intent.EXTRA_EMAIL, recipients);
-//					intent.putExtra(Intent.EXTRA_SUBJECT,"abc");
-//					intent.putExtra(Intent.EXTRA_TEXT,"def");
-//					intent.putExtra(Intent.EXTRA_CC,"ghi");
 					intent.setType("text/html");
 					startActivity(Intent.createChooser(intent, "Send mail"));
 					
@@ -72,7 +74,7 @@ public class HomeActivity extends BaseActivity {
 				
 				@Override
 				public void onClick(View v) {
-					Intent i = new Intent(getApplicationContext(), ListInscriptionsEmptyActivity.class);
+					Intent i = new Intent(getApplicationContext(), ListInscriptionsActivity.class);
 					startActivity(i);
 
 					
@@ -82,7 +84,7 @@ public class HomeActivity extends BaseActivity {
 				
 				@Override
 				public void onClick(View v) {
-					Intent i = new Intent(getApplicationContext(), ListInscriptionsFilledActivity.class);
+					Intent i = new Intent(getApplicationContext(), HistoricActivity.class);
 					startActivity(i);
 		
 				}
@@ -114,25 +116,123 @@ public class HomeActivity extends BaseActivity {
 	        case R.id.sync:
 	        	showSyncDialog(R.string.refresh_title_dialog);
 		        return true;
+	        case R.id.logout:
+	        	showLogoutDialog();
+		        return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+	
+	public void showLogoutDialog(){
+		DialogFragment newFragment = LogoutDialogFragment.newInstance();
+        newFragment.show(getSupportFragmentManager(), "logoutdialog");
+		
+		
+	}
+	
 	public void showSyncDialog(int message) {
         DialogFragment newFragment = SyncDialogFragment.newInstance( message);
         newFragment.show(getSupportFragmentManager(), "syncdialog");
     
- }
-	public void doSyncClick() {
-	      new SyncDataTask().execute();	       
 	}
+	
 	public void showDownloadDialog(int message) {
         DialogFragment newFragment = DownloadDialogFragment.newInstance( message);
         newFragment.show(getSupportFragmentManager(), "downloadhdialog");
     
- }
+	}
+	
+	public void doSyncClick() {
+		if(AppHelper.isNetworkAvailable(getApplicationContext())){
+			 new SyncDataTask().execute();
+		 }else{
+			showNetworkDialog();
+		 }
+	     	       
+	}
+	
+	
+	public void doLogoutClick() {
+		try {
+			if(InscriptionHelper.hasInscriptionHang(getHelper())){
+				 new SendDataTask().execute();
+			 }else{
+				logOut();
+			 }
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		}
+	     	       
+	}
+	public void logOut(){
+		getHelper().dropAllTables();
+		settings.edit().clear().commit();	
+		Intent i = new Intent(HomeActivity.this, LoginActivity.class);
+		startActivity(i);
+		finish();
+	}
+	
+	
+	
 	public void doDownloadClick() {
-	      new DownloadDataTask().execute();	       
+		if(AppHelper.isNetworkAvailable(getApplicationContext())){
+			new DownloadDataTask().execute();	
+		 }else{
+			 showNetworkDialog();
+		 }
+	             
+	}
+	
+	
+class SendDataTask extends AsyncTask<Void, Void, String>{
+		
+		ProgressDialog pd;
+		
+
+		@Override
+		protected void onPreExecute() {
+			pd = new ProgressDialog(HomeActivity.this);
+			pd.setCancelable(false);
+			pd.setMessage("Enviando tus datos");
+			pd.show();
+			
+		
+			
+			super.onPreExecute();
+		}
+		@Override
+		protected String doInBackground(Void... params) {
+			
+			 try {
+				
+				InscriptionHelper.sendInscriptions(getApplicationContext(), getHelper());
+				
+				
+			} catch (ServerException e) {
+				e.printStackTrace();
+				return e.getMessage();
+			} 
+			
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			if(pd.isShowing()){
+				pd.dismiss();
+			}
+			if(result!=null){
+				showAlertDialog(result);
+			}else{
+				logOut();
+			}
+			
+			super.onPostExecute(result);
+		}
+
+		
+		
 	}
 	class SyncDataTask extends AsyncTask<Void, Void, String>{
 		
@@ -154,7 +254,10 @@ public class HomeActivity extends BaseActivity {
 		protected String doInBackground(Void... params) {
 			
 			 try {
-				mDBHelper.syncAllData(getApplicationContext());
+				
+				DataHelper.syncAllData(getApplicationContext(), getHelper());
+				
+				
 			} catch (ServerException e) {
 				e.printStackTrace();
 				return e.getMessage();
@@ -203,7 +306,10 @@ class DownloadDataTask extends AsyncTask<Void, Void, String>{
 		protected String doInBackground(Void... params) {
 			
 			 try {
-				mDBHelper.downloadAllData(getApplicationContext());
+				
+				DataHelper.downloadAllData(getApplicationContext(), getHelper());
+				
+				
 			} catch (ServerException e) {
 				e.printStackTrace();
 				return e.getMessage();

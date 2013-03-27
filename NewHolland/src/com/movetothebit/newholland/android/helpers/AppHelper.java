@@ -40,7 +40,7 @@ public class AppHelper {
 	public static Location lastLocation;
 	public static List<Item> myOrder = new ArrayList<Item>();
 	
-	
+
 	public static List<InscriptionData> myLoadData = new ArrayList<InscriptionData>();
 	
 	public static int getIndexOfModels(Context ctx, String input){

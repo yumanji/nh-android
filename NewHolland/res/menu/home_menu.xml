@@ -4,7 +4,10 @@
           android:icon="@drawable/ic_refresh"
           android:title="Sincronizar"
           android:showAsAction="always"/>
-     
+     <item android:id="@+id/logout"
+          android:icon="@drawable/ic_logout"
+          android:title="Logout"
+          android:showAsAction="never"/>
      
 
     </menu>

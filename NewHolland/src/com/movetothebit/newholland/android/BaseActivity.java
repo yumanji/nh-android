@@ -14,11 +14,14 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.movetothebit.newholland.android.db.DBHelper;
+import com.movetothebit.newholland.android.helpers.AnswersHelper;
+import com.movetothebit.newholland.android.helpers.ModelHelper;
 import com.movetothebit.newholland.android.model.AnswerItem;
 import com.movetothebit.newholland.android.model.AnswerWinItem;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.model.ModelItem;
 import com.movetothebit.newholland.android.ui.dialogs.MyAlertDialogFragment;
+import com.movetothebit.newholland.android.ui.dialogs.NetworkDialogFragment;
 import com.movetothebit.newholland.android.utils.ServerException;
 import com.movetothebit.newholland.android.utils.UIUtils;
 import com.movetothebit.newholland.android.utils.lConstants;
@@ -29,9 +32,7 @@ public class BaseActivity extends SherlockFragmentActivity implements lConstants
 	public static final String TAG = "BaseActivity";
 	public SharedPreferences settings;
 	public SharedPreferences.Editor settingsEditor;
-	public String[] answersArray = null;
-	public String[] answersWinArray = null;
-	public String[] modelsArray = null;
+
 	public DBHelper mDBHelper;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
@@ -41,9 +42,7 @@ public class BaseActivity extends SherlockFragmentActivity implements lConstants
 		settings = getSharedPreferences(getString(R.string.app_preferences), 0);	        
 		settingsEditor = settings.edit();
 		mDBHelper = getHelper();
-		answersArray = getAnswersArray();
-		answersWinArray = getAnswersWinArray();
-		modelsArray = getModelArray();
+		
 	     
 	} 
    
@@ -63,7 +62,10 @@ public class BaseActivity extends SherlockFragmentActivity implements lConstants
 	        newFragment.show(getSupportFragmentManager(), "alertdialog");
 	 }
 
-	
+	public void showNetworkDialog() {
+        DialogFragment newFragment = NetworkDialogFragment.newInstance( );
+        newFragment.show(getSupportFragmentManager(), "networkdialog");
+ }
 
 	 public DBHelper getHelper() {
 	        if (mDBHelper == null) {
@@ -84,146 +86,8 @@ public class BaseActivity extends SherlockFragmentActivity implements lConstants
 	    }
 	}
 	
-	public String[] getModelArray(){
-		String[] array = null;
-		List<ModelItem> list = null;
-		
-		try {
-			list = mDBHelper.getModels();
-			array = new String[list.size()];
-			
-			for (int i = 0; i < list.size(); i++){
-				array[i]= list.get(i).getValue();
-			}
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return array;
-	}
-	
-	public String[] getAnswersArray(){
-		String[] array = null;
-		List<AnswerItem> list = null;
-		
-		try {
-			list = mDBHelper.getAnswers();
-			array = new String[list.size()];
-			
-			for (int i = 0; i < list.size(); i++){
-				array[i]= list.get(i).getValue();
-			}
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return array;
-	}
-	public String[] getAnswersWinArray(){
-		String[] array = null;
-		List<AnswerWinItem> list = null;
-		
-		try {
-			list = mDBHelper.getAnswersWin();
-			array = new String[list.size()];
-			
-			for (int i = 0; i < list.size(); i++){
-				array[i]= list.get(i).getValue();
-			}
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return array;
-	}
-	
-	public List<InscriptionData> getListInscriptions(){
-		
-		List<InscriptionData> result = null;
-		
-		try {
-			result =  mDBHelper.getInscriptions();
-		} catch (SQLException e) {
-			showAlertDialog("Se ha producido un error obteniendo las inscripciones");
-			e.printStackTrace();
-		} catch (ServerException e) {
-			showAlertDialog("Se ha producido un error obteniendo las inscripciones");
-			e.printStackTrace();
-		}
-		return result;
-	}
-public List<InscriptionData> getListInscriptionsEmpty(){
-		
-		List<InscriptionData> result = null;
-		
-		try {
-			result =  mDBHelper.getInscriptionsEmpty();
-		} catch (SQLException e) {
-			showAlertDialog("Se ha producido un error obteniendo las inscripciones");
-			e.printStackTrace();
-		} catch (ServerException e) {
-			showAlertDialog("Se ha producido un error obteniendo las inscripciones");
-			e.printStackTrace();
-		}
-		return result;
-	}
-public List<InscriptionData> getListInscriptionsFilled(){
-	
-	List<InscriptionData> result = null;
-	
-	try {
-		result =  mDBHelper.getInscriptionsFilled();
-	} catch (SQLException e) {
-		showAlertDialog("Se ha producido un error obteniendo las inscripciones rellenas");
-		e.printStackTrace();
-	} catch (ServerException e) {
-		showAlertDialog("Se ha producido un error obteniendo las inscripciones rellenas");
-		e.printStackTrace();
-	}
-	return result;
-}
-	public List<AnswerItem> getListAnswers(){
-		
-		List<AnswerItem> result = null;
-		
-		try {
-			result =  mDBHelper.getAnswers();
-		} catch (SQLException e) {
-			showAlertDialog("Se ha producido un error obteniendo las respuestas");
-			e.printStackTrace();
-		} catch (ServerException e) {
-			showAlertDialog("Se ha producido un error obteniendo las respuestas");
-			e.printStackTrace();
-		}
-		return result;
-	}
-	public List<AnswerWinItem> getListAnswersWin(){
-		
-		List<AnswerWinItem> result = null;
-		
-		try {
-			result =  mDBHelper.getAnswersWin();
-		} catch (SQLException e) {
-			showAlertDialog("Se ha producido un error obteniendo las respuestas win");
-			e.printStackTrace();
-		} catch (ServerException e) {
-			showAlertDialog("Se ha producido un error obteniendo las respuestas win");
-			e.printStackTrace();
-		}
-		return result;
-	}
+
+
 	public void refreshSyncDate(){
 		String date = UIUtils.getDateNowFormat();
 		
@@ -241,7 +105,7 @@ public List<InscriptionData> getListInscriptionsFilled(){
 	       startActivity(gpsOptionsIntent);  
 	} 
 	
-	protected void showNetworkOptions(){  
+	public void showNetworkOptions(){  
 	       Intent networkOptionsIntent = new Intent(  
 	               android.provider.Settings.ACTION_WIRELESS_SETTINGS);  
 	       startActivity(networkOptionsIntent);  

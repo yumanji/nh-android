@@ -11,6 +11,15 @@ public interface lConstants {
 	public static final String TRUE = "TRUE";
 	
 	
+	public static final String URL = "http://nh.movetothebit.com/index.php/comms/";
+	public static final String GET_ANSWERS = "getanswers/";
+	public static final String GET_ANSWERS_WIN = "getanswerswin/";
+	public static final String GET_MODELS = "getmodels/";
+	public static final String GET_SURVEY= "getsurvey/";
+	public static final String SET_SURVEY= "setsurvey/";
+	public static final String LOGIN= "login/";
+	
+	
 	//settings
 	public static final String userData= "user";
 	public static final String isLogged= "isLogged";
@@ -78,6 +87,7 @@ public static final String PRICE = "price";
 	public static final String EMAIL_CLIENT = "mailClient";
 	public static final String PHONE_CLIENT = "phoneClient";
 	public static final String OBSERVATIONS = "observaciones";
+	public static final String HISTORIC = "historico";
 	
 
 

@@ -42,6 +42,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.util.Log;
 
@@ -79,7 +81,7 @@ public class RemoteFacade {
 	    }
 		return _response;
 	} 
-	
+
 	public static String sendJsonToUrl(String url, String jsonString) throws JSONException, ClientProtocolException, IOException {	   
 
 	    HttpParams httpParams = new BasicHttpParams();

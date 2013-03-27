@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.helpers.AppHelper;
 import com.movetothebit.newholland.android.helpers.DataHelper;
 import com.movetothebit.newholland.android.utils.ServerException;
 
@@ -39,7 +40,12 @@ public class LoginActivity extends BaseActivity {
 					public void onClick(View v) {
 						
 						if(userText.getText().length()>0 && passText.getText().length()>0){
-							new LoginUserTask().execute();	
+							 if(AppHelper.isNetworkAvailable(getApplicationContext())){
+								 new LoginUserTask().execute();
+							 }else{
+								 showNetworkDialog();
+							 }
+								
 						}else{
 							Toast.makeText(getApplicationContext(), "Tiene que rellenar los dos campos para regsitrarse", Toast.LENGTH_SHORT).show();
 						}
@@ -73,7 +79,8 @@ class LoginUserTask extends AsyncTask<Void, Void, String>{
 		protected String doInBackground(Void... params) {
 			
 			 try {
-				DataHelper.doLogin(getApplicationContext(), userText.getText().toString(), passText.getText().toString());
+				 DataHelper.doLogin(getApplicationContext(), userText.getText().toString(), passText.getText().toString());
+								
 			} catch (ServerException e) {
 				e.printStackTrace();
 				return e.getMessage();
@@ -92,6 +99,7 @@ class LoginUserTask extends AsyncTask<Void, Void, String>{
 			}else{
 				Intent i = new Intent(getApplicationContext(), HomeActivity.class);
 				startActivity(i);
+				finish();
 			}
 				
 			super.onPostExecute(result);

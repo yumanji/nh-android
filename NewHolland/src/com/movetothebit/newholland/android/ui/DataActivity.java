@@ -19,6 +19,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.helpers.FilterHelper;
 import com.movetothebit.newholland.android.widgets.BarChartView;
 import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
 import com.movetothebit.newholland.android.widgets.PresenceChartView;
@@ -86,14 +87,14 @@ public class DataActivity extends BaseActivity{
 
 	public void loadFilterValues(){
 		
-		dealerSpinner.setData(mDBHelper.getDealerValues(getApplicationContext()), "Concesionario");			
-		salesmanSpinner.setData(mDBHelper.getSalesmanValues(getApplicationContext()), "Vendedor");			
-		modelSpinner.setData( mDBHelper.getModelsValues(getApplicationContext()), "Modelo NH");			
-		modelCompSpinner.setData(mDBHelper.getModelsCompValues(getApplicationContext()), "Modelo Comparable");			
-		periodSpinner.setData(mDBHelper.getPeriodValues(getApplicationContext()), "Periodo");				
-		brandSpinner.setData(mDBHelper.getBrandValues(getApplicationContext()), "Marca");				
-		populationSpinner.setData(mDBHelper.getPopulationValues(getApplicationContext()), "Población");		
-		areaSpinner.setData(mDBHelper.getAreaValues(getApplicationContext()), "Zona");			
+		dealerSpinner.setData(FilterHelper.getDealerValues(getApplicationContext(),getHelper()), "Concesionario");			
+		salesmanSpinner.setData(FilterHelper.getSalesmanValues(getApplicationContext(),getHelper()), "Vendedor");			
+		modelSpinner.setData( FilterHelper.getModelsValues(getApplicationContext(),getHelper()), "Modelo NH");			
+		modelCompSpinner.setData(FilterHelper.getModelsCompValues(getApplicationContext(),getHelper()), "Modelo Comparable");			
+		periodSpinner.setData(FilterHelper.getPeriodValues(getApplicationContext(),getHelper()), "Periodo");				
+		brandSpinner.setData(FilterHelper.getBrandValues(getApplicationContext(),getHelper()), "Marca");				
+		populationSpinner.setData(FilterHelper.getPopulationValues(getApplicationContext(),getHelper()), "Población");		
+		areaSpinner.setData(FilterHelper.getAreaValues(getApplicationContext(),getHelper()), "Zona");			
 
 	}
 	
