@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.adapters.FormDataAdapter;
@@ -34,7 +31,7 @@ public class ListInscriptionsActivity extends BaseActivity{
 	private MultiSelectSpinner dealerSpinner;
 	private MultiSelectSpinner salesmanSpinner;
 	private Button filterButton;
-	
+	private Button resetButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
@@ -48,6 +45,15 @@ public class ListInscriptionsActivity extends BaseActivity{
 		dealerSpinner = (MultiSelectSpinner) findViewById(R.id.dealerSpinner);
 		salesmanSpinner = (MultiSelectSpinner) findViewById(R.id.salesmanSpinner);
 		filterButton = (Button) findViewById(R.id.filterButton);
+		resetButton = (Button) findViewById(R.id.resetButton);
+		resetButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				resetFilters();
+				
+			}
+		});
 		filterButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -70,17 +76,7 @@ public class ListInscriptionsActivity extends BaseActivity{
 	
 	}
 	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	      
-	        case R.id.reset:
-	        	resetFilters();
-		        return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
+
 	
 	public void resetFilters(){
 		dealerSpinner.setData(FilterHelper.getDealerValues(getApplicationContext(),getHelper()), "Concesionario");		
@@ -152,14 +148,7 @@ public class ListInscriptionsActivity extends BaseActivity{
 		
 	}
 
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		 MenuInflater inflater = getSupportMenuInflater();
-		    inflater.inflate(R.menu.list_data_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-	
+
 	
 
 

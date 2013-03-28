@@ -29,6 +29,7 @@ public class DataActivity extends BaseActivity{
 	public BarChartView chartView;
 	public PresenceChartView presenceChartView;
 	public Button chartButton;
+	public Button resetButton;
 	public RelativeLayout infoLayout;
 	
 	public MultiSelectSpinner dealerSpinner;
@@ -62,9 +63,18 @@ public class DataActivity extends BaseActivity{
 	        populationSpinner = (MultiSelectSpinner)findViewById(R.id.populationSpinner);	       
 	        areaSpinner = (MultiSelectSpinner)findViewById(R.id.areaSpinner);	        
 	        presenceChartView  = (PresenceChartView)findViewById(R.id.presenceChartView);     
-	   
 	        
-	        loadFilterValues(); 
+	        resetButton = (Button) findViewById(R.id.resetButton);
+			resetButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					resetFilterValues();
+					
+				}
+			});
+	        
+	        resetFilterValues(); 
 	        
 	        chartButton.setOnClickListener(new OnClickListener() {
 				
@@ -80,12 +90,11 @@ public class DataActivity extends BaseActivity{
 	@Override
 	protected void onStart() {		
 		
-        chartView.paintChart(getDataset());
-        presenceChartView.paintChart(getPresenceDataSet());
+      
 		super.onStart();
 	}
 
-	public void loadFilterValues(){
+	public void resetFilterValues(){
 		
 		dealerSpinner.setData(FilterHelper.getDealerValues(getApplicationContext(),getHelper()), "Concesionario");			
 		salesmanSpinner.setData(FilterHelper.getSalesmanValues(getApplicationContext(),getHelper()), "Vendedor");			
@@ -96,6 +105,7 @@ public class DataActivity extends BaseActivity{
 		populationSpinner.setData(FilterHelper.getPopulationValues(getApplicationContext(),getHelper()), "Población");		
 		areaSpinner.setData(FilterHelper.getAreaValues(getApplicationContext(),getHelper()), "Zona");			
 
+		refreshCharts();
 	}
 	
 	public void refreshCharts(){
@@ -103,26 +113,8 @@ public class DataActivity extends BaseActivity{
 		presenceChartView.paintChart(getPresenceDataSet());
 	}
 	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	      
-	        case R.id.reset:
-	        	loadFilterValues();
-		        return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
 	
-	
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		 MenuInflater inflater = getSupportMenuInflater();
-		    inflater.inflate(R.menu.list_data_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+
 	
 	
 	 private CategoryDataset getPresenceDataSet() {

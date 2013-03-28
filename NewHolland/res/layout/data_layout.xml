@@ -23,6 +23,14 @@
                 android:layout_height="40dp"
                 android:layout_weight="0" >
 
+                <Button
+                    android:id="@+id/resetButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:drawableLeft="@drawable/ic_cancel"
+                    android:text="Limpiar" />
+
                 <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
                     android:id="@+id/areaSpinner"
                     android:layout_width="match_parent"

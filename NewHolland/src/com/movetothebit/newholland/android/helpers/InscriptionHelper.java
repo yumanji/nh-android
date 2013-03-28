@@ -69,6 +69,7 @@ public class InscriptionHelper implements lConstants{
 		
 		return resultList.get(0);
 	}
+	
 	 public static   List<InscriptionData> getIncriptionsFromServer(Context ctx) throws ServerException{
 			
 		  	List<InscriptionData> list = null;
@@ -279,7 +280,7 @@ public class InscriptionHelper implements lConstants{
 	
 
 	
-	public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] areas, String[] dealer)throws SQLException, ServerException{
+	public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] salesman, String[] dealer)throws SQLException, ServerException{
 		
 		List<InscriptionData> result  = null;
 		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
@@ -291,10 +292,10 @@ public class InscriptionHelper implements lConstants{
 			 // get the WHERE object to build our query
 			where = queryBuilder.where();
 			// the name field must be equal to "foo"
-			if(areas.length>0){
-				where.in(AREA, areas);
+			if(salesman.length>0){
+				where.in(SALESMAN_NAME, salesman);
 			}
-			if(areas.length>0 && dealer.length>0){
+			if(salesman.length>0 && dealer.length>0){
 				// and
 				where.and();
 			}
@@ -337,7 +338,7 @@ public class InscriptionHelper implements lConstants{
 	    
 	}
 	
-	public static List<InscriptionData> getHistoricFilter(DBHelper helper,String[] areas, String[] dealer)throws SQLException, ServerException{
+	public static List<InscriptionData> getHistoricFilter(DBHelper helper,String[] salesman, String[] dealer)throws SQLException, ServerException{
 		
 		List<InscriptionData> result  = null;
 		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
@@ -349,10 +350,10 @@ public class InscriptionHelper implements lConstants{
 			 // get the WHERE object to build our query
 			where = queryBuilder.where();
 			// the name field must be equal to "foo"
-			if(areas.length>0){
-				where.in(AREA, areas);
+			if(salesman.length>0){
+				where.in(SALESMAN_NAME, salesman);
 			}
-			if(areas.length>0 && dealer.length>0){
+			if(salesman.length>0 && dealer.length>0){
 				// and
 				where.and();
 			}
