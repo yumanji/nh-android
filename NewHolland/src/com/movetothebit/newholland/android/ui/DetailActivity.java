@@ -167,7 +167,7 @@ public class DetailActivity extends BaseActivity {
 			EditText nameClientText = (EditText) findViewById(R.id.nameClientEditText);
 			EditText surnameClientText = (EditText) findViewById(R.id.surnameClientEditText);
 			EditText emailClientText = (EditText) findViewById(R.id.emailEditText);
-			EditText phoneClientText = (EditText) findViewById(R.id.phoneEditText);
+			EditText phoneClientText = (EditText) findViewById(R.id.indexPresenceText);
 			EditText priceText = (EditText) findViewById(R.id.priceEditText);
 			
 			observationsText.setText(item.getObservations());

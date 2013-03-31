@@ -13,7 +13,6 @@ import android.net.NetworkInfo;
 
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.model.InscriptionData;
-import com.movetothebit.newholland.android.model.Item;
 
 public class AppHelper {
 	public class Constants {
@@ -38,7 +37,7 @@ public class AppHelper {
 	public static final int TWITTER_INTENT=200;
 	public static  int activity_load;
 	public static Location lastLocation;
-	public static List<Item> myOrder = new ArrayList<Item>();
+
 	
 
 	public static List<InscriptionData> myLoadData = new ArrayList<InscriptionData>();
@@ -65,20 +64,7 @@ public class AppHelper {
 	public static void setMyLoadData(List<InscriptionData> myLoadData) {
 		AppHelper.myLoadData = myLoadData;
 	}
-	public static void addOrder(Item item){
-		myOrder.add(item);
-	}
-	public static void cleanOrder(){
-		myOrder.clear();
-	}
-	
-	public static List<Item> getMyOrder() {
-		return myOrder;
-	}
 
-	public static void setMyOrder(List<Item> myOrder) {
-		AppHelper.myOrder = myOrder;
-	}
 
 	public static Date getUpdateDate() {
 		return updateDate;

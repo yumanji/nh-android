@@ -170,13 +170,9 @@ public class InscriptionHelper implements lConstants{
  }
 	public static void downloadInscriptions(Context ctx,DBHelper helper) throws SQLException,ServerException{
 		
-		List<InscriptionData> list = null;
+		List<InscriptionData> list = null;			
 		
-		Dao<InscriptionData, Integer> dao = null;
-		
-		try {
-			
-			dao = helper.getInscriptionsDao();
+		try {		
 			
 			list = getIncriptionsFromServer(ctx);
 			insertInscriptions(ctx,helper, list);
@@ -294,16 +290,73 @@ public class InscriptionHelper implements lConstants{
 			// the name field must be equal to "foo"
 			if(salesman.length>0){
 				where.in(SALESMAN_NAME, salesman);
-			}
-			if(salesman.length>0 && dealer.length>0){
-				// and
 				where.and();
 			}
+			
 			// the password field must be equal to "_secret"
 			if(dealer.length>0){
 				where.in(DEALER_NAME, dealer);
+				where.and();
 			}
-			where.and().eq(HISTORIC, 0);
+			where.eq(HISTORIC, 0);
+			
+			result = helper.getInscriptionsDao().query(queryBuilder.prepare());
+		
+		} catch (SQLException e) {
+			throw e;
+		
+		}
+		return result;
+	   
+	}
+	public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] salesman, String[] dealer, String[] model, String[] modelComp, String[] period, String[] brand, String[] population, String[] area)throws SQLException, ServerException{
+		
+		List<InscriptionData> result  = null;
+		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
+		Where<InscriptionData, Integer> where= null;
+		
+		try {
+			
+			queryBuilder = helper.getInscriptionsDao().queryBuilder();
+			 // get the WHERE object to build our query
+			where = queryBuilder.where();
+			// the name field must be equal to "foo"
+			if(salesman.length>0){
+				where.in(SALESMAN_NAME, salesman);
+				where.and();	
+			}
+			
+			// the password field must be equal to "_secret"
+			if(dealer.length>0){
+				where.in(DEALER_NAME, dealer);
+				where.and();				
+			}
+			if(model.length>0){
+				where.in(MODEL_OFFER, model);
+				where.and();				
+			}
+			if(modelComp.length>0){
+				where.in(MODEL_EQUAL, modelComp);
+				where.and();				
+			}
+			if(period.length>0){
+				where.in(MONTH, period);
+				where.and();				
+			}
+			if(brand.length>0){
+				where.in(BRAND, brand);
+				where.and();				
+			}
+			if(population.length>0){
+				where.in(POPULATION, population);
+				where.and();				
+			}
+			if(area.length>0){
+				where.in(AREA, area);
+				where.and();				
+			}			
+			
+			where.eq(HISTORIC, 0);
 			
 			result = helper.getInscriptionsDao().query(queryBuilder.prepare());
 		

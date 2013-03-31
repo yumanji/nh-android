@@ -216,7 +216,7 @@ public class FormActivity extends BaseActivity {
 			nameClientText = (EditText) findViewById(R.id.nameClientEditText);
 			surnameClientText = (EditText) findViewById(R.id.surnameClientEditText);
 			emailClientText = (EditText) findViewById(R.id.emailEditText);
-			phoneClientText = (EditText) findViewById(R.id.phoneEditText);
+			phoneClientText = (EditText) findViewById(R.id.indexPresenceText);
 			priceText = (EditText) findViewById(R.id.priceEditText);
 			observationsText = (EditText) findViewById(R.id.observationsEditText);
 			item.setObservations(observationsText.getText().toString());
@@ -344,7 +344,7 @@ public class FormActivity extends BaseActivity {
 			EditText emailClientText = (EditText) findViewById(R.id.emailEditText);
 			emailClientText.setText(item.getMailClient());
 			
-			EditText phoneClientText = (EditText) findViewById(R.id.phoneEditText);
+			EditText phoneClientText = (EditText) findViewById(R.id.indexPresenceText);
 			phoneClientText.setText(item.getPhoneClient());
 			
 			EditText priceText = (EditText) findViewById(R.id.priceEditText);

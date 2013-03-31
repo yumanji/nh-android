@@ -122,7 +122,7 @@
     <string name="objetives_title_row3">Efectividad</string>
     <string name="objetives_title_row4">Presencia Total</string>
     <string name="objetives_title_row5">Cuota de mercado</string>
-    
+    <string name="win_title_table">Motivo de operaciones ganadas</string>
     <string name="missing_title_table">Motivo de operaciones perdidas</string>
     <string name="missing_title_col1">Numero</string>
     <string name="missing_title_col2">Indice %</string>
