@@ -8,17 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.charts.BarChartView;
+import com.movetothebit.newholland.android.charts.PieChartView;
+import com.movetothebit.newholland.android.charts.PresenceChartView;
 import com.movetothebit.newholland.android.helpers.ChartHelper;
 import com.movetothebit.newholland.android.helpers.InscriptionHelper;
-import com.movetothebit.newholland.android.model.InscriptionTableData;
 import com.movetothebit.newholland.android.utils.ServerException;
-import com.movetothebit.newholland.android.widgets.BarChartView;
 import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
-import com.movetothebit.newholland.android.widgets.PresenceChartView;
 
 public class DataActivity extends ChartBaseActivity{
 	
@@ -31,10 +31,11 @@ public class DataActivity extends ChartBaseActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.data_layout);	
         
-        infoLayout = (RelativeLayout)findViewById(R.id.infoLayout);
+        infoLayout = (LinearLayout)findViewById(R.id.infoLayout);
         chartButton = (Button) findViewById(R.id.chartButton);
-        chartView  = (BarChartView)findViewById(R.id.chartView);
-        
+        lostChartView  = (BarChartView)findViewById(R.id.lostChartView);
+        winChartView  = (BarChartView)findViewById(R.id.winChartView);
+        brandChartView  = (PieChartView)findViewById(R.id.brandChartView);
         dealerSpinner = (MultiSelectSpinner)findViewById(R.id.dealerSpinner);	     
         salesmanSpinner = (MultiSelectSpinner)findViewById(R.id.salesmanSpinner);	       
         modelSpinner = (MultiSelectSpinner)findViewById(R.id.modelSpinner);	       
@@ -145,16 +146,18 @@ public class DataActivity extends ChartBaseActivity{
 		fillCharts();
 	}
 	public void fillTables(){		
-		
+		fillPresenceTable(data);
 		fillTotalTable(data);
 		fillLostTable(data);
 		fillWinTable(data);
-		fillBrandTable(data);
+		//fillBrandTable(data);
 		
 	}
 	public void fillCharts(){
 		
-		chartView.paintChart(getDataset());
+		lostChartView.paintChart(getLostDataset());
+		winChartView.paintChart(getWinDataset());
+		brandChartView.paintChart(getBrandDataset());
 		presenceChartView.paintChart(getPresenceDataSet());
 
 	

@@ -41,7 +41,7 @@
  * 14-Jan-2011 : Updated API docs
  */ 
 
-package com.movetothebit.newholland.android.widgets;
+package com.movetothebit.newholland.android.charts;
 
 import org.afree.ui.RectangleInsets;
 import org.afree.chart.ChartTouchEvent;

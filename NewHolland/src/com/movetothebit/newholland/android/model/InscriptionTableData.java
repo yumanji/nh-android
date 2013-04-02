@@ -7,11 +7,57 @@ public class InscriptionTableData {
 	public int knownTotal;
 	public int ofertTotal;
 	public int winTotal;
+
+	public int  marketCuote;
+	public int knownMarket;
+	public int presence;
+	public int efectivity;
+	public int presenceTotal;
 	public int[] lostData;
 	public int[] winData;
 	public int[] brandData;
 	
 	
+	public int getMarketCuote() {
+		return marketCuote;
+	}
+
+	public void setMarketCuote(int marketCuote) {
+		this.marketCuote = marketCuote;
+	}
+
+	public int getKnownMarket() {
+		return knownMarket;
+	}
+
+	public void setKnownMarket(int kwnownMarket) {
+		this.knownMarket = kwnownMarket;
+	}
+
+	public int getPresence() {
+		return presence;
+	}
+
+	public void setPresence(int presence) {
+		this.presence = presence;
+	}
+
+	public int getEfectivity() {
+		return efectivity;
+	}
+
+	public void setEfectivity(int efectivity) {
+		this.efectivity = efectivity;
+	}
+
+	public int getPresenceTotal() {
+		return presenceTotal;
+	}
+
+	public void setPresenceTotal(int presenceTotal) {
+		this.presenceTotal = presenceTotal;
+	}
+
 	public int[] getWinData() {
 		return winData;
 	}

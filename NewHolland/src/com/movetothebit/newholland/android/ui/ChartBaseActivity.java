@@ -6,31 +6,35 @@ import java.util.Random;
 
 import org.afree.data.category.CategoryDataset;
 import org.afree.data.category.DefaultCategoryDataset;
+import org.afree.data.general.DefaultPieDataset;
+import org.afree.data.general.PieDataset;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.charts.BarChartView;
+import com.movetothebit.newholland.android.charts.PieChartView;
+import com.movetothebit.newholland.android.charts.PresenceChartView;
 import com.movetothebit.newholland.android.helpers.AnswersHelper;
-import com.movetothebit.newholland.android.helpers.ChartHelper;
 import com.movetothebit.newholland.android.helpers.FilterHelper;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.model.InscriptionTableData;
-import com.movetothebit.newholland.android.widgets.BarChartView;
 import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
-import com.movetothebit.newholland.android.widgets.PresenceChartView;
 
 public class ChartBaseActivity extends BaseActivity{
-	public BarChartView chartView;
+	public BarChartView winChartView;
+	public BarChartView lostChartView;
+	public PieChartView brandChartView;
 	public PresenceChartView presenceChartView;
 	public Button chartButton;
 	public Button resetButton;
-	public RelativeLayout infoLayout;
+	public LinearLayout infoLayout;
 	public InscriptionTableData data;
 	public MultiSelectSpinner dealerSpinner;
 	public MultiSelectSpinner salesmanSpinner;
@@ -96,7 +100,19 @@ public class ChartBaseActivity extends BaseActivity{
 		ofertTotalText.setText(String.valueOf(data.getOfertTotal()));
 		winTotalText.setText(String.valueOf(data.getWinTotal()));
 	}
-	
+	public void fillPresenceTable(InscriptionTableData data){
+		
+		TextView indexKnownText = (TextView)findViewById(R.id.indexKnownText);
+		TextView indexPresenceText = (TextView)findViewById(R.id.indexPresenceText);
+		TextView indexPresenceTotalText = (TextView)findViewById(R.id.indexPresenceTotalText);
+		TextView indexEffectText = (TextView)findViewById(R.id.indexEffectText);
+		TextView indexMarketText = (TextView)findViewById(R.id.indexMarketText);
+		indexKnownText.setText(String.valueOf(data.getKnownMarket())+" %");
+		indexPresenceText.setText(String.valueOf(data.getPresence())+" %");
+		indexPresenceTotalText.setText(String.valueOf(data.getPresenceTotal())+" %");
+		indexEffectText.setText(String.valueOf(data.getEfectivity())+" %");
+		indexMarketText.setText(String.valueOf(data.getMarketCuote())+" %");
+	}
 	public void fillLostTable(InscriptionTableData data){
 		
 		TableLayout lostTable = (TableLayout)findViewById(R.id.missingTable);
@@ -150,24 +166,24 @@ public class ChartBaseActivity extends BaseActivity{
 	}
 	public void fillBrandTable(InscriptionTableData data){
 		
-		TableLayout lostTable = (TableLayout)findViewById(R.id.brandTable);
-		String[] brands = FilterHelper.getBrandValues(getApplicationContext(), getHelper());
-		int[] values = data.getBrandData();
-		
-		for(int i = 0; i< brands.length; i++){
-			
-			TableRow row = (TableRow) View.inflate(ChartBaseActivity.this, R.layout.brand_row_layout, null);
-			row.setTag(i);
-			
-			TextView name = (TextView)row.findViewById(R.id.name);			
-			TextView count = (TextView)row.findViewById(R.id.count);
-			
-			
-			name.setText(String.valueOf(brands[i]));
-			count.setText(String.valueOf(values[i]));			
-			lostTable.addView(row);
-		
-		}
+//		TableLayout lostTable = (TableLayout)findViewById(R.id.brandTable);
+//		String[] brands = FilterHelper.getBrandValues(getApplicationContext(), getHelper());
+//		int[] values = data.getBrandData();
+//		
+//		for(int i = 0; i< brands.length; i++){
+//			
+//			TableRow row = (TableRow) View.inflate(ChartBaseActivity.this, R.layout.brand_row_layout, null);
+//			row.setTag(i);
+//			
+//			TextView name = (TextView)row.findViewById(R.id.name);			
+//			TextView count = (TextView)row.findViewById(R.id.count);
+//			
+//			
+//			name.setText(String.valueOf(brands[i]));
+//			count.setText(String.valueOf(values[i]));			
+//			lostTable.addView(row);
+//		
+//		}
 		
 	}
 	protected CategoryDataset getPresenceDataSet() {
@@ -204,7 +220,23 @@ public class ChartBaseActivity extends BaseActivity{
     return dataset;
 
 }
-protected CategoryDataset getDataset() {
+protected CategoryDataset getWinDataset() {
+
+	    // row keys...
+	    String series1 = "Motivo";
+	    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+	    String[] label =AnswersHelper.getAnswersWinArray(getHelper());
+	    int[] values = data.getWinData();
+	    // column keys...
+	    for(int i = 0;i<label.length;i++){
+	    	
+	    	 dataset.addValue(values[i], series1, label[i]);
+	    }
+
+	    return dataset;
+
+	}
+protected CategoryDataset getLostDataset() {
 
     // row keys...
     String series1 = "Motivo";
@@ -220,4 +252,30 @@ protected CategoryDataset getDataset() {
     return dataset;
 
 }
+
+/**
+ * Creates a sample dataset.
+ * @return a sample dataset.
+ */
+protected PieDataset getBrandDataset() {
+	
+	
+	DefaultPieDataset dataset = new DefaultPieDataset();
+	String[] label =FilterHelper.getBrandValues(getApplicationContext(), getHelper());
+	int[] values = data.getBrandData();
+    int others = 0;
+	for(int i = 0;i<label.length;i++){
+		if(i<10){
+			dataset.setValue(label[i], values[i]);
+		}else if(i==(label.length-1)){
+			dataset.setValue("Otros", others);
+		}else{
+			others+=values[i];
+		}    	
+   	 
+   }
+	
+    return dataset;
+}
+
 }

@@ -39,7 +39,7 @@
  * 19-Nov-2010 : Version 0.0.1 (NM);
  */
 
-package com.movetothebit.newholland.android.widgets;
+package com.movetothebit.newholland.android.charts;
 
 
 import org.afree.chart.AFreeChart;

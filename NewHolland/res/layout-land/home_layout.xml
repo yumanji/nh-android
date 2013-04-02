@@ -19,7 +19,7 @@
     android:layout_height="match_parent"
     android:background="#2000418C"
     android:orientation="vertical"
-    tools:context="com.movetothebit.newholland.android.widgets.ChartHierarchyActivity" >
+    tools:context="com.movetothebit.newholland.android.charts.ChartHierarchyActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -40,7 +40,7 @@
  * 18-Oct-2011 : Change the package name (SY);
  */
 
-package com.movetothebit.newholland.android.widgets;
+package com.movetothebit.newholland.android.charts;
 
 import java.text.Collator;
 import java.util.ArrayList;
