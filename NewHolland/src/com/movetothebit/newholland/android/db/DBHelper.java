@@ -27,7 +27,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 	private static Dao<AnswerItem, Integer> answersDao;
 	private static Dao<AnswerWinItem, Integer> answersWinDao;
 	private static Dao<ModelItem, Integer> modelsDao;
-	private Context mContext;
+
 	private ConnectionSource connectionSource = null;
 
 	public DBHelper(Context context) {
@@ -36,7 +36,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 				.getAbsolutePath() + File.separator + DATABASE_NAME, null,
 				DATABASE_VERSION);
 		
-		this.mContext = context;
+		
 	}
 	
 	@Override

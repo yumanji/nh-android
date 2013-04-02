@@ -114,7 +114,7 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <com.movetothebit.newholland.android.charts.PresenceChartView
+                        <com.movetothebit.newholland.android.charts.BarChartView
                             android:id="@+id/presenceChartView"
                             android:layout_width="match_parent"
                             android:layout_height="300dp" />
@@ -197,7 +197,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="right"
                                     android:text="@string/total_title_col1"
                                     android:textAppearance="@style/tableTitleColumnText" />
                             </TableRow>
@@ -217,8 +217,9 @@
                                     android:id="@+id/mTotalText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="150"
-                                    android:textAppearance="@style/tableRowText" />
+                                    android:textAppearance="@style/tableRowText"
+                                    android:textStyle="bold" />
+
                             </TableRow>
 
                             <TableRow
@@ -237,7 +238,6 @@
                                     android:id="@+id/knownTotalText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="20"
                                     android:textAppearance="@style/tableRowText"
                                     android:textSize="18dp"
                                     android:textStyle="normal" />
@@ -259,7 +259,6 @@
                                     android:id="@+id/ofertTotalText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="100"
                                     android:textAppearance="@style/tableRowText"
                                     android:textSize="18dp" />
                             </TableRow>
@@ -280,7 +279,6 @@
                                     android:id="@+id/winTotalText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="30"
                                     android:textAppearance="@style/tableRowText"
                                     android:textSize="18dp" />
                             </TableRow>
@@ -333,7 +331,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="right"
                                     android:text="@string/objetives_title_col1"
                                     android:textAppearance="@style/tableTitleColumnText" />
 
@@ -341,7 +339,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="right"
                                     android:text="@string/objetives_title_col2"
                                     android:textAppearance="@style/tableTitleColumnText" />
                             </TableRow>
@@ -361,7 +359,6 @@
                                     android:id="@+id/indexKnownText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="63"
                                     android:textAppearance="@style/tableRowText" />
 
                                 <TextView
@@ -370,7 +367,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="20"
+                                    android:text="--"
                                     android:textAppearance="@style/tableRowText" />
                             </TableRow>
 
@@ -390,7 +387,6 @@
                                     android:id="@+id/indexPresenceText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="20"
                                     android:textAppearance="@style/tableRowText" />
 
                                 <TextView
@@ -399,7 +395,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="32"
+                                    android:text="--"
                                     android:textAppearance="@style/tableRowText" />
                             </TableRow>
 
@@ -419,7 +415,6 @@
                                     android:id="@+id/indexEffectText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="47"
                                     android:textAppearance="@style/tableRowText" />
 
                                 <TextView
@@ -428,7 +423,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="53"
+                                    android:text="--"
                                     android:textAppearance="@style/tableRowText" />
                             </TableRow>
 
@@ -448,7 +443,6 @@
                                     android:id="@+id/indexPresenceTotalText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="30"
                                     android:textAppearance="@style/tableRowText" />
 
                                 <TextView
@@ -457,7 +451,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="27"
+                                    android:text="--"
                                     android:textAppearance="@style/tableRowText" />
                             </TableRow>
 
@@ -477,7 +471,6 @@
                                     android:id="@+id/indexMarketText"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="30"
                                     android:textAppearance="@style/tableRowText" />
 
                                 <TextView
@@ -486,7 +479,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="37"
+                                    android:text="--"
                                     android:textAppearance="@style/tableRowText" />
                             </TableRow>
                         </TableLayout>
@@ -541,7 +534,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="right"
                                     android:text="@string/missing_title_col1"
                                     android:textAppearance="@style/tableTitleColumnText" />
 
@@ -550,7 +543,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="right"
                                     android:text="@string/missing_title_col2"
                                     android:textAppearance="@style/tableTitleColumnText" />
                             </TableRow>
@@ -604,7 +597,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="right"
                                     android:text="@string/missing_title_col1"
                                     android:textAppearance="@style/tableTitleColumnText" />
 
@@ -613,7 +606,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:gravity="center_horizontal"
+                                    android:gravity="right"
                                     android:text="@string/missing_title_col2"
                                     android:textAppearance="@style/tableTitleColumnText" />
                             </TableRow>

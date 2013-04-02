@@ -72,7 +72,7 @@ public class BarChartView extends DemoView {
         super(context);
 
         CategoryDataset dataset = createDataset();
-        AFreeChart chart = createChart(dataset);
+        AFreeChart chart = createChart(dataset,"");
         
         setChart(chart);
         
@@ -85,7 +85,7 @@ public class BarChartView extends DemoView {
         super(context, att);
 
         CategoryDataset dataset = createDataset();
-        AFreeChart chart = createChart(dataset);
+        AFreeChart chart = createChart(dataset,"");
         
         setChart(chart);
      
@@ -95,8 +95,8 @@ public class BarChartView extends DemoView {
      *
      * @return The dataset.
      */
-    public void paintChart(CategoryDataset dataset) {
-    	AFreeChart chart = createChart(dataset);
+    public void paintChart(CategoryDataset dataset,String name) {
+    	AFreeChart chart = createChart(dataset,name);
         setChart(chart);
     	
     }
@@ -108,37 +108,20 @@ public class BarChartView extends DemoView {
     private static CategoryDataset createDataset() {
 
         // row keys...
-        String series1 = "Inscripciones";
-//        String series2 = "Second";
-//        String series3 = "Third";
+        String series1 = "";
+
 
         // column keys...
-        String category1 = "Category 1";
-        String category2 = "Category 2";
-        String category3 = "Category 3";
-        String category4 = "Category 4";
-        String category5 = "Category 5";
+        String category1 = "";
+       
 
         // create the dataset...
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        dataset.addValue(1.0, series1, category1);
-        dataset.addValue(4.0, series1, category2);
-        dataset.addValue(3.0, series1, category3);
-        dataset.addValue(5.0, series1, category4);
-        dataset.addValue(5.0, series1, category5);
+        dataset.addValue(0.0, series1, category1);
+      
 
-//        dataset.addValue(5.0, series2, category1);
-//        dataset.addValue(7.0, series2, category2);
-//        dataset.addValue(6.0, series2, category3);
-//        dataset.addValue(8.0, series2, category4);
-//        dataset.addValue(4.0, series2, category5);
-//
-//        dataset.addValue(4.0, series3, category1);
-//        dataset.addValue(3.0, series3, category2);
-//        dataset.addValue(2.0, series3, category3);
-//        dataset.addValue(3.0, series3, category4);
-//        dataset.addValue(6.0, series3, category5);
+
 
         return dataset;
 
@@ -151,11 +134,11 @@ public class BarChartView extends DemoView {
      *
      * @return The chart.
      */
-    private static AFreeChart createChart(CategoryDataset dataset) {
+    private static AFreeChart createChart(CategoryDataset dataset,String name) {
 
         // create the chart...
         AFreeChart chart = ChartFactory.createBarChart(
-            "Operaciones perdidas",      // chart title
+            name,      // chart title
             "Motivo",               // domain axis label
             "Unidades",                  // range axis label
             dataset,                  // data

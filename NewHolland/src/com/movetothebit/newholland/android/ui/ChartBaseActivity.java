@@ -2,7 +2,6 @@ package com.movetothebit.newholland.android.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.afree.data.category.CategoryDataset;
 import org.afree.data.category.DefaultCategoryDataset;
@@ -20,7 +19,6 @@ import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.charts.BarChartView;
 import com.movetothebit.newholland.android.charts.PieChartView;
-import com.movetothebit.newholland.android.charts.PresenceChartView;
 import com.movetothebit.newholland.android.helpers.AnswersHelper;
 import com.movetothebit.newholland.android.helpers.FilterHelper;
 import com.movetothebit.newholland.android.model.InscriptionData;
@@ -31,7 +29,7 @@ public class ChartBaseActivity extends BaseActivity{
 	public BarChartView winChartView;
 	public BarChartView lostChartView;
 	public PieChartView brandChartView;
-	public PresenceChartView presenceChartView;
+	public BarChartView presenceChartView;
 	public Button chartButton;
 	public Button resetButton;
 	public LinearLayout infoLayout;
@@ -119,49 +117,62 @@ public class ChartBaseActivity extends BaseActivity{
 		String[] answers = AnswersHelper.getAnswersArray(getHelper());
 		int[] values = data.getLostData();
 		
-		for(int i = 0; i< answers.length; i++){
+		if(lostTable.getChildCount()<=2){
+			for(int i = 0; i< answers.length; i++){
+				TableRow row = (TableRow) View.inflate(ChartBaseActivity.this, R.layout.lost_row_layout, null);
+				row.setTag(i);
+				lostTable.addView(row);
 			
-			TableRow row = (TableRow) View.inflate(ChartBaseActivity.this, R.layout.lost_row_layout, null);
-			row.setTag(i);
-			
-			TextView name = (TextView)row.findViewById(R.id.name);			
-			TextView count = (TextView)row.findViewById(R.id.count);
-			TextView index = (TextView)row.findViewById(R.id.index);
-			
-			name.setText(String.valueOf(answers[i]));
-			count.setText(String.valueOf(values[i]));
-			
-			index.setText(String.valueOf((float) Math.round(values[i] * 100.0/data.marketTotal)));
-			
-			lostTable.addView(row);
-		
+			}
 		}
+			for(int i = 0; i< answers.length; i++){
+				
+				TableRow row =  (TableRow) lostTable.getChildAt(i+2);		
+					
+				TextView name = (TextView)row.findViewById(R.id.name);			
+				TextView count = (TextView)row.findViewById(R.id.count);
+				TextView index = (TextView)row.findViewById(R.id.index);
+				
+				name.setText(String.valueOf(answers[i]));
+				count.setText(String.valueOf(values[i]));				
+				index.setText(String.valueOf((int) Math.round(values[i] * 100.0/(data.ofertTotal-data.winTotal)))+ " %");
+				
+				
+			
+			}
 		
 	}
 	
 	public void fillWinTable(InscriptionTableData data){
 		
-		TableLayout lostTable = (TableLayout)findViewById(R.id.winTable);
+		TableLayout winTable = (TableLayout)findViewById(R.id.winTable);
 		String[] answers = AnswersHelper.getAnswersWinArray(getHelper());
 		int[] values = data.getWinData();
 		
-		for(int i = 0; i< answers.length; i++){
+		if(winTable.getChildCount()<=2){
+			for(int i = 0; i< answers.length; i++){
+				TableRow row = (TableRow) View.inflate(ChartBaseActivity.this, R.layout.lost_row_layout, null);
+				row.setTag(i);
+				winTable.addView(row);
 			
-			TableRow row = (TableRow) View.inflate(ChartBaseActivity.this, R.layout.lost_row_layout, null);
-			row.setTag(i);
-			
-			TextView name = (TextView)row.findViewById(R.id.name);			
-			TextView count = (TextView)row.findViewById(R.id.count);
-			TextView index = (TextView)row.findViewById(R.id.index);
-			
-			name.setText(String.valueOf(answers[i]));
-			count.setText(String.valueOf(values[i]));			
-		
-			index.setText(String.valueOf((float) Math.round(values[i] * 100.0/data.marketTotal)));
-			
-			lostTable.addView(row);
-		
+			}
 		}
+		
+		for(int i = 0; i< answers.length; i++){
+				TableRow row =  (TableRow) winTable.getChildAt(i+2);						
+				TextView name = (TextView)row.findViewById(R.id.name);			
+				TextView count = (TextView)row.findViewById(R.id.count);
+				TextView index = (TextView)row.findViewById(R.id.index);
+				
+				name.setText(String.valueOf(answers[i]));
+				count.setText(String.valueOf(values[i]));				
+				index.setText(String.valueOf((int) Math.round(values[i] * 100.0/data.winTotal)+ " %"));
+				
+				
+			
+		}
+		
+		
 		
 	}
 	public void fillBrandTable(InscriptionTableData data){
@@ -186,12 +197,10 @@ public class ChartBaseActivity extends BaseActivity{
 //		}
 		
 	}
-	protected CategoryDataset getPresenceDataSet() {
+	protected CategoryDataset getPresenceDataSet(InscriptionTableData data) {
     // row keys...
     String series1 = "Indice %";
-    String series2 = "Objetivo NH";
-//    String series3 = "Third";
-
+ 
     // column keys...
     String category1 = "Conocimientos de mercado";
     String category2 = "Presencia";
@@ -201,20 +210,15 @@ public class ChartBaseActivity extends BaseActivity{
 
     // create the dataset...
     DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+ 
     
-    Random r = new Random();
-    
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series1, category1);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series1, category2);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series1, category3);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series1, category4);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series1, category5);
+    dataset.addValue(data.getKnownMarket(), series1, category1);
+    dataset.addValue(data.getPresence(), series1, category2);
+    dataset.addValue(data.getEfectivity(), series1, category3);
+    dataset.addValue(data.getPresenceTotal(), series1, category4);
+    dataset.addValue(data.getMarketCuote(), series1, category5);
 
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series2, category1);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series2, category2);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series2, category3);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series2, category4);
-    dataset.addValue(1 + (100 - 1) * r.nextDouble(), series2, category5);
+
 
 
     return dataset;

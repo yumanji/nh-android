@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.charts.BarChartView;
 import com.movetothebit.newholland.android.charts.PieChartView;
-import com.movetothebit.newholland.android.charts.PresenceChartView;
 import com.movetothebit.newholland.android.helpers.ChartHelper;
 import com.movetothebit.newholland.android.helpers.InscriptionHelper;
 import com.movetothebit.newholland.android.utils.ServerException;
@@ -44,7 +43,7 @@ public class DataActivity extends ChartBaseActivity{
         brandSpinner = (MultiSelectSpinner)findViewById(R.id.brandSpinner);	      
         populationSpinner = (MultiSelectSpinner)findViewById(R.id.populationSpinner);	       
         areaSpinner = (MultiSelectSpinner)findViewById(R.id.areaSpinner);	        
-        presenceChartView  = (PresenceChartView)findViewById(R.id.presenceChartView);     
+        presenceChartView  = (BarChartView)findViewById(R.id.presenceChartView);     
         
         resetButton = (Button) findViewById(R.id.resetButton);
 		resetButton.setOnClickListener(new OnClickListener() {
@@ -155,10 +154,10 @@ public class DataActivity extends ChartBaseActivity{
 	}
 	public void fillCharts(){
 		
-		lostChartView.paintChart(getLostDataset());
-		winChartView.paintChart(getWinDataset());
+		lostChartView.paintChart(getLostDataset(),"Operaciones Perdidas");
+		winChartView.paintChart(getWinDataset(),"Operaciones Ganadas");
 		brandChartView.paintChart(getBrandDataset());
-		presenceChartView.paintChart(getPresenceDataSet());
+		presenceChartView.paintChart(getPresenceDataSet(data),"Penetracion de mercado");
 
 	
 }
