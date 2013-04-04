@@ -34,10 +34,11 @@ public class DownloadDialogFragment extends SherlockDialogFragment {
                         }
                     }
                 )
-                .setNegativeButton(R.string.alert_dialog_cancel,
+                .setNegativeButton(R.string.download_dialog_cancel,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             dismiss();
+                            ((HomeActivity)getActivity()).finish();
                         }
                     }
                 )

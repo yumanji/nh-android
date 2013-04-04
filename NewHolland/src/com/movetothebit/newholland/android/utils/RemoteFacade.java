@@ -75,9 +75,10 @@ public class RemoteFacade {
 		   
 		    
 	    } catch (ClientProtocolException e) {
-	        // TODO Auto-generated catch block
+	       e.printStackTrace(); 
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
+	    	e.printStackTrace();
+	    	
 	    }
 		return _response;
 	} 

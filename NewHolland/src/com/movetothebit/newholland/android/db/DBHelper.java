@@ -94,13 +94,6 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 		return answersWinDao;
 	}
 
-	public void rebuildDatabase(){
-//		getConnectionSource().close();
-//		mContext.deleteDatabase(Environment.getExternalStorageDirectory()
-//				.getAbsolutePath() + File.separator +DATABASE_NAME);
-	
-		
-	}
 	public void dropAllTables(){
 		
 		try {
@@ -118,18 +111,13 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 
 	
 	
-	
-	
-	
-
-	
-
 
 	@Override
 	public void close() {
 		super.close();
 		dataDao = null;
 		answersDao = null;
+		answersWinDao = null;
 		modelsDao = null;
 	}
 

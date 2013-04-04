@@ -45,12 +45,13 @@ import org.afree.chart.AFreeChart;
 import org.afree.chart.ChartFactory;
 import org.afree.chart.plot.PiePlot;
 import org.afree.chart.title.TextTitle;
-import org.afree.data.category.CategoryDataset;
 import org.afree.data.general.DefaultPieDataset;
 import org.afree.data.general.PieDataset;
+import org.afree.graphics.SolidColor;
 import org.afree.graphics.geom.Font;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
@@ -66,8 +67,8 @@ public class PieChartView extends DemoView {
     public PieChartView(Context context) {
         super(context);
 
-        final PieDataset dataset = createDataset();
-        final AFreeChart chart = createChart(dataset);
+        PieDataset dataset = createDataset();
+        AFreeChart chart = createChart(dataset);
 
         setChart(chart);
     }
@@ -90,12 +91,8 @@ public class PieChartView extends DemoView {
      */
     private static PieDataset createDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("One", new Double(43.2));
-        dataset.setValue("Two", new Double(10.0));
-        dataset.setValue("Three", new Double(27.5));
-        dataset.setValue("Four", new Double(17.5));
-        dataset.setValue("Five", new Double(11.0));
-        dataset.setValue("Six", new Double(19.4));
+        dataset.setValue("", new Double(10.0));
+       
         return dataset;
     }
     public void paintChart(PieDataset dataset) {
@@ -116,6 +113,9 @@ public class PieChartView extends DemoView {
                 true, // include legend
                 true,
                 false);
+        
+        chart.setBackgroundPaintType(new SolidColor(Color.WHITE));
+        
         TextTitle title = chart.getTitle();
         title.setToolTipText("A title tooltip!");
 

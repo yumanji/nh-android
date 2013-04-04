@@ -2,14 +2,23 @@ package com.movetothebit.newholland.android.model;
 
 public class BrandData {
 
-	public int[] brand;
+	//public int[] brand;
+	public Brand[] list;
 	public int nh;
-	public int[] getBrand() {
-		return brand;
+	
+//	
+	public Brand[] getList() {
+		return list;
 	}
-	public void setBrand(int[] brand) {
-		this.brand = brand;
+	public void setList(Brand[] list) {
+		this.list = list;
 	}
+//	public int[] getBrand() {
+//		return brand;
+//	}
+//	public void setBrand(int[] brand) {
+//		this.brand = brand;
+//	}
 	public int getNh() {
 		return nh;
 	}

@@ -74,6 +74,7 @@ public class HistoricActivity extends BaseActivity{
 		protected void onPreExecute() {
 			pd = new ProgressDialog(HistoricActivity.this);
 			pd.setMessage("Cargando datos de tu zona");
+			pd.setCancelable(false);
 			pd.show();
 			super.onPreExecute();
 		}

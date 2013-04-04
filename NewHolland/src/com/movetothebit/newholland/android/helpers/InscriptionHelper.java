@@ -131,30 +131,35 @@ public class InscriptionHelper implements lConstants{
 		
 		try {
 			
-			list = getInscriptionsFilled(helper);
-			prefs = ctx.getSharedPreferences(ctx.getString(R.string.app_preferences), 0);	
-			jsonUrl = URL+SET_SURVEY+prefs.getString(userData, "0");
-			Gson gson = new Gson();
-			JSONObject jsonObject = new JSONObject();	
-			
-			JSONArray data = new JSONArray();
-			 for(InscriptionData item :list){
-				 JSONObject obj = new JSONObject(gson.toJson(item));
-				 data.put(obj);
-			 }
+			list = getSendInscriptions(helper);
+			if(list.size()>0){
+				prefs = ctx.getSharedPreferences(ctx.getString(R.string.app_preferences), 0);	
+				jsonUrl = URL+SET_SURVEY+prefs.getString(userData, "0");
+				Gson gson = new Gson();
+				JSONObject jsonObject = new JSONObject();	
+				
+				JSONArray data = new JSONArray();
+				 for(InscriptionData item :list){
+					 JSONObject obj = new JSONObject(gson.toJson(item));
+					 data.put(obj);
+				 }
 
-			jsonObject.put("data", data);
-			
+				jsonObject.put("data", data);
+				
 
-			response = RemoteFacade.postStringToUrl(jsonUrl, jsonObject.toString());
-			JSONObject jsonResponse = new JSONObject(response);
-			JSONObject errorJson = jsonResponse.getJSONObject("error");
-			
-			if(errorJson.getString("code").equals("0")){
-				return true;
+				response = RemoteFacade.postStringToUrl(jsonUrl, jsonObject.toString());
+				JSONObject jsonResponse = new JSONObject(response);
+				JSONObject errorJson = jsonResponse.getJSONObject("error");
+				
+				if(errorJson.getString("code").equals("0")){
+					return true;
+				}else{
+					throw new ServerException(new Exception(), errorJson.getString("message"));
+				}
 			}else{
-				throw new ServerException(new Exception(), errorJson.getString("message"));
+				return true;
 			}
+			
 			 
 		} catch (NotFoundException e) {				
 			throw new ServerException(e, ctx.getString(R.string.refresh_exception));
@@ -332,7 +337,7 @@ public class InscriptionHelper implements lConstants{
 				where.and();				
 			}
 			if(model.length>0){
-				where.in(MODEL_OFFER, model);
+				where.in(MODEL3, model);
 				where.and();				
 			}
 			if(modelComp.length>0){
@@ -425,6 +430,27 @@ public class InscriptionHelper implements lConstants{
 		return result;
 	   
 	}
+	public static List<InscriptionData> getSendInscriptions(DBHelper helper) throws SQLException, ServerException{
+	
+		List<InscriptionData> result  = null;
+		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
+		
+		try {
+			
+			 queryBuilder = helper.getInscriptionsDao().queryBuilder();			 
+			 queryBuilder.where().eq(FILL_DATA, 1).and().eq(HISTORIC, 0);			
+			 
+			 result = helper.getInscriptionsDao().query(queryBuilder.prepare());
+		
+			
+			
+		} catch (SQLException e) {
+			throw e;
+		
+		}
+		return result;  
+		
+	}   
 	public static List<InscriptionData> getInscriptionsFilled(DBHelper helper) throws SQLException, ServerException{
 		
 		List<InscriptionData> result  = null;

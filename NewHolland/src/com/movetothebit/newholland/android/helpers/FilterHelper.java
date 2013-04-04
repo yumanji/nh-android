@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 
 import com.movetothebit.newholland.android.db.DBHelper;
+import com.movetothebit.newholland.android.model.BrandData;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.utils.lConstants;
 
@@ -27,6 +28,33 @@ public class FilterHelper implements lConstants{
 		}
 		return results;
 	}
+//	public static String[] getBrandValues(Context ctx, DBHelper helper){
+//	
+//		String[] result = null;
+//		List<InscriptionData> results;
+//		try {
+//			results = helper.getInscriptionsDao().queryBuilder().groupBy(BRAND).selectColumns(MONTH,YEAR).query();
+//			if(results.size()!=0){
+//				
+//				result = new String[results.size()];
+//				
+//				for (int i = 0;i<results.size();i++) {
+//					result[i] = results.get(i).getBrand();
+//				    
+//				}
+//			}else{
+//				result = new String[1];
+//				result[0] = "No hay datos";
+//			}
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}			
+//		
+//		
+//		return result;
+//	}
 	public static String[] getBrandValues(Context ctx, DBHelper helper){
 		
 		String[] result = null;
@@ -42,27 +70,45 @@ public class FilterHelper implements lConstants{
 			}
 		}else{
 			result = new String[1];
-			result[1] = "No hay datos";
+			result[0] = "No hay datos";
 		}
 		return result;
 	}
-	
+//	public static BrandData[] getBrandData(Context ctx, DBHelper helper){
+//		String[] brands = getBrandValues(ctx,helper);
+//		
+//		for(int i = 0;i<brands.length;i++) {
+//			helper.getInscriptionsDao().queryBuilder().groupBy(BRAND).s;
+//		}
+//		String[] result = null;
+//		helper.getInscriptionsDao().queryBuilder();	
+//		
+//		
+//		return result;
+//	}
 	public static String[] getPeriodValues(Context ctx,DBHelper helper){
 		String[] result = null;
-		List<InscriptionData> results =getComunValuesFromInscription(ctx,helper, MONTH);		
-		
-		if(results.size()!=0){
-			
-			result = new String[results.size()];
-			
-			for (int i = 0;i<results.size();i++) {
-				result[i] = results.get(i).getMonth()+ " - 2012" ;
-			    
+		List<InscriptionData> results;
+		try {
+			results = helper.getInscriptionsDao().queryBuilder().distinct().selectColumns(MONTH,YEAR).query();
+			if(results.size()!=0){
+				
+				result = new String[results.size()];
+				
+				for (int i = 0;i<results.size();i++) {
+					result[i] = results.get(i).getMonth()+ " "+ results.get(i).getYear() ;
+				    
+				}
+			}else{
+				result = new String[1];
+				result[0] = "No hay datos";
 			}
-		}else{
-			result = new String[1];
-			result[1] = "No hay datos";
-		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		
 		return result;
 	}
 	public static String[] getPopulationValues(Context ctx, DBHelper helper){
@@ -79,7 +125,7 @@ public class FilterHelper implements lConstants{
 			}
 		}else{
 			result = new String[1];
-			result[1] = "No hay datos";
+			result[0] = "No hay datos";
 		}
 		return result;
 	}
@@ -97,7 +143,7 @@ public class FilterHelper implements lConstants{
 			}
 		}else{
 			result = new String[1];
-			result[1] = "No hay datos";
+			result[0] = "No hay datos";
 		}
 		return result;
 	}
@@ -115,7 +161,25 @@ public class FilterHelper implements lConstants{
 			}
 		}else{
 			result = new String[1];
-			result[1] = "No hay datos";
+			result[0] = "No hay datos";
+		}
+		return result;
+	}
+	public static String[] getModel3Values(Context ctx,DBHelper helper){
+		String[] result = null;
+		List<InscriptionData> results =getComunValuesFromInscription(ctx, helper,MODEL3);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getModelo3();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[0] = "No hay datos";
 		}
 		return result;
 	}
@@ -133,7 +197,7 @@ public class FilterHelper implements lConstants{
 			}
 		}else{
 			result = new String[1];
-			result[1] = "No hay datos";
+			result[0] = "No hay datos";
 		}
 		return result;
 	}
@@ -151,7 +215,7 @@ public class FilterHelper implements lConstants{
 			}
 		}else{
 			result = new String[1];
-			result[1] = "No hay datos";
+			result[0] = "No hay datos";
 		}
 		return result;
 	}
@@ -169,7 +233,7 @@ public class FilterHelper implements lConstants{
 			}
 		}else{
 			result = new String[1];
-			result[1] = "No hay datos";
+			result[0] = "No hay datos";
 		}
 		return result;
 	}

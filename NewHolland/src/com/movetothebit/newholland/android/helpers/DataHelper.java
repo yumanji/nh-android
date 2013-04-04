@@ -72,7 +72,7 @@ public class DataHelper implements lConstants{
 					settings.edit().putString(userData, user).commit();
 					JSONArray jsonArray = jsonObject.getJSONArray("data");
 					JSONObject param =(JSONObject) jsonArray.get(0);					
-					settings.edit().putString(userReadOnly,param.get("value").toString()).commit();
+					settings.edit().putInt(userReadOnly,Integer.valueOf(param.get("value").toString())).commit();
 					
 				}else{
 				

@@ -19,8 +19,10 @@ import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.charts.BarChartView;
 import com.movetothebit.newholland.android.charts.PieChartView;
+import com.movetothebit.newholland.android.charts.PresenceChartView;
 import com.movetothebit.newholland.android.helpers.AnswersHelper;
 import com.movetothebit.newholland.android.helpers.FilterHelper;
+import com.movetothebit.newholland.android.model.Brand;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.model.InscriptionTableData;
 import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
@@ -29,7 +31,7 @@ public class ChartBaseActivity extends BaseActivity{
 	public BarChartView winChartView;
 	public BarChartView lostChartView;
 	public PieChartView brandChartView;
-	public BarChartView presenceChartView;
+	public PresenceChartView presenceChartView;
 	public Button chartButton;
 	public Button resetButton;
 	public LinearLayout infoLayout;
@@ -72,7 +74,7 @@ public class ChartBaseActivity extends BaseActivity{
 		
 		dealerSpinner.setData(FilterHelper.getDealerValues(getApplicationContext(),getHelper()), "Concesionario");			
 		salesmanSpinner.setData(FilterHelper.getSalesmanValues(getApplicationContext(),getHelper()), "Vendedor");			
-		modelSpinner.setData( FilterHelper.getModelsValues(getApplicationContext(),getHelper()), "Modelo NH");			
+		modelSpinner.setData( FilterHelper.getModel3Values(getApplicationContext(),getHelper()), "Comp NH");			
 		modelCompSpinner.setData(FilterHelper.getModelsCompValues(getApplicationContext(),getHelper()), "Modelo Comparable");			
 		periodSpinner.setData(FilterHelper.getPeriodValues(getApplicationContext(),getHelper()), "Periodo");				
 		brandSpinner.setData(FilterHelper.getBrandValues(getApplicationContext(),getHelper()), "Marca");				
@@ -135,7 +137,7 @@ public class ChartBaseActivity extends BaseActivity{
 				
 				name.setText(String.valueOf(answers[i]));
 				count.setText(String.valueOf(values[i]));				
-				index.setText(String.valueOf((int) Math.round(values[i] * 100.0/(data.ofertTotal-data.winTotal)))+ " %");
+				index.setText(String.valueOf((int) Math.round(values[i] * 100.0/(data.lostTotal)))+ " %");
 				
 				
 			
@@ -197,33 +199,7 @@ public class ChartBaseActivity extends BaseActivity{
 //		}
 		
 	}
-	protected CategoryDataset getPresenceDataSet(InscriptionTableData data) {
-    // row keys...
-    String series1 = "Indice %";
- 
-    // column keys...
-    String category1 = "Conocimientos de mercado";
-    String category2 = "Presencia";
-    String category3 = "Efectividad";
-    String category4 = "Presencia total";
-    String category5 = "Cuota de mercado";
 
-    // create the dataset...
-    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
- 
-    
-    dataset.addValue(data.getKnownMarket(), series1, category1);
-    dataset.addValue(data.getPresence(), series1, category2);
-    dataset.addValue(data.getEfectivity(), series1, category3);
-    dataset.addValue(data.getPresenceTotal(), series1, category4);
-    dataset.addValue(data.getMarketCuote(), series1, category5);
-
-
-
-
-    return dataset;
-
-}
 protected CategoryDataset getWinDataset() {
 
 	    // row keys...
@@ -265,16 +241,18 @@ protected PieDataset getBrandDataset() {
 	
 	
 	DefaultPieDataset dataset = new DefaultPieDataset();
-	String[] label =FilterHelper.getBrandValues(getApplicationContext(), getHelper());
-	int[] values = data.getBrandData();
+//	String[] label =FilterHelper.getBrandValues(getApplicationContext(), getHelper());
+//	int[] values = data.getBrandData();
+	List<Brand> list = data.getBrandData();
+	
     int others = 0;
-	for(int i = 0;i<label.length;i++){
+	for(int i = 0;i<list.size();i++){
 		if(i<10){
-			dataset.setValue(label[i], values[i]);
-		}else if(i==(label.length-1)){
+			dataset.setValue(list.get(i).getName(), list.get(i).getCount());
+		}else if(i==(list.size()-1)){
 			dataset.setValue("Otros", others);
 		}else{
-			others+=values[i];
+			others+=list.get(i).getCount();
 		}    	
    	 
    }

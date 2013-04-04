@@ -6,13 +6,12 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,10 +19,10 @@ import android.widget.TextView;
 
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.model.InscriptionData;
-import com.movetothebit.newholland.android.ui.DetailActivity;
 import com.movetothebit.newholland.android.ui.FormActivity;
+import com.movetothebit.newholland.android.utils.lConstants;
 
-public class FormDataAdapter extends BaseAdapter{
+public class FormDataAdapter extends BaseAdapter implements lConstants{
 	
 	private LayoutInflater mInflater;
 	private List<InscriptionData> mList;
@@ -99,7 +98,10 @@ public class FormDataAdapter extends BaseAdapter{
 		}
 		
 		final InscriptionData item = mList.get(position);	
-		
+		SharedPreferences settings = mContext.getSharedPreferences(mContext.getString(R.string.app_preferences), 0);	
+		if(settings.getInt(userReadOnly, 0)==1){
+			holder.nextButton.setVisibility(View.GONE);
+		}
 		if(item.getFillData()==1){
 			if(item.getNameClient().equals("")&&item.getLastnameClient().equals("")){
 				holder.baseLayout.setBackgroundResource(R.drawable.order_edit_back);

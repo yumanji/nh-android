@@ -1,5 +1,7 @@
 package com.movetothebit.newholland.android.model;
 
+import java.util.List;
+
 public class InscriptionTableData {
 
 	
@@ -7,7 +9,7 @@ public class InscriptionTableData {
 	public int knownTotal;
 	public int ofertTotal;
 	public int winTotal;
-
+	public int lostTotal;
 	public int  marketCuote;
 	public int knownMarket;
 	public int presence;
@@ -15,9 +17,17 @@ public class InscriptionTableData {
 	public int presenceTotal;
 	public int[] lostData;
 	public int[] winData;
-	public int[] brandData;
+	public List<Brand> brandData;
 	
 	
+	public int getLostTotal() {
+		return lostTotal;
+	}
+
+	public void setLostTotal(int lostTotal) {
+		this.lostTotal = lostTotal;
+	}
+
 	public int getMarketCuote() {
 		return marketCuote;
 	}
@@ -71,11 +81,13 @@ public class InscriptionTableData {
 		
 	}
 
-	public int[] getBrandData() {
+	
+
+	public List<Brand> getBrandData() {
 		return brandData;
 	}
 
-	public void setBrandData(int[] brandData) {
+	public void setBrandData(List<Brand> brandData) {
 		this.brandData = brandData;
 	}
 

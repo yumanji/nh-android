@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.charts.BarChartView;
 import com.movetothebit.newholland.android.charts.PieChartView;
+import com.movetothebit.newholland.android.charts.PresenceChartView;
 import com.movetothebit.newholland.android.helpers.ChartHelper;
 import com.movetothebit.newholland.android.helpers.InscriptionHelper;
 import com.movetothebit.newholland.android.utils.ServerException;
@@ -43,7 +44,7 @@ public class DataActivity extends ChartBaseActivity{
         brandSpinner = (MultiSelectSpinner)findViewById(R.id.brandSpinner);	      
         populationSpinner = (MultiSelectSpinner)findViewById(R.id.populationSpinner);	       
         areaSpinner = (MultiSelectSpinner)findViewById(R.id.areaSpinner);	        
-        presenceChartView  = (BarChartView)findViewById(R.id.presenceChartView);     
+        presenceChartView  = (PresenceChartView)findViewById(R.id.presenceChartView);     
         
         resetButton = (Button) findViewById(R.id.resetButton);
 		resetButton.setOnClickListener(new OnClickListener() {
@@ -83,6 +84,7 @@ public class DataActivity extends ChartBaseActivity{
 		protected void onPreExecute() {
 			pd = new ProgressDialog(DataActivity.this);
 			pd.setMessage("Cargando datos...");
+			pd.setCancelable(false);
 			pd.show();
 			super.onPreExecute();
 		}
@@ -131,8 +133,10 @@ public class DataActivity extends ChartBaseActivity{
 				if(listData.size()>0){
 					data = ChartHelper.getInscriptionTableData(getApplicationContext(), getHelper(), listData);
 					refreshData();
+				}else{
+					Toast.makeText(getApplicationContext(), "No hay Datos", Toast.LENGTH_SHORT).show();
 				}
-				Toast.makeText(getApplicationContext(), "No hay Datos", Toast.LENGTH_SHORT).show();
+				
 			}
 			
 			super.onPostExecute(result);
@@ -157,7 +161,7 @@ public class DataActivity extends ChartBaseActivity{
 		lostChartView.paintChart(getLostDataset(),"Operaciones Perdidas");
 		winChartView.paintChart(getWinDataset(),"Operaciones Ganadas");
 		brandChartView.paintChart(getBrandDataset());
-		presenceChartView.paintChart(getPresenceDataSet(data),"Penetracion de mercado");
+		presenceChartView.paintChart();
 
 	
 }
