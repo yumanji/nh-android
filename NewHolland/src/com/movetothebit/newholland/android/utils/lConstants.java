@@ -10,6 +10,13 @@ public interface lConstants {
 	public static final String FALSE = "FALSE";
 	public static final String TRUE = "TRUE";
 	
+	public static final int ROLLBACK= 12;
+	public static final int TOP_BRAND= 10;
+	
+	public static final int MARKET= 0;
+	public static final int PRESENCE= 1;
+	public static final int EFECTIVITY= 2;
+	
 	
 	public static final String URL = "http://nh.movetothebit.com/index.php/comms/";
 	public static final String GET_ANSWERS = "getanswers/";

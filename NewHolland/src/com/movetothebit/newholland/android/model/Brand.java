@@ -3,7 +3,7 @@ package com.movetothebit.newholland.android.model;
 public class Brand {
 
 	public String name;
-	public long count;
+	public long count = 0;
 	
 	public String getName() {
 		return name;

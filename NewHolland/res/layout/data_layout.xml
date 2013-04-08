@@ -105,50 +105,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="vertical" >
 
                     <LinearLayout
-                        android:id="@+id/chartLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <com.movetothebit.newholland.android.charts.PresenceChartView
-                            android:id="@+id/presenceChartView"
-                            android:layout_width="match_parent"
-                            android:layout_height="300dp" />
-
-                        <com.movetothebit.newholland.android.charts.BarChartView
-                            android:id="@+id/lostChartView"
-                            android:layout_width="match_parent"
-                            android:layout_height="300dp" />
-
-                        <com.movetothebit.newholland.android.charts.BarChartView
-                            android:id="@+id/winChartView"
-                            android:layout_width="match_parent"
-                            android:layout_height="300dp" />
-
-                        <com.movetothebit.newholland.android.charts.PieChartView
-                            android:id="@+id/brandChartView"
-                            android:layout_width="match_parent"
-                            android:layout_height="300dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/infoLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
+                        android:layout_weight="1" >
 
                         <TableLayout
                             android:id="@+id/totalTable"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
+                            android:layout_height="match_parent"
                             android:layout_margin="3dp"
+                            android:layout_weight="1"
                             android:background="@drawable/table_back"
                             android:padding="5dp" >
 
@@ -219,7 +188,6 @@
                                     android:gravity="right"
                                     android:textAppearance="@style/tableRowText"
                                     android:textStyle="bold" />
-
                             </TableRow>
 
                             <TableRow
@@ -288,8 +256,8 @@
                             android:id="@+id/objetivesTable"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/totalTable"
                             android:layout_margin="3dp"
+                            android:layout_weight="1"
                             android:background="@drawable/table_back"
                             android:padding="5dp" >
 
@@ -428,34 +396,6 @@
                             </TableRow>
 
                             <TableRow
-                                android:id="@+id/TableRow11"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:padding="5dp" >
-
-                                <TextView
-                                    android:layout_weight="1"
-                                    android:text="@string/objetives_title_row4"
-                                    android:textAppearance="@style/tableTitleColumnText" />
-
-                                <TextView
-                                    android:id="@+id/indexPresenceTotalText"
-                                    android:layout_weight="1"
-                                    android:gravity="right"
-                                    android:textAppearance="@style/tableRowText" />
-
-                                <TextView
-                                    android:id="@+id/objetivePresenceTotalText"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="right"
-                                    android:text="--"
-                                    android:textAppearance="@style/tableRowText" />
-                            </TableRow>
-
-                            <TableRow
                                 android:id="@+id/TableRow06"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -483,15 +423,68 @@
                                     android:textAppearance="@style/tableRowText" />
                             </TableRow>
                         </TableLayout>
+                    </LinearLayout>
 
-          
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal" >
 
-                    <TableLayout
+                        <com.movetothebit.newholland.android.charts.PenetrationChartView
+                            android:id="@+id/penetrationChartView"
+                            android:layout_width="800dp"
+                            android:layout_height="350dp"
+                            android:layout_gravity="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/chartLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <com.movetothebit.newholland.android.charts.OverlayChartView
+                            android:id="@+id/presenceChartView"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_weight="1" />
+
+                        <com.movetothebit.newholland.android.charts.OverlayChartView
+                            android:id="@+id/effectivenessChartView"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_weight="1" />
+
+                        <com.movetothebit.newholland.android.charts.OverlayChartView
+                            android:id="@+id/marketChartView"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/infoLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <com.movetothebit.newholland.android.charts.BarChartView
+                            android:id="@+id/lostChartView"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_weight="1" />
+
+                        <TableLayout
                             android:id="@+id/missingTable"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            
                             android:layout_margin="3dp"
+                            android:layout_weight="1"
                             android:background="@drawable/table_back"
                             android:padding="5dp" >
 
@@ -548,71 +541,10 @@
                                     android:textAppearance="@style/tableTitleColumnText" />
                             </TableRow>
                         </TableLayout>
-
-                        <TableLayout
-                            android:id="@+id/winTable"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            
-                            android:layout_margin="3dp"
-                            android:background="@drawable/table_back"
-                            android:padding="5dp" >
-
-                            <TableRow
-                                android:id="@+id/TableRow17"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0"
-                                android:padding="5dp"
-                                android:shrinkColumns="*"
-                                android:stretchColumns="*" >
-
-                                <TextView
-                                    android:id="@+id/TextView03"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="center_horizontal"
-                                    android:text="@string/win_title_table"
-                                    android:textAppearance="@style/tableTitleText" />
-                            </TableRow>
-
-                            <TableRow
-                                android:id="@+id/TableRow19"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_weight="0"
-                                android:padding="5dp"
-                                android:shrinkColumns="*"
-                                android:stretchColumns="*" >
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="center_horizontal" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="right"
-                                    android:text="@string/missing_title_col1"
-                                    android:textAppearance="@style/tableTitleColumnText" />
-
-                                <TextView
-                                    android:id="@+id/TextView02"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:gravity="right"
-                                    android:text="@string/missing_title_col2"
-                                    android:textAppearance="@style/tableTitleColumnText" />
-                            </TableRow>
-                        </TableLayout>
                     </LinearLayout>
+
                 </LinearLayout>
+
             </ScrollView>
 
            
