@@ -72,7 +72,7 @@ import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import com.movetothebit.newholland.android.charts.model.ChartDataSet;
+import com.movetothebit.newholland.android.charts.model.MonthDataSet;
 import com.movetothebit.newholland.android.helpers.DateHelper;
 import com.movetothebit.newholland.android.utils.lConstants;
 
@@ -114,14 +114,14 @@ public class OverlayChartView extends DemoView implements lConstants{
      *
      * @return The dataset.
      */
-    public void paintChart(ChartDataSet dataset,int i ) {
+    public void paintChart(MonthDataSet[] dataset,int i , float objetive) {
     	AFreeChart chart = null;
     	if(i== MARKET){
-    		chart = createKnownChart(dataset);
+    		chart = createKnownChart(dataset, objetive);
     	}else if(i == PRESENCE){
-    		chart = createPresenceChart(dataset);
+    		chart = createPresenceChart(dataset, objetive);
     	}else if(i == EFECTIVITY){
-    		chart = createEffectivityChart(dataset);
+    		chart = createEffectivityChart(dataset, objetive);
     	}
     	
         setChart(chart);
@@ -183,7 +183,7 @@ public class OverlayChartView extends DemoView implements lConstants{
      * Creates an overlaid chart.
      * @return The chart.
      */
-    private static AFreeChart createEffectivityChart(ChartDataSet dataSet ) {
+    private static AFreeChart createEffectivityChart(MonthDataSet[] dataSet, float objetive ) {
 
         DateAxis domainAxis = new DateAxis("");
         domainAxis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);
@@ -212,7 +212,7 @@ public class OverlayChartView extends DemoView implements lConstants{
 
         plot.mapDatasetToRangeAxis(1, 1);
         
-        Marker marker_H = new ValueMarker(0.1);
+        Marker marker_H = new ValueMarker(objetive);
         marker_H.setLabelOffsetType(LengthAdjustmentType.EXPAND);
         marker_H.setPaintType(new SolidColor(Color.GREEN));
         marker_H.setStroke(2.0f);
@@ -235,7 +235,7 @@ public class OverlayChartView extends DemoView implements lConstants{
      * Creates an overlaid chart.
      * @return The chart.
      */
-    private static AFreeChart createPresenceChart(ChartDataSet dataSet ) {
+    private static AFreeChart createPresenceChart(MonthDataSet[] dataSet, float objetive ) {
 
         DateAxis domainAxis = new DateAxis("");
         domainAxis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);
@@ -262,7 +262,7 @@ public class OverlayChartView extends DemoView implements lConstants{
         plot.setRenderer(1, renderer2A);
         renderer2A.setSeriesStroke(0, 2.0f);
         
-        Marker marker_H = new ValueMarker(0.4);
+        Marker marker_H = new ValueMarker(objetive);
         marker_H.setLabelOffsetType(LengthAdjustmentType.EXPAND);
         marker_H.setPaintType(new SolidColor(Color.GREEN));
         marker_H.setStroke(2.0f);
@@ -291,7 +291,7 @@ public class OverlayChartView extends DemoView implements lConstants{
      * Creates an overlaid chart.
      * @return The chart.
      */
-    private static AFreeChart createKnownChart(ChartDataSet dataSet ) {
+    private static AFreeChart createKnownChart(MonthDataSet[] dataSet , float objetive) {
 
         DateAxis domainAxis = new DateAxis("");
         domainAxis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);
@@ -322,7 +322,7 @@ public class OverlayChartView extends DemoView implements lConstants{
         
         plot.mapDatasetToRangeAxis(1, 1);
         
-        Marker marker_H = new ValueMarker(0.7);
+        Marker marker_H = new ValueMarker(objetive);
         marker_H.setLabelOffsetType(LengthAdjustmentType.EXPAND);
         marker_H.setPaintType(new SolidColor(Color.GREEN));
         marker_H.setStroke(2.0f);
@@ -346,15 +346,15 @@ public class OverlayChartView extends DemoView implements lConstants{
      * Creates a sample dataset.
      * @return The dataset.
      */
-    private static IntervalXYDataset createMarketDataset(ChartDataSet dataSet) {
+    private static IntervalXYDataset createMarketDataset(MonthDataSet[] dataSet) {
 
         TimeSeries series1 = new TimeSeries("Conocimiento de mercado");
 
-        for(int i = 0; i < dataSet.monthDataSet.length; i++) {
-        	if(dataSet.monthDataSet[i]!=null){
-        		Log.d(TAG, "Mercado: " + dataSet.monthDataSet[i].month + dataSet.monthDataSet[i].year +"   "+  100*(dataSet.monthDataSet[i].known/dataSet.monthDataSet[i].total));
-        	series1.add(DateHelper.getMonthFromStrings(dataSet.monthDataSet[i].month,dataSet.monthDataSet[i].year),
-        			(dataSet.monthDataSet[i].known/dataSet.monthDataSet[i].total));
+        for(int i = 0; i < dataSet.length; i++) {
+        	if(dataSet[i]!=null){
+        		Log.d(TAG, "Mercado: " + dataSet[i].month + dataSet[i].year +"   "+  100*(dataSet[i].known/dataSet[i].total));
+        	series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
+        			(dataSet[i].known/dataSet[i].total));
         	}
         }
 
@@ -366,15 +366,15 @@ public class OverlayChartView extends DemoView implements lConstants{
      * Creates a sample dataset.
      * @return The dataset.
      */
-    private static IntervalXYDataset createPresenceDataset(ChartDataSet dataSet) {
+    private static IntervalXYDataset createPresenceDataset(MonthDataSet[] dataSet) {
 
         TimeSeries series1 = new TimeSeries("Presencia");
 
-        for(int i = 0; i < dataSet.monthDataSet.length; i++) {
-        	if(dataSet.monthDataSet[i]!=null){
-        		Log.d(TAG, "Presencia: " + dataSet.monthDataSet[i].month + dataSet.monthDataSet[i].year +"   "+  100*(dataSet.monthDataSet[i].offert/dataSet.monthDataSet[i].known));
-	        	series1.add(DateHelper.getMonthFromStrings(dataSet.monthDataSet[i].month,dataSet.monthDataSet[i].year),
-	        			(dataSet.monthDataSet[i].offert/dataSet.monthDataSet[i].known));
+        for(int i = 0; i < dataSet.length; i++) {
+        	if(dataSet[i]!=null){
+        		Log.d(TAG, "Presencia: " + dataSet[i].month + dataSet[i].year +"   "+  100*(dataSet[i].offert/dataSet[i].known));
+	        	series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
+	        			(dataSet[i].offert/dataSet[i].known));
         	}
         }
 
@@ -386,15 +386,15 @@ public class OverlayChartView extends DemoView implements lConstants{
      * Creates a sample dataset.
      * @return The dataset.
      */
-    private static IntervalXYDataset createEffectivityDataset(ChartDataSet dataSet) {
+    private static IntervalXYDataset createEffectivityDataset(MonthDataSet[] dataSet) {
 
         TimeSeries series1 = new TimeSeries("Efectividad");
 
-        for(int i = 0; i < dataSet.monthDataSet.length; i++) {
-        	if(dataSet.monthDataSet[i]!=null){
-        		Log.d(TAG, "Efectividad: " + dataSet.monthDataSet[i].month + dataSet.monthDataSet[i].year +"   "+  100*(dataSet.monthDataSet[i].win/dataSet.monthDataSet[i].offert));
-        	series1.add(DateHelper.getMonthFromStrings(dataSet.monthDataSet[i].month,dataSet.monthDataSet[i].year),
-        			(dataSet.monthDataSet[i].win/dataSet.monthDataSet[i].offert));
+        for(int i = 0; i < dataSet.length; i++) {
+        	if(dataSet[i]!=null){
+        		Log.d(TAG, "Efectividad: " + dataSet[i].month + dataSet[i].year +"   "+  100*(dataSet[i].win/dataSet[i].offert));
+        	series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
+        			(dataSet[i].win/dataSet[i].offert));
         	}
         }
 
@@ -407,15 +407,15 @@ public class OverlayChartView extends DemoView implements lConstants{
      * Creates a sample dataset.
      * @return The dataset.
      */
-    private static XYDataset createTotalDataset(ChartDataSet dataSet) {
+    private static XYDataset createTotalDataset(MonthDataSet[] dataSet) {
 
         TimeSeries series1 = new TimeSeries("Total");
        
-        for(int i = 0; i < dataSet.monthDataSet.length; i++) {
-        	if(dataSet.monthDataSet[i]!=null){
-        		 Log.d(TAG, "Total: "+dataSet.monthDataSet[i].total );
-        	series1.add(DateHelper.getMonthFromStrings(dataSet.monthDataSet[i].month,dataSet.monthDataSet[i].year),
-        			dataSet.monthDataSet[i].total);
+        for(int i = 0; i < dataSet.length; i++) {
+        	if(dataSet[i]!=null){
+        		 Log.d(TAG, "Total: "+dataSet[i].total );
+        	series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
+        			dataSet[i].total);
         	}
         }
 

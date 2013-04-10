@@ -19,12 +19,9 @@ public class DateHelper {
 		Calendar cal = Calendar.getInstance();
 		
 		for(int i= 0;i<index;i++){
-			if(i==0) {
-				lastMonths[i] = format.format(cal.getTime()).toUpperCase(new Locale("es", "ES"));
-			}else{
-				cal.add(Calendar.MONTH, -1);
-				lastMonths[i] = format.format(cal.getTime()).toUpperCase(new Locale("es", "ES"));
-			}
+			cal.add(Calendar.MONTH, -1);
+			lastMonths[i] = format.format(cal.getTime()).toUpperCase(new Locale("es", "ES"));
+			
 			
 		}		
 		

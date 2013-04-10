@@ -71,7 +71,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 
-import com.movetothebit.newholland.android.charts.model.ChartDataSet;
+import com.movetothebit.newholland.android.charts.model.MonthDataSet;
 import com.movetothebit.newholland.android.helpers.DateHelper;
 import com.movetothebit.newholland.android.model.Brand;
 
@@ -103,7 +103,7 @@ public class PenetrationChartView extends DemoView {
      *
      * @return The dataset.
      */
-    public void paintChart(ChartDataSet dataset,List<Brand> brands) {
+    public void paintChart(MonthDataSet[] dataset,List<Brand> brands) {
     	AFreeChart chart = createPenetrationChart(dataset, brands);
         setChart(chart);    	
     }
@@ -116,7 +116,7 @@ public class PenetrationChartView extends DemoView {
      * Creates an overlaid chart.
      * @return The chart.
      */
-    private static AFreeChart createPenetrationChart(ChartDataSet dataSet,List<Brand> brands ) {
+    private static AFreeChart createPenetrationChart(MonthDataSet[] dataSet,List<Brand> brands ) {
 
         DateAxis domainAxis = new DateAxis("");
         domainAxis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);
@@ -179,41 +179,28 @@ public class PenetrationChartView extends DemoView {
     private static AFreeChart createChart() {
     	 
         
-    	 DateAxis domainAxis = new DateAxis("Date");
+    	 DateAxis domainAxis = new DateAxis("");
          domainAxis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);
          
-         ValueAxis rangeAxis = new NumberAxis("Penetracion de mercado");
+         ValueAxis rangeAxis = new NumberAxis("");
 
          // create plot...
          IntervalXYDataset data1 = createDataset1();
          XYItemRenderer renderer1 = new XYBarRenderer(0.20);
-         GradientColor gp0 = new GradientColor(Color.BLUE, Color.rgb(0, 0, 64));
+         GradientColor gp0 = new GradientColor(Color.TRANSPARENT, Color.rgb(0, 0, 64));
       
          renderer1.setSeriesPaintType(0, gp0);
          XYPlot plot = new XYPlot(data1, domainAxis, rangeAxis, renderer1);
 
-         ValueAxis rangeAxis2 = new NumberAxis("Inscripciones");
+         ValueAxis rangeAxis2 = new NumberAxis("");
          plot.setRangeAxis(1, rangeAxis2);
 
-         // create subplot 2...
-         XYDataset data2A = createDataset2A();
-         plot.setDataset(1, data2A);
-         XYItemRenderer renderer2A = new StandardXYItemRenderer();
-         plot.setRenderer(1, renderer2A);
-         renderer2A.setSeriesStroke(0, 2.0f);
-
-         XYDataset data2B = createDataset2B();
-         plot.setDataset(2, data2B);
-         plot.setRenderer(2, new StandardXYItemRenderer());
-         plot.getRenderer(2).setSeriesStroke(0, 2.0f);
-
-         plot.mapDatasetToRangeAxis(2, 1);
-
+        
          plot.setDatasetRenderingOrder(DatasetRenderingOrder.FORWARD);
          plot.setOrientation(PlotOrientation.VERTICAL);
 
          AFreeChart chart = new AFreeChart(
-                 "Penetracion de mercado",
+                 "",
                  AFreeChart.DEFAULT_TITLE_FONT,
                  plot,
                  true);
@@ -230,9 +217,9 @@ public class PenetrationChartView extends DemoView {
 
         TimeSeries series1 = new TimeSeries("Series 1");
 
-        for(int i = 1; i <= 10; i++) {
+        for(int i = 1; i <= 1; i++) {
         	series1.add(new Day(i, MonthConstants.OCTOBER, 2011),
-        			Math.random() * 7000 + 11000);
+        			0);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series1);
@@ -247,9 +234,9 @@ public class PenetrationChartView extends DemoView {
 
         TimeSeries series2 = new TimeSeries("Series 2-A");
 
-        for(int i = 1; i <= 20; i++) {
+        for(int i = 1; i <= 1; i++) {
         	series2.add(new Day(i, MonthConstants.OCTOBER, 2011),
-        			Math.random() * 8000 + 12000);
+        			0);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series2);
@@ -265,9 +252,9 @@ public class PenetrationChartView extends DemoView {
 
         TimeSeries series2 = new TimeSeries("Series 2-B");
 
-        for(int i = 1; i <= 20; i++) {
+        for(int i = 1; i <= 1; i++) {
         	series2.add(new Day(i, MonthConstants.OCTOBER, 2011),
-        			Math.random() * 70 + 25);
+        			0);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series2);
@@ -278,15 +265,15 @@ public class PenetrationChartView extends DemoView {
      * Creates a sample dataset.
      * @return The dataset.
      */
-    private static IntervalXYDataset createTotalDataset(ChartDataSet dataSet) {
+    private static IntervalXYDataset createTotalDataset(MonthDataSet[] dataSet) {
 
         TimeSeries series1 = new TimeSeries("Total");
 
-        for(int i = 0; i < dataSet.monthDataSet.length; i++) {
+        for(int i = 0; i < dataSet.length; i++) {
         	
-        	if(dataSet.monthDataSet[i]!=null){
-        		series1.add(DateHelper.getMonthFromStrings(dataSet.monthDataSet[i].month,dataSet.monthDataSet[i].year),
-            			dataSet.monthDataSet[i].total);
+        	if(dataSet[i].total>0){
+        		series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
+            			dataSet[i].total);
 
         	}
         	
@@ -301,22 +288,22 @@ public class PenetrationChartView extends DemoView {
      * Creates a sample dataset.
      * @return The dataset.
      */
-    private static XYDataset createBrandDataset(ChartDataSet dataSet, Brand brand) {
+    private static XYDataset createBrandDataset(MonthDataSet[] dataSet, Brand brand) {
 
         TimeSeries series1 = new TimeSeries(brand.name);
 
         
-        for(int i = 0; i < dataSet.monthDataSet.length; i++) {
-        	if(dataSet.monthDataSet[i]!=null){
-        		for(int j = 0; j<dataSet.monthDataSet[i].totalBrand.length;j++){
-        			if(dataSet.monthDataSet[i].totalBrand[j].name != null && dataSet.monthDataSet[i].totalBrand[j].name.equals(brand.name)){
-        				series1.add(DateHelper.getMonthFromStrings(dataSet.monthDataSet[i].month,dataSet.monthDataSet[i].year),
-        	        			(dataSet.monthDataSet[i].totalBrand[j].count/dataSet.monthDataSet[i].total));
-        			}
+        for(int i = 0; i < dataSet.length; i++) {
+        		if(dataSet[i].total>0){
+        			for(int j = 0; j<dataSet[i].totalBrand.length;j++){
+            			
+            			if(dataSet[i].totalBrand[j].name.equals(brand.name)){
+            				series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
+            	        			(dataSet[i].totalBrand[j].count/dataSet[i].total));
+            			}
+            		}
         		}
-        		
-	        	
-        	}
+        	
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series1);
@@ -327,17 +314,17 @@ public class PenetrationChartView extends DemoView {
      * Creates a sample dataset.
      * @return The dataset.
      */
-    private static XYDataset createOtherDataset(ChartDataSet dataSet, List<Brand> brands) {
+    private static XYDataset createOtherDataset(MonthDataSet[] dataSet, List<Brand> brands) {
 
         TimeSeries series1 = new TimeSeries("Otros");
 
-        for(int i = 0; i < dataSet.monthDataSet.length; i++) {
-        	if(dataSet.monthDataSet[i]!=null){
+        for(int i = 0; i < dataSet.length; i++) {
+        	if(dataSet[i].total>0){
         		float count = 0;
-        		for(int j = 0; j< dataSet.monthDataSet[i].totalBrand.length; j++){
+        		for(int j = 0; j< dataSet[i].totalBrand.length; j++){
         			for(int k = 0; k<brands.size();k++){
-        				if(brands.get(k).getName().equals(dataSet.monthDataSet[i].totalBrand[j].name)){
-        					count = count + dataSet.monthDataSet[i].totalBrand[j].count;
+        				if(brands.get(k).getName().equals(dataSet[i].totalBrand[j].name)){
+        					count = count + dataSet[i].totalBrand[j].count;
         				}
         			}
         			
@@ -345,8 +332,8 @@ public class PenetrationChartView extends DemoView {
         		}
         		
         		
-	        	series1.add(DateHelper.getMonthFromStrings(dataSet.monthDataSet[i].month,dataSet.monthDataSet[i].year),
-	        			(count/dataSet.monthDataSet[i].total));
+	        	series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
+	        			(count/dataSet[i].total));
         	}
         }
 

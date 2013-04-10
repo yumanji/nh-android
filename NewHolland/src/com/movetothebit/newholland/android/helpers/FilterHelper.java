@@ -20,7 +20,7 @@ public class FilterHelper implements lConstants{
 		
 		try {
 			results = helper.getInscriptionsDao().queryBuilder()
-		    .distinct().selectColumns(columnName).query();			
+		    .distinct().selectColumns(columnName).orderBy(columnName, true).query();			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -229,6 +229,24 @@ public class FilterHelper implements lConstants{
 			
 			for (int i = 0;i<results.size();i++) {
 				result[i] = results.get(i).getArea();
+			    
+			}
+		}else{
+			result = new String[1];
+			result[0] = "No hay datos";
+		}
+		return result;
+	}
+	public static String[] getTypeValues(Context ctx, DBHelper helper){		
+		String[] result = null;
+		List<InscriptionData> results = getComunValuesFromInscription(ctx,helper, MACHINE_TYPE);		
+		
+		if(results.size()!=0){
+			
+			result = new String[results.size()];
+			
+			for (int i = 0;i<results.size();i++) {
+				result[i] = results.get(i).getMachineType();
 			    
 			}
 		}else{

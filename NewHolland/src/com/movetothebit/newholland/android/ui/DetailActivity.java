@@ -49,7 +49,9 @@ public class DetailActivity extends BaseActivity {
 			e.printStackTrace();
 		}
 		
-		
+		if(item.getNameClient().length()>0||item.getLastnameClient().length()>0||item.getMailClient().length()>0||item.getPhoneClient().length()>0){
+			findViewById(R.id.clientLayout).setVisibility(View.VISIBLE);
+		}
 		modelSpinner = (AutoCompleteTextView) findViewById(R.id.modelSpinner);		
 		ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ModelHelper.getModelArray(getHelper()));	
 		modelSpinner.setEnabled(false);
@@ -87,7 +89,7 @@ public class DetailActivity extends BaseActivity {
 						if (isChecked) {
 							
 							makeOfferSwitch.setVisibility(View.VISIBLE);
-							findViewById(R.id.clientLayout).setVisibility(View.VISIBLE);
+							
 							if(makeOfferSwitch.isChecked()){
 								findViewById(R.id.firstLayout).setVisibility(View.VISIBLE);
 							
@@ -96,7 +98,7 @@ public class DetailActivity extends BaseActivity {
 							findViewById(R.id.firstLayout).setVisibility(View.GONE);
 							
 							makeOfferSwitch.setVisibility(View.INVISIBLE);
-							findViewById(R.id.clientLayout).setVisibility(View.GONE);
+							
 							
 						}
 
@@ -169,6 +171,7 @@ public class DetailActivity extends BaseActivity {
 			EditText emailClientText = (EditText) findViewById(R.id.emailEditText);
 			EditText phoneClientText = (EditText) findViewById(R.id.indexPresenceText);
 			EditText priceText = (EditText) findViewById(R.id.priceEditText);
+			
 			
 			observationsText.setText(item.getObservations());
 			observationsText.setEnabled(false);	

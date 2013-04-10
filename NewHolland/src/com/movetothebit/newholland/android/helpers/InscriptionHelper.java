@@ -281,7 +281,7 @@ public class InscriptionHelper implements lConstants{
 	
 
 	
-	public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] salesman, String[] dealer)throws SQLException, ServerException{
+	public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] salesman, String[] dealer,String[] type)throws SQLException, ServerException{
 		
 		List<InscriptionData> result  = null;
 		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
@@ -301,6 +301,10 @@ public class InscriptionHelper implements lConstants{
 			// the password field must be equal to "_secret"
 			if(dealer.length>0){
 				where.in(DEALER_NAME, dealer);
+				where.and();
+			}
+			if(dealer.length>0){
+				where.in(MACHINE_TYPE, type);
 				where.and();
 			}
 			where.eq(HISTORIC, 0);
@@ -372,7 +376,7 @@ public class InscriptionHelper implements lConstants{
 		return result;
 	   
 	}
-	public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] salesman, String[] dealer, String[] model, String[] modelComp, String[] population, String[] area)throws SQLException, ServerException{
+	public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] salesman, String[] dealer, String[] model, String[] modelComp, String[] population, String[] area,String[] type)throws SQLException, ServerException{
 		
 		List<InscriptionData> result  = null;
 		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
@@ -410,7 +414,10 @@ public class InscriptionHelper implements lConstants{
 				where.in(AREA, area);
 				where.and();				
 			}			
-			
+			if(type.length>0){
+				where.in(MACHINE_TYPE, type);
+				where.and();				
+			}
 			where.eq(HISTORIC, 0);
 			
 			result = helper.getInscriptionsDao().query(queryBuilder.prepare());
@@ -445,7 +452,7 @@ public class InscriptionHelper implements lConstants{
 	    
 	}
 	
-	public static List<InscriptionData> getHistoricFilter(DBHelper helper,String[] salesman, String[] dealer)throws SQLException, ServerException{
+	public static List<InscriptionData> getHistoricFilter(DBHelper helper,String[] salesman, String[] dealer,String[] type)throws SQLException, ServerException{
 		
 		List<InscriptionData> result  = null;
 		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
@@ -459,14 +466,18 @@ public class InscriptionHelper implements lConstants{
 			// the name field must be equal to "foo"
 			if(salesman.length>0){
 				where.in(SALESMAN_NAME, salesman);
-			}
-			if(salesman.length>0 && dealer.length>0){
-				// and
 				where.and();
 			}
+			
 			// the password field must be equal to "_secret"
 			if(dealer.length>0){
 				where.in(DEALER_NAME, dealer);
+				where.and();
+			}
+			
+			if(dealer.length>0){
+				where.in(MACHINE_TYPE, type);
+				where.and();
 			}
 			where.and().eq(HISTORIC, 1);
 			

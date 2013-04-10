@@ -9,11 +9,10 @@ import java.util.List;
 import android.content.Context;
 import android.util.Log;
 
-import com.movetothebit.newholland.android.charts.model.ChartDataSet;
+import com.movetothebit.newholland.android.charts.model.FilterDataSet;
 import com.movetothebit.newholland.android.charts.model.MonthDataSet;
 import com.movetothebit.newholland.android.db.DBHelper;
 import com.movetothebit.newholland.android.model.Brand;
-import com.movetothebit.newholland.android.model.BrandData;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.model.InscriptionTableData;
 import com.movetothebit.newholland.android.utils.lConstants;
@@ -79,94 +78,132 @@ public class ChartHelper implements lConstants {
 	
 	}	
 	
-	public static ChartDataSet getDataSet(List<InscriptionData> data,String[] brands, int lostCount){
+	public static List<InscriptionData>  getFilterList(List<InscriptionData> data, String[] brands, String[] dates){
 		
-		ChartDataSet dataSet = new ChartDataSet();
-		
-		String[] lastMonths = DateHelper.getLastMonths(20);
-		MonthDataSet[] monthDataSetList = new MonthDataSet[lastMonths.length];
-		if(dataSet.lostData == null){
-			dataSet.lostData = new float[lostCount];
-			dataSet.totalBrand = new Brand[brands.length];
+		List<InscriptionData> dataFilter = new ArrayList<InscriptionData>();
+		if(dates.length>0||brands.length>0){
+			for(InscriptionData item: data){
+				boolean result = false;
+				for (String date: dates){
+					if((item.getMonth()+" "+item.getYear()).equals(date)){
+						result=true;
+						break;						
+					}
+				}
+			
+				for(String brand:brands){
+					if(item.getBrand().equals(brand)){
+						result = true;
+						break;
+					}
+				}
+				
+				if(result)
+					dataFilter.add(item);			
+			
+			}
+		}else{
+			return data;
 		}
+		
+		return dataFilter;
+		
+		
+		
+		
+	}
+	public static MonthDataSet[] getMonthDataSet(List<InscriptionData> data,String[] brands){
+		
+			
+		String[] lastMonths = DateHelper.getLastMonths(12);		
+		MonthDataSet[] monthDataSetList = new MonthDataSet[lastMonths.length];
+				
+		for(int i=0; i<lastMonths.length; i++){
+			
+			monthDataSetList[i] = new MonthDataSet();			
+			monthDataSetList[i].totalBrand = new Brand[brands.length];
+			
+			for(int j=0; j<brands.length; j++){
+				
+				monthDataSetList[i].totalBrand[j] = new Brand();
+				monthDataSetList[i].totalBrand[j].name = brands[j];
+					
+			}
+		}
+		
+		
 		Log.d(TAG,"start for;    " +new Date().toGMTString());
-		//Recorremos todos los elementos del filtro
+		
  		for(InscriptionData item: data){
 			
  			//Ahora para cada elemento comprobamos para cada mes de los ultimos los valores para ir rellenando el data set de los graficos
 			for(int i=0; i<lastMonths.length; i++){
 				
-				if((item.getMonth()+" "+ item.getYear()).equals(lastMonths[i])){
-					
-					if( monthDataSetList[i]== null){
-						monthDataSetList[i] = new MonthDataSet();
-						monthDataSetList[i].lostData = new float[lostCount];
-						monthDataSetList[i].totalBrand = new Brand[brands.length];
-						monthDataSetList[i].month = lastMonths[i].substring(0,3);
-						monthDataSetList[i].year = lastMonths[i].substring(5,8);
-					}
-					
-					monthDataSetList[i].total = ++monthDataSetList[i].total;
-					dataSet.total = ++dataSet.total;
-					
-					if(item.knownOperation==1){
-						monthDataSetList[i].known = ++monthDataSetList[i].known;
-						dataSet.known = ++dataSet.known;
-					}
-					if(item.makeOffer==1){
-						monthDataSetList[i].offert = ++monthDataSetList[i].offert;
-						dataSet.offert = ++dataSet.offert;
-					}
-					if(item.winOffer==1){
-						
-						if(item.getWhyWin()>=0){
-							monthDataSetList[i].win = ++monthDataSetList[i].win;	
-							dataSet.win = ++dataSet.win;
-						}
-						
-					}else{
-						if(item.getWhyLose()>=0){
-							
-							monthDataSetList[i].lost = ++monthDataSetList[i].lost;
-							dataSet.lost = ++dataSet.lost;
-							monthDataSetList[i].lostData[item.getWhyLose()] =++monthDataSetList[i].lostData[item.getWhyLose()]; 
-							dataSet.lostData[item.getWhyLose()] =++dataSet.lostData[item.getWhyLose()]; 
-						}
-						
-					}	
-					
-					for(int j=0; j<brands.length; j++){
-//						Log.d(TAG, item.getBrand()+"  //  " +brands[j]);
-						if(monthDataSetList[i].totalBrand[j]==null)
-							monthDataSetList[i].totalBrand[j] = new Brand();
-						if(dataSet.totalBrand[j]== null)
-							dataSet.totalBrand[j] = new Brand();
-						
-						if(item.getBrand().equals(brands[j])){						
-							
-							
-							monthDataSetList[i].totalBrand[j].name = brands[j];
-							monthDataSetList[i].totalBrand[j].count = ++monthDataSetList[i].totalBrand[j].count;
-							dataSet.totalBrand[j].name = brands[j];
-							dataSet.totalBrand[j].count = ++dataSet.totalBrand[j].count;
-						}						
-							
-					}
-				}			
+				if( monthDataSetList[i].month== null){					
+					monthDataSetList[i].month = lastMonths[i].substring(0,3);
+					monthDataSetList[i].year = lastMonths[i].substring(5,8);
+				}
 				
-			}
-			
+				if((item.getMonth()+" "+ item.getYear()).equals(lastMonths[i])){					
+					
+					++monthDataSetList[i].total;
+					
+					for(int j=0; j<brands.length; j++){						
+						if(item.getBrand().equals(brands[j]))
+							++monthDataSetList[i].totalBrand[j].count;
+					}
+					
+					if(item.knownOperation==1)
+						++monthDataSetList[i].known;
+					
+					if(item.makeOffer==1)
+						++monthDataSetList[i].offert;
+					
+					if(item.winOffer==1){						
+						if(item.getWhyWin()>=0)
+							++monthDataSetList[i].win;							
+					}						
+				}					
+			}			
 		}
 		
-		dataSet.monthDataSet = monthDataSetList;
+		
+		
+		return monthDataSetList;
+	}
+public static FilterDataSet getFilterDataSet(List<InscriptionData> data, int lostCount, String[] brands, String[] dates){
+		
+		List<InscriptionData> dataFilter = getFilterList(data, brands, dates);
+		FilterDataSet dataSet = new FilterDataSet();		
+		
+		dataSet.lostData = new float[lostCount];
 		
 		
 		
-		Log.d(TAG,"end for;    " + new Date().toGMTString());
+ 		for(InscriptionData item: dataFilter){
+			
+ 			++dataSet.total;
+			if(item.knownOperation==1)
+				++dataSet.known;
+			
+			if(item.makeOffer==1)
+				++dataSet.offert;
+					
+			if(item.winOffer==1){
+				if(item.getWhyWin()>=0)
+					++dataSet.win;				
+			}else{
+				if(item.getWhyLose()>=0&&item.getWhyLose()<=lostCount){
+					++dataSet.lost;
+					++dataSet.lostData[item.getWhyLose()]; 
+				}
+			}	
+		}
+		
+		
 		
 		return dataSet;
 	}
-	
 	public static List<Brand> getBrandData(Context ctx, DBHelper helper,List<InscriptionData> listData){		
 		List<Brand> data = new ArrayList<Brand>();		
 		List<InscriptionData> list = null;

@@ -10,25 +10,11 @@ public class MonthDataSet {
 	public float total = 0;
 	public float known = 0;
 	public float offert = 0;
-	public float win = 0;	
-	public float lost = 0;	
-	public float[] lostData;
+	public float win = 0;		
 	public Brand[] totalBrand;
 	
 	
 	
-	public float getLost() {
-		return lost;
-	}
-	public void setLost(float lost) {
-		this.lost = lost;
-	}
-	public float[] getLostData() {
-		return lostData;
-	}
-	public void setLostData(float[] lostData) {
-		this.lostData = lostData;
-	}
 	public String getMonth() {
 		return month;
 	}

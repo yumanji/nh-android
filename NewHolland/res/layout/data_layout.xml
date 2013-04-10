@@ -30,7 +30,12 @@
                     android:layout_weight="0"
                     android:drawableLeft="@drawable/ic_cancel"
                     android:text="Limpiar" />
-
+ 				<com.movetothebit.newholland.android.widgets.MultiSelectSpinner
+                    android:id="@+id/typeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"                    
+                    android:prompt="@string/type_prompt" />
                 <com.movetothebit.newholland.android.widgets.MultiSelectSpinner
                     android:id="@+id/areaSpinner"
                     android:layout_width="match_parent"
@@ -300,6 +305,14 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
+                                    android:text="@string/calc_title_table"
+                                    android:textAppearance="@style/tableTitleColumnText" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="right"
                                     android:text="@string/objetives_title_col1"
                                     android:textAppearance="@style/tableTitleColumnText" />
 
@@ -321,6 +334,12 @@
                                 <TextView
                                     android:layout_weight="1"
                                     android:text="@string/objetives_title_row1"
+                                    android:textAppearance="@style/tableTitleColumnText" />
+
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:gravity="right"
+                                    android:text="(2)/(1)"
                                     android:textAppearance="@style/tableTitleColumnText" />
 
                                 <TextView
@@ -352,6 +371,12 @@
                                     android:textAppearance="@style/tableTitleColumnText" />
 
                                 <TextView
+                                    android:layout_weight="1"
+                                    android:gravity="right"
+                                    android:text="(3)/(2)"
+                                    android:textAppearance="@style/tableTitleColumnText" />
+
+                                <TextView
                                     android:id="@+id/indexPresenceText"
                                     android:layout_weight="1"
                                     android:gravity="right"
@@ -380,6 +405,12 @@
                                     android:textAppearance="@style/tableTitleColumnText" />
 
                                 <TextView
+                                    android:layout_weight="1"
+                                    android:gravity="right"
+                                    android:text="(4)/(3)"
+                                    android:textAppearance="@style/tableTitleColumnText" />
+
+                                <TextView
                                     android:id="@+id/indexEffectText"
                                     android:layout_weight="1"
                                     android:gravity="right"
@@ -405,6 +436,12 @@
                                 <TextView
                                     android:layout_weight="1"
                                     android:text="@string/objetives_title_row5"
+                                    android:textAppearance="@style/tableTitleColumnText" />
+
+                                <TextView
+                                    android:layout_weight="1"
+                                    android:gravity="right"
+                                    android:text="(4)/(1)"
                                     android:textAppearance="@style/tableTitleColumnText" />
 
                                 <TextView

@@ -15,6 +15,7 @@ import com.movetothebit.newholland.android.model.AnswerItem;
 import com.movetothebit.newholland.android.model.AnswerWinItem;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.model.ModelItem;
+import com.movetothebit.newholland.android.model.ObjetiveItem;
 import com.movetothebit.newholland.android.utils.lConstants;
 
 public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
@@ -27,7 +28,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 	private static Dao<AnswerItem, Integer> answersDao;
 	private static Dao<AnswerWinItem, Integer> answersWinDao;
 	private static Dao<ModelItem, Integer> modelsDao;
-
+	private static Dao<ObjetiveItem, Integer> objetiveDao;
 	private ConnectionSource connectionSource = null;
 
 	public DBHelper(Context context) {
@@ -53,6 +54,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 			TableUtils.createTable(connectionSource, ModelItem.class);
 			TableUtils.createTable(connectionSource, AnswerItem.class);
 			TableUtils.createTable(connectionSource, AnswerWinItem.class);
+			TableUtils.createTable(connectionSource, ObjetiveItem.class);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -93,7 +95,13 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 		}
 		return answersWinDao;
 	}
-
+	public  Dao<ObjetiveItem, Integer> getObjetivesDao()
+			throws SQLException {
+		if (objetiveDao == null) {
+			objetiveDao= getDao(ObjetiveItem.class);
+		}
+		return objetiveDao;
+	}
 	public void dropAllTables(){
 		
 		try {
@@ -101,6 +109,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 			TableUtils.clearTable(getConnectionSource(), ModelItem.class);
 			TableUtils.clearTable(getConnectionSource(), AnswerItem.class);
 			TableUtils.clearTable(getConnectionSource(), AnswerWinItem.class);
+			TableUtils.clearTable(getConnectionSource(), ObjetiveItem.class);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,6 +128,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper implements lConstants{
 		answersDao = null;
 		answersWinDao = null;
 		modelsDao = null;
+		objetiveDao = null;
 	}
 
 }

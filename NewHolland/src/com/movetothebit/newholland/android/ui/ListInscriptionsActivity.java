@@ -30,6 +30,7 @@ public class ListInscriptionsActivity extends BaseActivity{
 	private List<InscriptionData> listData = new ArrayList<InscriptionData>();
 	private MultiSelectSpinner dealerSpinner;
 	private MultiSelectSpinner salesmanSpinner;
+	private MultiSelectSpinner typeSpinner;
 	private Button filterButton;
 	private Button resetButton;
 	
@@ -44,6 +45,7 @@ public class ListInscriptionsActivity extends BaseActivity{
 		list =(ListView)findViewById(R.id.list);
 		dealerSpinner = (MultiSelectSpinner) findViewById(R.id.dealerSpinner);
 		salesmanSpinner = (MultiSelectSpinner) findViewById(R.id.salesmanSpinner);
+		typeSpinner = (MultiSelectSpinner) findViewById(R.id.typeSpinner);
 		filterButton = (Button) findViewById(R.id.filterButton);
 		resetButton = (Button) findViewById(R.id.resetButton);
 		resetButton.setOnClickListener(new OnClickListener() {
@@ -81,6 +83,7 @@ public class ListInscriptionsActivity extends BaseActivity{
 	public void resetFilters(){
 		dealerSpinner.setData(FilterHelper.getDealerValues(getApplicationContext(),getHelper()), "Concesionario");		
 		salesmanSpinner.setData(FilterHelper.getSalesmanValues(getApplicationContext(),getHelper()), "Vendedor");
+		typeSpinner.setData(FilterHelper.getTypeValues(getApplicationContext(), getHelper()), "Tipo");
 		
 	}
 	class LoadDataTask extends AsyncTask<Void, Void, String>{
@@ -101,7 +104,7 @@ public class ListInscriptionsActivity extends BaseActivity{
 			
 			try {
 				if(salesmanSpinner.getSelectedStrings().size()>0||dealerSpinner.getSelectedStrings().size()>0){
-					listData = InscriptionHelper.getInscriptionsFilter(getHelper(),salesmanSpinner.getSelectedStringsArray(), dealerSpinner.getSelectedStringsArray());
+					listData = InscriptionHelper.getInscriptionsFilter(getHelper(),salesmanSpinner.getSelectedStringsArray(), dealerSpinner.getSelectedStringsArray(),typeSpinner.getSelectedStringsArray());
 				}else{
 					listData = InscriptionHelper.getInscriptionsEmpty(getHelper());	
 				}

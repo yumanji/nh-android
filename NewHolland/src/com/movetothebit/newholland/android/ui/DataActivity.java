@@ -36,11 +36,12 @@ public class DataActivity extends ChartBaseActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.data_layout);	
         
+       
         infoLayout = (LinearLayout)findViewById(R.id.infoLayout);
         chartButton = (Button) findViewById(R.id.chartButton);
         lostChartView  = (BarChartView)findViewById(R.id.lostChartView);
-      
-        dealerSpinner = (MultiSelectSpinner)findViewById(R.id.dealerSpinner);	     
+        dealerSpinner = (MultiSelectSpinner)findViewById(R.id.dealerSpinner);	   
+        typeSpinner = (MultiSelectSpinner)findViewById(R.id.typeSpinner);	     
         salesmanSpinner = (MultiSelectSpinner)findViewById(R.id.salesmanSpinner);	       
         modelSpinner = (MultiSelectSpinner)findViewById(R.id.modelSpinner);	       
         modelCompSpinner = (MultiSelectSpinner)findViewById(R.id.modelCompSpinner);
@@ -108,7 +109,8 @@ public class DataActivity extends ChartBaseActivity{
 							modelSpinner.getSelectedStringsArray(),
 							modelCompSpinner.getSelectedStringsArray(),							
 							populationSpinner.getSelectedStringsArray(),
-							areaSpinner.getSelectedStringsArray());
+							areaSpinner.getSelectedStringsArray(),
+							typeSpinner.getSelectedStringsArray());
 				}else{
 					listData = InscriptionHelper.getInscriptions(getHelper());	
 				}
@@ -136,8 +138,12 @@ public class DataActivity extends ChartBaseActivity{
 				showAlertDialog(result);
 			}else{
 				if(listData.size()>0){
-					//data = ChartHelper.getInscriptionTableData(getApplicationContext(), getHelper(), listData);
-					dataSet = ChartHelper.getDataSet(listData, FilterHelper.getBrandValues(getApplicationContext(), getHelper()),AnswersHelper.getAnswersArray(getHelper()).length);
+					monthDataSet = ChartHelper.getMonthDataSet(listData, FilterHelper.getBrandValues(getApplicationContext(), getHelper()));
+					filterDataSet = ChartHelper.getFilterDataSet(listData,
+							AnswersHelper.getAnswersArray(getHelper()).length,
+							brandSpinner.getSelectedStringsArray(),
+							periodSpinner.getSelectedStringsArray());
+					
 					refreshData();
 				}else{
 					Toast.makeText(getApplicationContext(), "No hay Datos", Toast.LENGTH_SHORT).show();
@@ -151,43 +157,44 @@ public class DataActivity extends ChartBaseActivity{
 		
 	}	
 	public void refreshData(){
-		fillTables();
-		fillCharts();
-	}
-	public void fillTables(){		
-		fillPresenceTable(dataSet);
-		fillTotalTable(dataSet);
-		fillLostTable(dataSet);
-	//	fillWinTable(data);
-		//fillBrandTable(data);
+		 try {
+			objetives = getHelper().getObjetivesDao().queryForAll();
+			fillTables();
+			fillCharts();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
-	public CategoryDataset getLostDataset() {
+	public void fillTables(){		
+		fillPresenceTable(filterDataSet);
+		fillTotalTable(filterDataSet);
+		fillLostTable(filterDataSet);
+
+		
+	}
+	public CategoryDataset getLostDataset(float[] values) {
 		String series1 = "Motivo";
 	    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 	    String[] label =AnswersHelper.getAnswersArray(getHelper());
-	    float[] values = dataSet.lostData;
-	    // column keys...
+	   
+	   
 	    for(int i = 0;i<label.length;i++){
 	    	
 	    	 dataset.addValue(values[i], series1, label[i]);
 	    }
-	
-
-
-
         return dataset;
 
     }
 
 	public void fillCharts(){
 		
-		lostChartView.paintChart(getLostDataset(),"Operaciones Perdidas");
-
-		presenceChartView.paintChart(dataSet,PRESENCE);
-		penetrationChartView.paintChart(dataSet, ChartHelper.getBrandData(getApplicationContext(), getHelper(), listData));
-		effectivenessChartView.paintChart(dataSet,EFECTIVITY);
-		marketChartView.paintChart(dataSet,MARKET);
+		lostChartView.paintChart(getLostDataset(filterDataSet.lostData),"Operaciones Perdidas");
+		presenceChartView.paintChart(monthDataSet,PRESENCE,Float.valueOf(objetives.get(1).getValue())/100);
+		penetrationChartView.paintChart(monthDataSet, ChartHelper.getBrandData(getApplicationContext(), getHelper(), listData));
+		effectivenessChartView.paintChart(monthDataSet,EFECTIVITY,Float.valueOf(objetives.get(2).getValue())/100);
+		marketChartView.paintChart(monthDataSet,MARKET,Float.valueOf(objetives.get(3).getValue())/100);
 
 	
 }

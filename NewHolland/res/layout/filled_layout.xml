@@ -272,11 +272,135 @@
 
               </LinearLayout>
           </LinearLayout>
+
+          <LinearLayout
+              android:id="@+id/clientLayout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/detailLayout"
+              android:layout_weight="0"
+              android:background="@drawable/table_back"
+              android:orientation="horizontal"
+              android:visibility="gone" >
+
+              <TextView
+                  android:id="@+id/TextView02"
+                  style="@style/formText"
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="10dp"
+                  android:layout_weight="0"
+                  android:gravity="center_vertical"
+                  android:padding="10dp"
+                  android:text="@string/quest7" />
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="0"
+                  android:orientation="vertical" >
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="0" >
+
+                      <TextView
+                          android:id="@+id/ofertTotalText"
+                          style="@style/formText"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="10dp"
+                          android:layout_weight="0"
+                          android:padding="10dp"
+                          android:text="@string/name" />
+
+                      <EditText
+                          android:id="@+id/nameClientEditText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="5dp"
+                          android:layout_weight="1"
+                          android:ems="10"
+                          android:enabled="false"
+                          android:selectAllOnFocus="true" >
+
+                          <requestFocus />
+                      </EditText>
+
+                      <TextView
+                          android:id="@+id/TextView10"
+                          style="@style/formText"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="10dp"
+                          android:layout_weight="0"
+                          android:padding="10dp"
+                          android:text="@string/surname" />
+
+                      <EditText
+                          android:id="@+id/surnameClientEditText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="5dp"
+                          android:layout_weight="1"
+                          android:ems="10"
+                          android:enabled="false"
+                          android:selectAllOnFocus="true" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="0" >
+
+                      <TextView
+                          android:id="@+id/indexMarketText"
+                          style="@style/formText"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="10dp"
+                          android:layout_weight="0"
+                          android:padding="10dp"
+                          android:text="@string/email" />
+
+                      <EditText
+                          android:id="@+id/emailEditText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="5dp"
+                          android:layout_weight="1"
+                          android:ems="10"
+                          android:enabled="false"
+                          android:selectAllOnFocus="true" />
+
+                      <TextView
+                          style="@style/formText"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="10dp"
+                          android:layout_weight="0"
+                          android:padding="10dp"
+                          android:text="@string/phone" />
+
+                      <EditText
+                          android:id="@+id/indexPresenceText"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginLeft="5dp"
+                          android:layout_weight="1"
+                          android:ems="10"
+                          android:enabled="false"
+                          android:selectAllOnFocus="true" />
+                  </LinearLayout>
+              </LinearLayout>
+          </LinearLayout>
+
  <LinearLayout
      android:id="@+id/knownLayout"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     android:layout_below="@id/detailLayout"
+     android:layout_below="@id/clientLayout"
      android:layout_weight="0" >
 
      <Switch
@@ -309,133 +433,10 @@
  </LinearLayout>
 
  <LinearLayout
-     android:id="@+id/clientLayout"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:layout_below="@id/knownLayout"
-     android:layout_weight="0"
-     android:background="@drawable/table_back"
-     android:orientation="horizontal"
-     android:visibility="gone" >
-
-     <TextView
-         android:id="@+id/TextView02"
-         style="@style/formText"
-         android:layout_width="wrap_content"
-         android:layout_height="match_parent"
-         android:layout_marginLeft="10dp"
-         android:layout_weight="0"
-         android:gravity="center_vertical"
-         android:padding="10dp"
-         android:text="@string/quest7" />
-
-     <LinearLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_weight="0"
-         android:orientation="vertical" >
-
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_weight="0" >
-
-             <TextView
-                 android:id="@+id/ofertTotalText"
-                 style="@style/formText"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="10dp"
-                 android:layout_weight="0"
-                 android:padding="10dp"
-                 android:text="@string/name" />
-
-             <EditText
-                 android:id="@+id/nameClientEditText"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="5dp"
-                 android:layout_weight="1"
-                 android:ems="10"
-                 android:enabled="false"
-                 android:selectAllOnFocus="true" />
-
-             <TextView
-                 android:id="@+id/TextView10"
-                 style="@style/formText"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="10dp"
-                 android:layout_weight="0"
-                 android:padding="10dp"
-                 android:text="@string/surname" />
-
-             <EditText
-                 android:id="@+id/surnameClientEditText"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="5dp"
-                 android:layout_weight="1"
-                 android:ems="10"
-                 android:enabled="false"
-                 android:selectAllOnFocus="true" />
-
-         </LinearLayout>
-
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_weight="0" >
-
-             <TextView
-                 android:id="@+id/indexMarketText"
-                 style="@style/formText"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="10dp"
-                 android:layout_weight="0"
-                 android:padding="10dp"
-                 android:text="@string/email" />
-
-             <EditText
-                 android:id="@+id/emailEditText"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="5dp"
-                 android:layout_weight="1"
-                 android:ems="10"
-                 android:enabled="false"
-                 android:selectAllOnFocus="true" />
-
-             <TextView
-                
-                 style="@style/formText"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="10dp"
-                 android:layout_weight="0"
-                 android:padding="10dp"
-                 android:text="@string/phone" />
-
-             <EditText
-                 android:id="@+id/indexPresenceText"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="5dp"
-                 android:layout_weight="1"
-                 android:ems="10"
-                 android:enabled="false"
-                 android:selectAllOnFocus="true" />
-
-         </LinearLayout>
-     </LinearLayout>
- </LinearLayout>
-
- <LinearLayout
      android:id="@+id/firstLayout"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     android:layout_below="@id/clientLayout"
+     android:layout_below="@id/knownLayout"
      android:layout_weight="0"
      android:orientation="vertical"
      android:visibility="gone" >

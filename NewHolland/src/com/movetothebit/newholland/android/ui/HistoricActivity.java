@@ -30,6 +30,7 @@ public class HistoricActivity extends BaseActivity{
 	private List<InscriptionData> listData = new ArrayList<InscriptionData>();
 	private MultiSelectSpinner dealerSpinner;
 	private MultiSelectSpinner salesmanSpinner;
+	private MultiSelectSpinner typeSpinner;
 	private Button filterButton;
 	private Button resetButton;
 	@Override
@@ -43,6 +44,8 @@ public class HistoricActivity extends BaseActivity{
 		
 		dealerSpinner = (MultiSelectSpinner) findViewById(R.id.dealerSpinner);
 		salesmanSpinner = (MultiSelectSpinner) findViewById(R.id.salesmanSpinner);
+		typeSpinner = (MultiSelectSpinner) findViewById(R.id.typeSpinner);
+		
 		filterButton = (Button) findViewById(R.id.filterButton);
 		resetButton = (Button) findViewById(R.id.resetButton);
 		resetButton.setOnClickListener(new OnClickListener() {
@@ -83,7 +86,7 @@ public class HistoricActivity extends BaseActivity{
 			
 			try {
 				if(salesmanSpinner.getSelectedStrings().size()>0||dealerSpinner.getSelectedStrings().size()>0){
-					listData = InscriptionHelper.getHistoricFilter(getHelper(),salesmanSpinner.getSelectedStringsArray(),dealerSpinner.getSelectedStringsArray());
+					listData = InscriptionHelper.getHistoricFilter(getHelper(),salesmanSpinner.getSelectedStringsArray(),dealerSpinner.getSelectedStringsArray(),typeSpinner.getSelectedStringsArray());
 				}else{
 					listData = InscriptionHelper.getHistoric(getHelper());	
 				}
@@ -135,7 +138,7 @@ public class HistoricActivity extends BaseActivity{
 	public void resetFilters(){
 		dealerSpinner.setData(FilterHelper.getDealerValues(getApplicationContext(), getHelper()), "Concesionario");		
 		salesmanSpinner.setData(FilterHelper.getSalesmanValues(getApplicationContext(), getHelper()), "Vendedor");
-		
+		typeSpinner.setData(FilterHelper.getTypeValues(getApplicationContext(), getHelper()), "Tipo");
 	}
 	
 	

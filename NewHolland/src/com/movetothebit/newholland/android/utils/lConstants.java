@@ -23,6 +23,7 @@ public interface lConstants {
 	public static final String GET_ANSWERS_WIN = "getanswerswin/";
 	public static final String GET_MODELS = "getmodels/";
 	public static final String GET_SURVEY= "getsurvey/";
+	public static final String GET_OBJETIVES= "getobjetivos/";
 	public static final String SET_SURVEY= "setsurvey/";
 	public static final String LOGIN= "login/";
 	

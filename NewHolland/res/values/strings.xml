@@ -91,6 +91,7 @@
     <string name="dealer_prompt">Selecciona el concesionario</string>
     <string name="period_prompt">Selecciona el periodo</string>
     <string name="model_prompt">Selecciona el modelo</string>
+    <string name="type_prompt">Selecciona el tipo</string>
       <string name="modelComp_prompt">Selecciona el modelo Comparable</string>
     <string name="province_prompt">Selecciona la provincia</string>
      <string name="population_prompt">Selecciona la población</string>
@@ -114,7 +115,7 @@
     <string name="brand_title_row8">LANDINI</string>
     <string name="brand_title_row9">SAME</string>
     <string name="brand_title_row10">LAMBORGINI</string>
-    
+    <string name="calc_title_table">Cálculo</string>
     <string name="objetives_title_table">Objetivos de mercado</string>
     <string name="objetives_title_col1">Indice %</string>
     <string name="objetives_title_col2">Objetivo NH</string>
