@@ -303,7 +303,7 @@ public class InscriptionHelper implements lConstants{
 				where.in(DEALER_NAME, dealer);
 				where.and();
 			}
-			if(dealer.length>0){
+			if(type.length>0){
 				where.in(MACHINE_TYPE, type);
 				where.and();
 			}
@@ -475,11 +475,11 @@ public class InscriptionHelper implements lConstants{
 				where.and();
 			}
 			
-			if(dealer.length>0){
+			if(type.length>0){
 				where.in(MACHINE_TYPE, type);
 				where.and();
 			}
-			where.and().eq(HISTORIC, 1);
+			where.eq(HISTORIC, 1);
 			
 			result = helper.getInscriptionsDao().query(queryBuilder.prepare());
 		
