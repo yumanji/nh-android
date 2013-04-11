@@ -77,7 +77,7 @@ public class ModelHelper implements lConstants{
 		String[] array = null;
 		List<ModelItem> list = null;
 		
-		try {
+//		try {
 			list = getModels(helper);
 			array = new String[list.size()];
 			
@@ -85,13 +85,13 @@ public class ModelHelper implements lConstants{
 				array[i]= list.get(i).getValue();
 			}
 		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ServerException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return array;
 	}
 	public static void syncModels(Context ctx, DBHelper helper) throws SQLException,ServerException{
@@ -147,7 +147,7 @@ public class ModelHelper implements lConstants{
 		}
 		
 	}
-	public static List<ModelItem> getModels(DBHelper helper) throws SQLException, ServerException{
+	public static List<ModelItem> getModels(DBHelper helper) {
 		
 		List<ModelItem> result  = null;
 		
@@ -157,7 +157,7 @@ public class ModelHelper implements lConstants{
 			
 			
 		} catch (SQLException e) {
-			throw e;
+			e.printStackTrace();
 		
 		}
 		return result;

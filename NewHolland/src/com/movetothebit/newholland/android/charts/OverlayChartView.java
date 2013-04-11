@@ -428,7 +428,7 @@ public class OverlayChartView extends DemoView implements lConstants{
 
         for(int i = 1; i <=1; i++) {
         	series2.add(new Month( i, 2013),
-        			0);
+        			1);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series2);
@@ -443,9 +443,9 @@ public class OverlayChartView extends DemoView implements lConstants{
 
         TimeSeries series2 = new TimeSeries("LAMBORGHINI");
 
-        for(int i = 1; i <=14; i++) {
+        for(int i = 1; i <=1; i++) {
         	series2.add(new Month( i, 2013),
-        			0);
+        			1);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series2);
@@ -461,9 +461,9 @@ public class OverlayChartView extends DemoView implements lConstants{
 
         TimeSeries series2 = new TimeSeries("NEW HOLLAND");
 
-        for(int i = 1; i <= 4; i++) {
+        for(int i = 1; i <= 1; i++) {
         	series2.add(new Month( i, 2013),
-        			i*24);
+        			1);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series2);

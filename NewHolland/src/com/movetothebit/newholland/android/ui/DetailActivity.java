@@ -1,6 +1,7 @@
 package com.movetothebit.newholland.android.ui;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,10 +16,15 @@ import android.widget.TextView;
 
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.adapters.AnswerAdapter;
+import com.movetothebit.newholland.android.adapters.AnswerWinAdapter;
 import com.movetothebit.newholland.android.helpers.AnswersHelper;
 import com.movetothebit.newholland.android.helpers.InscriptionHelper;
 import com.movetothebit.newholland.android.helpers.ModelHelper;
+import com.movetothebit.newholland.android.model.AnswerItem;
+import com.movetothebit.newholland.android.model.AnswerWinItem;
 import com.movetothebit.newholland.android.model.InscriptionData;
+import com.movetothebit.newholland.android.utils.ServerException;
 
 public class DetailActivity extends BaseActivity {
 
@@ -30,7 +36,8 @@ public class DetailActivity extends BaseActivity {
 	private AutoCompleteTextView modelSpinner;
 	private Spinner missingSpinner;
 	private Spinner winnerSpinner;
-
+	public List<AnswerItem> lostList;
+	public List<AnswerWinItem> winList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +50,13 @@ public class DetailActivity extends BaseActivity {
 		try {
 			
 			item = InscriptionHelper.getInscription(getHelper(), getIntent().getExtras().getString("id"));
+			lostList= AnswersHelper.getAnswers(getHelper());
+			winList= AnswersHelper.getAnswersWin(getHelper());
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -58,16 +70,17 @@ public class DetailActivity extends BaseActivity {
 		modelSpinner.setAdapter(modelAdapter);
 		
 		missingSpinner = (Spinner) findViewById(R.id.missingSpinner);
-		ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, AnswersHelper.getAnswersArray(getHelper()));
-		missingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
-		missingSpinner.setEnabled(false);
-		missingSpinner.setAdapter(missingAdapter);
-		
-		winnerSpinner = (Spinner) findViewById(R.id.winSpinner);
-		ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, AnswersHelper.getAnswersWinArray(getHelper()));
-		winAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
-		winnerSpinner.setEnabled(false);
-		winnerSpinner.setAdapter(winAdapter);
+		//	ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersArray(getHelper()));
+			AnswerAdapter missingAdapter = new AnswerAdapter(this,lostList);
+			//missingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+			missingSpinner.setAdapter(missingAdapter);
+			
+			winnerSpinner = (Spinner) findViewById(R.id.winSpinner);
+			AnswerWinAdapter winingAdapter = new AnswerWinAdapter(this,winList);
+//			ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersWinArray(getHelper()));
+//			winAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+			winnerSpinner.setAdapter(winingAdapter);
+
 
 		knownOperationSwitch = (Switch) findViewById(R.id.knownOperationSwitch);
 		makeOfferSwitch = (Switch) findViewById(R.id.makeOfferSwitch);
@@ -223,8 +236,17 @@ public class DetailActivity extends BaseActivity {
 			}
 			
 			modelSpinner.setText(item.getModelOffer());			
-			missingSpinner.setSelection(item.getWhyLose());
-			winnerSpinner.setSelection(item.getWhyWin());
+			for(int i=0;i<lostList.size();i++){
+				if(lostList.get(i).getId()==item.getWhyLose()){
+					missingSpinner.setSelection(i);
+				}
+				 
+			 }
+			 for(int i=0;i<winList.size();i++){
+					if(winList.get(i).getId()==item.getWhyWin()){
+						winnerSpinner.setSelection(i);
+					}
+			}
 			
 		
 		

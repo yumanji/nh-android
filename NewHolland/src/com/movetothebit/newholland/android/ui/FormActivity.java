@@ -7,10 +7,8 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -24,10 +22,13 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
+import com.movetothebit.newholland.android.adapters.AnswerAdapter;
+import com.movetothebit.newholland.android.adapters.AnswerWinAdapter;
 import com.movetothebit.newholland.android.helpers.AnswersHelper;
-import com.movetothebit.newholland.android.helpers.AppHelper;
 import com.movetothebit.newholland.android.helpers.InscriptionHelper;
 import com.movetothebit.newholland.android.helpers.ModelHelper;
+import com.movetothebit.newholland.android.model.AnswerItem;
+import com.movetothebit.newholland.android.model.AnswerWinItem;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.utils.ServerException;
 
@@ -40,7 +41,8 @@ public class FormActivity extends BaseActivity {
 	private Switch winOfferSwitch;
 	
 
-
+	public List<AnswerItem> lostList;
+	public List<AnswerWinItem> winList;
 	private AutoCompleteTextView modelSpinner;
 	private Spinner missingSpinner;
 	private Spinner winnerSpinner;
@@ -58,29 +60,38 @@ public class FormActivity extends BaseActivity {
 		
 		try {
 			item = InscriptionHelper.getInscription(getHelper(), getIntent().getExtras().getString("id"));
+			lostList= AnswersHelper.getAnswers(getHelper());
+			winList= AnswersHelper.getAnswersWin(getHelper());
+			modelSpinner = (AutoCompleteTextView) findViewById(R.id.modelSpinner);		
+			ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ModelHelper.getModelArray(getHelper()));		
+		//	ArrayAdapter<ModelItem> modelAdapter =new ModelAdapter(this,android.R.layout.simple_spinner_item,ModelHelper.getModels(getHelper()));		
+			//modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+			modelSpinner.setAdapter(modelAdapter);
+			
+			missingSpinner = (Spinner) findViewById(R.id.missingSpinner);
+		//	ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersArray(getHelper()));
+			AnswerAdapter missingAdapter = new AnswerAdapter(this,lostList);
+			//missingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+			missingSpinner.setAdapter(missingAdapter);
+			
+			winnerSpinner = (Spinner) findViewById(R.id.winSpinner);
+			AnswerWinAdapter winingAdapter = new AnswerWinAdapter(this,winList);
+//			ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersWinArray(getHelper()));
+//			winAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+			winnerSpinner.setAdapter(winingAdapter);
+
+			knownOperationSwitch = (Switch) findViewById(R.id.knownOperationSwitch);
+			makeOfferSwitch = (Switch) findViewById(R.id.makeOfferSwitch);
+			winOfferSwitch = (Switch) findViewById(R.id.winOfferSwitch);
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		modelSpinner = (AutoCompleteTextView) findViewById(R.id.modelSpinner);		
-		ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ModelHelper.getModelArray(getHelper()));		
-		//modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
-		modelSpinner.setAdapter(modelAdapter);
 		
-		missingSpinner = (Spinner) findViewById(R.id.missingSpinner);
-		ArrayAdapter<String> missingAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersArray(getHelper()));
-		missingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
-		missingSpinner.setAdapter(missingAdapter);
-		
-		winnerSpinner = (Spinner) findViewById(R.id.winSpinner);
-		ArrayAdapter<String> winAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,AnswersHelper.getAnswersWinArray(getHelper()));
-		winAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
-		winnerSpinner.setAdapter(winAdapter);
-
-		knownOperationSwitch = (Switch) findViewById(R.id.knownOperationSwitch);
-		makeOfferSwitch = (Switch) findViewById(R.id.makeOfferSwitch);
-		winOfferSwitch = (Switch) findViewById(R.id.winOfferSwitch);
-
 		
 
 		knownOperationSwitch
@@ -167,27 +178,11 @@ public class FormActivity extends BaseActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
-	        
-//	        case R.id.forward:
-//	        	
-//	        	if(index<(getListInscriptionsEmpty().size()-1)){
-//					loadInscriptionData(++index);	
-//				}else{
-//					index = 0;
-//					loadInscriptionData(index);
-//				}
-//		        return true;
+
 	        case R.id.save:
 	        	new SaveDataTask().execute();
 		        return true;
-//	        case R.id.back:
-//	        	if(index >0){
-//					loadInscriptionData(--index);
-//				}else{
-//					index = getListInscriptionsEmpty().size()-1;
-//					loadInscriptionData( index);
-//				}
-//		        return true;
+
 		        
 	        default:
 	            return super.onOptionsItemSelected(item);
@@ -230,9 +225,9 @@ public class FormActivity extends BaseActivity {
 					item.setMakeOffer(YES);
 					if (winOfferSwitch.isChecked()) {
 						item.setWinOffer(YES);
-						item.setWhyWin(winnerSpinner.getSelectedItemPosition());
+						item.setWhyWin(winList.get(winnerSpinner.getSelectedItemPosition()).getId());
 					}else{
-						item.setWhyLose(missingSpinner.getSelectedItemPosition());
+						item.setWhyLose(lostList.get(missingSpinner.getSelectedItemPosition()).getId());
 						item.setPrice(Float.valueOf(priceText.getText().toString()));
 					}
 					
@@ -290,7 +285,7 @@ public class FormActivity extends BaseActivity {
 
 	public void loadInscriptionData() {
 		
-		try {
+		
 			
 			TextView id = (TextView) findViewById(R.id.idText);
 			TextView date = (TextView) findViewById(R.id.dateText);
@@ -354,22 +349,23 @@ public class FormActivity extends BaseActivity {
 				modelSpinner.setText(item.getModelOffer());
 			}
 			if(item.getWhyLose()>0){
-				 
-				missingSpinner.setSelection(AnswersHelper.getAnswers(getHelper()).indexOf(item.getWhyLose()));
+				 for(int i=0;i<lostList.size();i++){
+					if(lostList.get(i).getId()==item.getWhyLose()){
+						missingSpinner.setSelection(i);
+					}
+					 
+				 }
+				
 			}
 			if(item.getWhyWin()>0){
-				
-				winnerSpinner.setSelection(AnswersHelper.getAnswersWin(getHelper()).indexOf(item.getWhyWin()));
-				
+				 for(int i=0;i<winList.size();i++){
+						if(winList.get(i).getId()==item.getWhyWin()){
+							winnerSpinner.setSelection(i);
+						}
+				}
 			}
 	
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 	}
 	

@@ -301,7 +301,7 @@ public static List<AnswerItem> getAnswers(DBHelper helper) throws SQLException, 
 			
 			
 		} catch (SQLException e) {
-			throw e;
+			e.printStackTrace();
 		
 		}
 		return result;
