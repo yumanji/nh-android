@@ -158,18 +158,12 @@ public class OverlayChartView extends DemoView implements lConstants{
         plot.setRenderer(1, renderer2A);
         renderer2A.setSeriesStroke(0, 2.0f);
 
-        XYDataset data2B = createDataset2B();
-        plot.setDataset(2, data2B);
-        plot.setRenderer(2, new StandardXYItemRenderer());
-        plot.getRenderer(2).setSeriesStroke(0, 2.0f);
-
-        plot.mapDatasetToRangeAxis(2, 1);
-
+       
         plot.setDatasetRenderingOrder(DatasetRenderingOrder.FORWARD);
         plot.setOrientation(PlotOrientation.VERTICAL);
 
         AFreeChart chart = new AFreeChart(
-                "Penetracion de mercado",
+                "",
                 AFreeChart.DEFAULT_TITLE_FONT,
                 plot,
                 true);
@@ -432,9 +426,9 @@ public class OverlayChartView extends DemoView implements lConstants{
 
         TimeSeries series2 = new TimeSeries("isncripciones");
 
-        for(int i = 1; i <= 4; i++) {
+        for(int i = 1; i <=1; i++) {
         	series2.add(new Month( i, 2013),
-        			i*18);
+        			0);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series2);
@@ -449,9 +443,9 @@ public class OverlayChartView extends DemoView implements lConstants{
 
         TimeSeries series2 = new TimeSeries("LAMBORGHINI");
 
-        for(int i = 1; i <= 4; i++) {
+        for(int i = 1; i <=14; i++) {
         	series2.add(new Month( i, 2013),
-        			i*18);
+        			0);
         }
 
         TimeSeriesCollection result = new TimeSeriesCollection(series2);

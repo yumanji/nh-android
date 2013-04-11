@@ -99,10 +99,10 @@
   
     <string name="total_title_table">Incripciones totales</string>
     <string name="total_title_col1">Unidades</string>
-    <string name="total_title_row1">Mercado total</string>
-    <string name="total_title_row2">Total Op. conocidas</string>
-    <string name="total_title_row3">Total Ofertas hechas</string>
-    <string name="total_title_row4">Total Ventas cerradas</string>
+    <string name="total_title_row1">(1) Mercado total</string>
+    <string name="total_title_row2">(2) Total Op. conocidas</string>
+    <string name="total_title_row3">(3) Total Ofertas hechas</string>
+    <string name="total_title_row4">(4) Total Ventas cerradas</string>
     
     <string name="brand_title_table">Marcas</string>
     <string name="brand_title_row1">JOHN DEERE</string>
