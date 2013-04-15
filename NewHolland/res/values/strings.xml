@@ -7,6 +7,7 @@
     <string name="logout_dialog_title">¡Atencion!</string>
     <string name="logout_dialog_message">Si desconecta su usuario, se procedera a borrar los datos que tiene guardados. ¿Esta seguro?</string>
    
+     <string name="version_title">Version:</string>
     <string name="app_name">Op. Perdidas</string>
     <string name="maps_key_dev">0lXjrk2_2mHVFn_NrxbiUCvmiB0_ihBqp0RLIlQ</string>
     <string name="googlemaps_key">0lXjrk2_2mHVFn_NrxbiUCvmiB0_ihBqp0RLIlQ</string>

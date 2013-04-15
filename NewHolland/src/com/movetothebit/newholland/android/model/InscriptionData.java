@@ -9,11 +9,11 @@ public class InscriptionData implements lConstants{
 	
 	
 	
-//	
-//	@DatabaseField(generatedId = true, columnName = ID)
+	
+//	@DatabaseField(generatedId = true,id = true, columnName = ID)
 //	public int id;	
 	
-	@DatabaseField(id=true,columnName = INSCRIPTION)
+	@DatabaseField(id = true, columnName = INSCRIPTION)
 	public String inscription;	
 	@DatabaseField(columnName = MACHINE_TYPE)
 	public String machineType;

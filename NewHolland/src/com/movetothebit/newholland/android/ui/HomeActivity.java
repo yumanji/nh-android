@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -14,7 +16,6 @@ import android.widget.TextView;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.j256.ormlite.table.TableUtils;
 import com.movetothebit.newholland.android.BaseActivity;
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.helpers.AppHelper;
@@ -34,6 +35,7 @@ public class HomeActivity extends BaseActivity {
 
 	public TextView lastSyncText;
 	public TextView mailText;
+	public TextView versionText;
 	
 	@Override
 	    protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,14 @@ public class HomeActivity extends BaseActivity {
 	        global = (CategoryWidget)findViewById(R.id.global);
 	        statistics = (CategoryWidget)findViewById(R.id.statistics);
 	        lastSyncText = (TextView)findViewById(R.id.lastSyncText);
+	        versionText = (TextView)findViewById(R.id.versionTitle);
+	
+	        try {
+				versionText.setText(getPackageManager().getPackageInfo(getPackageName(), 0).versionName.toString());
+			} catch (NameNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        mailText = (TextView)findViewById(R.id.mailText);
 	        mailText.setOnClickListener(new OnClickListener() {
 				

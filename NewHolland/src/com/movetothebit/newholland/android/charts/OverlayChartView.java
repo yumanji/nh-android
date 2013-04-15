@@ -56,6 +56,7 @@ import org.afree.chart.plot.XYPlot;
 import org.afree.chart.renderer.xy.StandardXYItemRenderer;
 import org.afree.chart.renderer.xy.XYBarRenderer;
 import org.afree.chart.renderer.xy.XYItemRenderer;
+import org.afree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.afree.data.Range;
 import org.afree.data.time.Month;
 import org.afree.data.time.TimePeriodAnchor;
@@ -150,7 +151,7 @@ public class OverlayChartView extends DemoView implements lConstants{
 
         ValueAxis rangeAxis2 = new NumberAxis("Inscripciones");
         plot.setRangeAxis(1, rangeAxis2);
-
+        
         // create subplot 2...
         XYDataset data2A = createDataset2A();
         plot.setDataset(1, data2A);
@@ -192,7 +193,9 @@ public class OverlayChartView extends DemoView implements lConstants{
      
         renderer1.setSeriesPaintType(0, gp0);
         XYPlot plot = new XYPlot(data1, domainAxis, rangeAxis, renderer1);
-
+//        plot.setDomainCrosshairVisible(true);
+//        plot.setRangeCrosshairVisible(true);
+        
         ValueAxis rangeAxis2 = new NumberAxis("Total inscripciones");
       
         plot.setRangeAxis(1, rangeAxis2);
@@ -200,9 +203,18 @@ public class OverlayChartView extends DemoView implements lConstants{
         // create subplot 2...
         XYDataset data2A = createTotalDataset(dataSet);
         plot.setDataset(1, data2A);
-        XYItemRenderer renderer2A = new StandardXYItemRenderer();
+//        XYItemRenderer r = plot.getRenderer();
+//        if (r instanceof XYLineAndShapeRenderer) {
+//            XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) r;
+//            renderer.setBaseShapesVisible(true);
+//            renderer.setBaseShapesFilled(true);
+//            renderer.setDrawSeriesLineAsPath(true);
+//        }
+
+       XYItemRenderer renderer2A = new XYLineAndShapeRenderer(true,true);
+//        XYItemRenderer renderer2A = new StandardXYItemRenderer();
         plot.setRenderer(1, renderer2A);
-        renderer2A.setSeriesStroke(0, 2.0f);
+//        renderer2A.setSeriesStroke(0, 2.0f);
 
         plot.mapDatasetToRangeAxis(1, 1);
         
@@ -252,9 +264,9 @@ public class OverlayChartView extends DemoView implements lConstants{
         // create subplot 2...
         XYDataset data2A = createTotalDataset(dataSet);
         plot.setDataset(1, data2A);
-        XYItemRenderer renderer2A = new StandardXYItemRenderer();
+        XYItemRenderer renderer2A =  new XYLineAndShapeRenderer(true,true);
         plot.setRenderer(1, renderer2A);
-        renderer2A.setSeriesStroke(0, 2.0f);
+//        renderer2A.setSeriesStroke(0, 2.0f);
         
         Marker marker_H = new ValueMarker(objetive);
         marker_H.setLabelOffsetType(LengthAdjustmentType.EXPAND);
@@ -308,9 +320,9 @@ public class OverlayChartView extends DemoView implements lConstants{
         // create subplot 2...
         XYDataset data2A = createTotalDataset(dataSet);
         plot.setDataset(1, data2A);
-        XYItemRenderer renderer2A = new StandardXYItemRenderer();
+        XYItemRenderer renderer2A = new XYLineAndShapeRenderer(true,true);
         plot.setRenderer(1, renderer2A);
-        renderer2A.setSeriesStroke(0, 2.0f);
+//        renderer2A.setSeriesStroke(0, 2.0f);
 
         
         

@@ -63,9 +63,11 @@ public class FormActivity extends BaseActivity {
 			lostList= AnswersHelper.getAnswers(getHelper());
 			winList= AnswersHelper.getAnswersWin(getHelper());
 			modelSpinner = (AutoCompleteTextView) findViewById(R.id.modelSpinner);		
-			ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ModelHelper.getModelArray(getHelper()));		
+			
+			ArrayAdapter<String> modelAdapter =new ArrayAdapter<String>(this,R.layout.autocomplete_row_layout,ModelHelper.getModelArray(getHelper()));		
 		//	ArrayAdapter<ModelItem> modelAdapter =new ModelAdapter(this,android.R.layout.simple_spinner_item,ModelHelper.getModels(getHelper()));		
-			//modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+//			modelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+			
 			modelSpinner.setAdapter(modelAdapter);
 			
 			missingSpinner = (Spinner) findViewById(R.id.missingSpinner);

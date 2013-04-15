@@ -86,11 +86,15 @@ public class FilterHelper implements lConstants{
 //		
 //		return result;
 //	}
+	public static String[] getPeriodValues(Context ctx){
+			
+		return DateHelper.getLastMonths(12);
+	}
 	public static String[] getPeriodValues(Context ctx,DBHelper helper){
 		String[] result = null;
 		List<InscriptionData> results;
 		try {
-			results = helper.getInscriptionsDao().queryBuilder().distinct().selectColumns(MONTH,YEAR).query();
+			results = helper.getInscriptionsDao().queryBuilder().distinct().orderBy(ID, true).selectColumns(MONTH,YEAR).query();
 			if(results.size()!=0){
 				
 				result = new String[results.size()];

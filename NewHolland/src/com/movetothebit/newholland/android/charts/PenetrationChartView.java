@@ -46,6 +46,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import org.afree.R.color;
 import org.afree.chart.AFreeChart;
 import org.afree.chart.axis.DateAxis;
 import org.afree.chart.axis.DateTickMarkPosition;
@@ -57,6 +58,7 @@ import org.afree.chart.plot.XYPlot;
 import org.afree.chart.renderer.xy.StandardXYItemRenderer;
 import org.afree.chart.renderer.xy.XYBarRenderer;
 import org.afree.chart.renderer.xy.XYItemRenderer;
+import org.afree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.afree.data.time.Day;
 import org.afree.data.time.TimePeriodAnchor;
 import org.afree.data.time.TimeSeries;
@@ -69,6 +71,7 @@ import org.afree.graphics.SolidColor;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 
 import com.movetothebit.newholland.android.charts.model.MonthDataSet;
@@ -143,8 +146,58 @@ public class PenetrationChartView extends DemoView {
         for(Brand brand: topBrands){
         	XYDataset data2A = createBrandDataset(dataSet,brand);
             plot.setDataset(j+1, data2A);
-            XYItemRenderer renderer2A = new StandardXYItemRenderer();
+            XYItemRenderer renderer2A =  new XYLineAndShapeRenderer(true,true);
             plot.setRenderer(j+1, renderer2A);
+            if(brand.getName().equals("NEW HOLLAND")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(36,64,98)));
+            }else if(brand.getName().equals("JOHN DEERE")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(79, 98 , 40)));
+            }else if(brand.getName().equals("KUBOTA")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(226, 107, 10)));
+            }else if(brand.getName().equals("DEUTZ")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(146, 208,80)));
+            }else if(brand.getName().equals("MASSEY FERSUSSON")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(99, 37, 35)));
+            }else if(brand.getName().equals("SAME")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(218,150,148)));
+            }else if(brand.getName().equals("FENDT")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(196,215,155)));
+            }else if(brand.getName().equals("CASE IH")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(255, 0, 0)));
+            }else if(brand.getName().equals("CLAAS")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(102, 255, 51)));
+            }else if(brand.getName().equals("LAMBORGHINI")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(191, 191 , 191)));
+            }else if(brand.getName().equals("LANDINI")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(184, 204, 228)));
+            }else if(brand.getName().equals("WELGER")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(118, 147, 60)));
+            }else if(brand.getName().equals("KRONE")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(0, 176, 80)));
+            }else if(brand.getName().equals("PELLENC")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(252, 213, 180)));
+            }else if(brand.getName().equals("GREGOIRE")){
+            	
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(255, 192, 0)));
+            }else{
+            	renderer2A.setSeriesPaintType(0,  new SolidColor(Color.rgb(0, 0, 0)));
+            }
+            
+            
             renderer2A.setSeriesStroke(0, 2.0f);
             plot.mapDatasetToRangeAxis(j+1, 1);
             ++j;        	

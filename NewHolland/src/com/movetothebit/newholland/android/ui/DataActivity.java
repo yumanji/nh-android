@@ -53,7 +53,10 @@ public class DataActivity extends ChartBaseActivity{
         penetrationChartView  = (PenetrationChartView)findViewById(R.id.penetrationChartView);
         marketChartView  = (OverlayChartView)findViewById(R.id.marketChartView);
         effectivenessChartView  = (OverlayChartView)findViewById(R.id.effectivenessChartView);
-        
+        presenceChartView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        penetrationChartView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        effectivenessChartView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        marketChartView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         resetButton = (Button) findViewById(R.id.resetButton);
 		resetButton.setOnClickListener(new OnClickListener() {
 			

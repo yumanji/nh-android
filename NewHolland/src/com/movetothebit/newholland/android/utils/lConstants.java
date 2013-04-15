@@ -18,7 +18,8 @@ public interface lConstants {
 	public static final int EFECTIVITY= 2;
 	
 	
-	public static final String URL = "http://nh.movetothebit.com/index.php/comms/";
+//	public static final String URL = "http://nh.movetothebit.com/index.php/comms/";/* DESARROLLO*/
+	public static final String URL = "http://nh.mttb-server.com/index.php/comms/"; /* PRODUCCION*/
 	public static final String GET_ANSWERS = "getanswers/";
 	public static final String GET_ANSWERS_WIN = "getanswerswin/";
 	public static final String GET_MODELS = "getmodels/";

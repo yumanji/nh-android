@@ -77,7 +77,7 @@ public class ChartBaseActivity extends BaseActivity{
 		salesmanSpinner.setData(FilterHelper.getSalesmanValues(getApplicationContext(),getHelper()), "Vendedor");			
 		modelSpinner.setData( FilterHelper.getModel3Values(getApplicationContext(),getHelper()), "Comp NH");			
 		modelCompSpinner.setData(FilterHelper.getModelsCompValues(getApplicationContext(),getHelper()), "Modelo Comparable");			
-		periodSpinner.setData(FilterHelper.getPeriodValues(getApplicationContext(),getHelper()), "Periodo");				
+		periodSpinner.setData(FilterHelper.getPeriodValues(getApplicationContext()), "Periodo");				
 		brandSpinner.setData(FilterHelper.getBrandValues(getApplicationContext(),getHelper()), "Marca");				
 		populationSpinner.setData(FilterHelper.getPopulationValues(getApplicationContext(),getHelper()), "Población");		
 		areaSpinner.setData(FilterHelper.getAreaValues(getApplicationContext(),getHelper()), "Zona");			

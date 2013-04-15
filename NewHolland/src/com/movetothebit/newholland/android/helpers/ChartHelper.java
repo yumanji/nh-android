@@ -83,17 +83,17 @@ public class ChartHelper implements lConstants {
 		List<InscriptionData> dataFilter = new ArrayList<InscriptionData>();
 		if(dates.length>0||brands.length>0){
 			for(InscriptionData item: data){
-				boolean result = false;
+				boolean result = true;
 				for (String date: dates){
 					if((item.getMonth()+" "+item.getYear()).equals(date)){
-						result=true;
+						result=false;
 						break;						
 					}
 				}
 			
 				for(String brand:brands){
 					if(item.getBrand().equals(brand)){
-						result = true;
+						result = false;
 						break;
 					}
 				}
