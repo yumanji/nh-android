@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 import android.util.Log;
@@ -144,7 +145,7 @@ public class ChartHelper implements lConstants {
 					monthDataSetList[i].year = lastMonths[i].substring(5,8);
 				}
 				
-				if((item.getMonth()+" "+ item.getYear()).equals(lastMonths[i])){					
+				if((item.getMonth().toUpperCase(new Locale("es", "ES"))+" "+ item.getYear()).equals(lastMonths[i])){					
 					
 					++monthDataSetList[i].total;
 					

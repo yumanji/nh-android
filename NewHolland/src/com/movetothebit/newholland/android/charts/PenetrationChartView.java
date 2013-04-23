@@ -46,7 +46,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-import org.afree.R.color;
 import org.afree.chart.AFreeChart;
 import org.afree.chart.axis.DateAxis;
 import org.afree.chart.axis.DateTickMarkPosition;
@@ -71,7 +70,6 @@ import org.afree.graphics.SolidColor;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 
 import com.movetothebit.newholland.android.charts.model.MonthDataSet;
@@ -136,7 +134,8 @@ public class PenetrationChartView extends DemoView {
      
         renderer1.setSeriesPaintType(0, gp0);
         XYPlot plot = new XYPlot(total, domainAxis, rangeAxis, renderer1);
-
+   
+       
         NumberAxis rangeAxis2 = new NumberAxis("Penetración");
         rangeAxis2.setNumberFormatOverride(NumberFormat.getPercentInstance());
         
@@ -211,13 +210,13 @@ public class PenetrationChartView extends DemoView {
         renderer2A.setSeriesStroke(0, 2.0f);
         plot.setDatasetRenderingOrder(DatasetRenderingOrder.FORWARD);
         plot.setOrientation(PlotOrientation.VERTICAL);
-
+        
         AFreeChart chart = new AFreeChart(
                 "Penetracion de mercado",
                 AFreeChart.DEFAULT_TITLE_FONT,
                 plot,
                 true);
-        
+       
         chart.setBackgroundPaintType(new SolidColor(Color.TRANSPARENT));
 
         return chart;

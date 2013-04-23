@@ -473,13 +473,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
                         android:layout_gravity="center"
+                        android:clickable="false"
                         android:gravity="center_horizontal" >
 
                         <com.movetothebit.newholland.android.charts.PenetrationChartView
                             android:id="@+id/penetrationChartView"
                             android:layout_width="800dp"
                             android:layout_height="350dp"
-                            android:layout_gravity="center" />
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false" />
 
                     </LinearLayout>
 
@@ -494,19 +498,25 @@
                             android:id="@+id/presenceChartView"
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false" />
 
                         <com.movetothebit.newholland.android.charts.OverlayChartView
                             android:id="@+id/effectivenessChartView"
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false" />
 
                         <com.movetothebit.newholland.android.charts.OverlayChartView
                             android:id="@+id/marketChartView"
                             android:layout_width="match_parent"
                             android:layout_height="300dp"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false" />
 
                     </LinearLayout>
 

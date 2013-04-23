@@ -8,8 +8,10 @@ import org.afree.data.category.DefaultCategoryDataset;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -25,7 +27,7 @@ import com.movetothebit.newholland.android.helpers.InscriptionHelper;
 import com.movetothebit.newholland.android.utils.ServerException;
 import com.movetothebit.newholland.android.widgets.MultiSelectSpinner;
 
-public class DataActivity extends ChartBaseActivity{
+public class DataActivity extends ChartBaseActivity implements OnTouchListener{
 	
 	
 	@Override
@@ -57,6 +59,11 @@ public class DataActivity extends ChartBaseActivity{
         penetrationChartView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         effectivenessChartView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         marketChartView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        presenceChartView.setOnTouchListener(this);
+        lostChartView.setOnTouchListener(this);
+        penetrationChartView.setOnTouchListener(this);
+        effectivenessChartView.setOnTouchListener(this);
+        marketChartView.setOnTouchListener(this);
         resetButton = (Button) findViewById(R.id.resetButton);
 		resetButton.setOnClickListener(new OnClickListener() {
 			
@@ -79,7 +86,11 @@ public class DataActivity extends ChartBaseActivity{
 		});
        
     }
-	
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	@Override
 	protected void onStart() {	
 		
@@ -201,4 +212,6 @@ public class DataActivity extends ChartBaseActivity{
 
 	
 }
+
+	
 }
