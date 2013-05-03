@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.Context;
 
 import com.movetothebit.newholland.android.db.DBHelper;
-import com.movetothebit.newholland.android.model.BrandData;
 import com.movetothebit.newholland.android.model.InscriptionData;
 import com.movetothebit.newholland.android.utils.lConstants;
 

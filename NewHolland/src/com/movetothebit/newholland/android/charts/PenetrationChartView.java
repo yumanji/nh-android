@@ -323,11 +323,11 @@ public class PenetrationChartView extends DemoView {
 
         for(int i = 0; i < dataSet.length; i++) {
         	
-        	if(dataSet[i].total>0){
+//        	if(dataSet[i].total>0){
         		series1.add(DateHelper.getMonthFromStrings(dataSet[i].month,dataSet[i].year),
             			dataSet[i].total);
 
-        	}
+//        	}
         	
         }
 

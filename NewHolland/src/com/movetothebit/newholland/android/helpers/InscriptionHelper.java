@@ -363,7 +363,70 @@ public class InscriptionHelper implements lConstants{
 			}
 			where.eq(HISTORIC, 1);
 			Log.d("QUERY", queryBuilder.prepareStatementString());
-						result = helper.getInscriptionsDao().query(queryBuilder.prepare());
+			
+			result = helper.getInscriptionsDao().query(queryBuilder.prepare());
+			
+
+		} catch (SQLException e) {
+			throw e;
+		
+		}
+		return result;
+	   
+	}
+	
+public static List<InscriptionData> getInscriptionsFilter(DBHelper helper, String[] salesman, String[] dealer, String[] model, String[] modelComp, String[] population, String[] area,String[] type, String[] period, String[] brand)throws SQLException, ServerException{
+		
+		List<InscriptionData> result  = null;
+		QueryBuilder<InscriptionData,Integer> queryBuilder = null;
+		Where<InscriptionData, Integer> where= null;
+		String[] month = new String[period.length];
+		
+		
+		try {
+
+			queryBuilder = helper.getInscriptionsDao().queryBuilder();
+			 // get the WHERE object to build our query
+			where = queryBuilder.where();
+			// the name field must be equal to "foo"
+			if(salesman.length>0){
+				where.in(SALESMAN_NAME, salesman);
+				where.and();	
+			}
+			
+		
+			if(dealer.length>0){
+				where.in(DEALER_NAME, dealer);
+				where.and();				
+			}
+			if(model.length>0){
+				where.in(MODEL3, model);
+				where.and();				
+			}
+			if(modelComp.length>0){
+				where.in(MODEL_EQUAL, modelComp);
+				where.and();				
+			}			
+			if(population.length>0){
+				where.in(POPULATION, population);
+				where.and();				
+			}
+			if(area.length>0){
+				where.in(AREA, area);
+				where.and();				
+			}			
+			if(type.length>0){
+				where.in(MACHINE_TYPE, type);
+				where.and();				
+			}
+			if(type.length>0){
+				where.in(BRAND, brand);
+				where.and();				
+			}
+			where.eq(HISTORIC, 1);
+			Log.d("QUERY", queryBuilder.prepareStatementString());
+			
+			result = helper.getInscriptionsDao().query(queryBuilder.prepare());
 			
 
 		} catch (SQLException e) {

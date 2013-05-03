@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.movetothebit.newholland.android.R;
 import com.movetothebit.newholland.android.charts.BarChartView;
@@ -160,7 +159,7 @@ public class DataActivity extends ChartBaseActivity implements OnTouchListener{
 					
 					refreshData();
 				}else{
-					Toast.makeText(getApplicationContext(), "No hay Datos", Toast.LENGTH_SHORT).show();
+//					Toast.makeText(getApplicationContext(), "No hay Datos", Toast.LENGTH_SHORT).show();
 				}
 				
 			}

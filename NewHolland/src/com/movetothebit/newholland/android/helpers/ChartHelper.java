@@ -84,22 +84,33 @@ public class ChartHelper implements lConstants {
 		List<InscriptionData> dataFilter = new ArrayList<InscriptionData>();
 		if(dates.length>0||brands.length>0){
 			for(InscriptionData item: data){
-				boolean result = true;
-				for (String date: dates){
-					if((item.getMonth()+" "+item.getYear()).equals(date)){
-						result=false;
-						break;						
+				boolean resultDate = true;
+				boolean resultBrand = true;
+				
+				if(dates.length>0){
+					for (String date: dates){
+						if((item.getMonth()+" "+item.getYear()).equals(date)){
+							resultDate=false;
+							break;						
+						}
 					}
+				}else{
+					resultDate = false;
 				}
 			
-				for(String brand:brands){
-					if(item.getBrand().equals(brand)){
-						result = false;
-						break;
+				if(brands.length>0){
+					for(String brand:brands){
+						if(item.getBrand().equals(brand)){
+							resultBrand = false;
+							break;
+						}
 					}
+				}else{
+					resultBrand = false;
 				}
 				
-				if(result)
+				
+				if(!resultBrand && !resultDate)
 					dataFilter.add(item);			
 			
 			}
@@ -172,6 +183,42 @@ public class ChartHelper implements lConstants {
 		
 		return monthDataSetList;
 	}
+//	
+//	public static FilterDataSet getFilterDataSet(List<InscriptionData> data, int lostCount, String[] brands, String[] dates){
+//		
+//		List<InscriptionData> dataFilter = getFilterList(data, brands, dates);
+//		FilterDataSet dataSet = new FilterDataSet();		
+//		
+//		dataSet.lostData = new float[lostCount];
+//		
+//		
+//		
+// 		for(InscriptionData item: dataFilter){
+//			
+// 			++dataSet.total;
+//			if(item.knownOperation==1)
+//				++dataSet.known;
+//			
+//			if(item.makeOffer==1)
+//				++dataSet.offert;
+//					
+//			if(item.winOffer==1){
+//				if(item.getWhyWin()>=0)
+//					++dataSet.win;				
+//			}else{
+//				if(item.getWhyLose()>=0&&item.getWhyLose()<=lostCount){
+//					++dataSet.lost;
+//					++dataSet.lostData[item.getWhyLose()]; 
+//				}
+//			}	
+//		}
+//		
+//		
+//		
+//		return dataSet;
+//	}
+	
+	
 public static FilterDataSet getFilterDataSet(List<InscriptionData> data, int lostCount, String[] brands, String[] dates){
 		
 		List<InscriptionData> dataFilter = getFilterList(data, brands, dates);
@@ -179,11 +226,11 @@ public static FilterDataSet getFilterDataSet(List<InscriptionData> data, int los
 		
 		dataSet.lostData = new float[lostCount];
 		
-		
+		dataSet.total = dataFilter.size();
 		
  		for(InscriptionData item: dataFilter){
 			
- 			++dataSet.total;
+ 			
 			if(item.knownOperation==1)
 				++dataSet.known;
 			
@@ -205,6 +252,7 @@ public static FilterDataSet getFilterDataSet(List<InscriptionData> data, int los
 		
 		return dataSet;
 	}
+	
 	public static List<Brand> getBrandData(Context ctx, DBHelper helper,List<InscriptionData> listData){		
 		List<Brand> data = new ArrayList<Brand>();		
 		List<InscriptionData> list = null;
